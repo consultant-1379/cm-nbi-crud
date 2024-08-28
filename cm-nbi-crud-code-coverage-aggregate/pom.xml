@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.ericsson.oss.services.cm</groupId>
+        <artifactId>cm-nbi-crud</artifactId>
+        <version>1.19.1-SNAPSHOT</version>
+    </parent>
+    <artifactId>cm-nbi-crud-code-coverage-aggregate</artifactId>
+    <name>[cm-nbi-crud] code coverage aggregate</name>
+    <description>Module responsible to collect and merge the coverage reports from across all cm-reader modules at the
+                 end of the build cycle.</description>
+
+    <properties>
+        <sonar.sources>pom.xml</sonar.sources>
+        <sonar.coverage.jacoco.xmlReportPaths>${basedir}/../${aggregate.report.dir}</sonar.coverage.jacoco.xmlReportPaths>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.ericsson.oss.services.cm</groupId>
+            <artifactId>cm-nbi-crud-spi-jar</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.ericsson.oss.services.cm</groupId>
+            <artifactId>cm-nbi-crud-ejb</artifactId>
+            <type>ejb</type>
+        </dependency>
+    </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>report</id>
+                        <goals>
+                            <goal>report-aggregate</goal>
+                        </goals>
+                        <phase>verify</phase>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>

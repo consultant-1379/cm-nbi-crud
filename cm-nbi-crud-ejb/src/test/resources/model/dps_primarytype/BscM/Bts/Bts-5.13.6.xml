@@ -1,0 +1,432 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+
+*******************************************************************************
+* COPYRIGHT Ericsson LMI 2018. All rights reserved.
+*
+* No part of this document may be reproduced in any form without the
+* written permission of the copyright owner.The contents of this document
+* are subject to revision without notice due to continued progress in
+* methodology, design and manufacturing. Ericsson shall have no liability
+* for any error or damage of any kind resulting from the use of this document.
+*
+*******************************************************************************
+
+
+--><ns2:PrimaryTypeDefinition xmlns:ns1="urn:com:ericsson:schema:xml:oss:oss_common" xmlns:ns2="urn:com:ericsson:schema:xml:oss:dps_primarytype" xmlns:ns3="urn:com:ericsson:schema:xml:oss:dps_common" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" hierarchyType="HIERARCHICAL" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="Bts" ns1:ns="BscM" ns1:version="5.13.6">
+  <ns1:modelCreationInfo author="mom-xml-transformer-tool" creationDate="2018-10-03 07:07:25.351">
+    <ns1:derivedModel derivedFrom="/net_momdtd/BscM/BscM_5_13_6"/>
+  </ns1:modelCreationInfo>
+  <ns1:desc>Contains the data the BSC needs to configure its BTSes.
+The class itself contains configuration data common for the BTSes.
+This class also contains instances of the following classes:
+- G12Tg represents the BTS logical model G12 Transceiver Groups (RBS 2000 and DU radio nodes)
+- G31Tg represents the BTS logical model G31 Transceiver Groups (Baseband radio nodes)
+- LapdBundlingGroup represents common configuration of how Abis LAPD Packages are mapped to IP packages; used by G12 model.
+- PacketSwitchTerminationUnit represents individual IP identities in the BTS; used by G12 model.
+- SuperChannelGroup represents individual Packet Abis configuration on the Abis interface; used by G12 model.</ns1:desc>
+  <ns2:primaryTypeAttribute immutable="true" key="true" mandatory="true" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="btsId" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Holds the name used when identifying the MO.</ns1:desc>
+    <ns1:type xsi:type="ns1:stringType">
+      <ns1:notNullConstraint/>
+      <ns1:stringContentsConstraint type="REGEX" value="^[1]$"/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="bscFSOffset" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>BSC Frame Start Offset.
+
+BSC Frame Start Offset is set to delay the start of frame transmission by a specified period of time. Each integer unit for this attribute represents the duration of four quarters of a symbol on the Air interface.
+This offset is common to all TGs in a BSC. This allows different BSCs within a network to be frame synchronized.
+
+The availability of the attribute values other than the default one depends on commercial agreements.
+
+Depends on 
+RAEPC: PROP=BSCFSOFFSETMSW=BSCFSOFFSETLSW</ns1:desc>
+    <ns1:type xsi:type="ns1:longType">
+      <ns1:notNullConstraint/>
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="4294967295" min="0"/>
+      </ns1:valueRangeConstraint>
+    </ns1:type>
+    <ns1:default value="0" xsi:type="ns1:longValue"/>
+    <ns2:disturbances>Change of the BSC Frame Start Offset causes a reconfiguration of all active TGs served by the BSC.</ns2:disturbances>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="bssRelease" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>BSS release version.
+
+Specifies which BSS main release is used to indicate possible IWDs in the negotiation between BSC and BTS.
+
+The following values represent possible settings of the attribute that are supported by BSC G18.Q1 release:
+121 - BSS 06A
+130 - BSS 06B
+700 - BSS 07A
+710 - BSS 07B
+800 - BSS 08A
+810 - BSS 08B
+900 - BSS 09A
+1000 - BSS G10A
+1010 - BSS G10B
+1110 - BSS G11B
+1200 - BSS G12A
+1210 - BSS G12B
+1300 - BSS G13A (BSS G13B with BTS G13A)
+1310 - BSS G13B
+1400 - BSS G14A (GSM RAN G14B with BTS G14A)
+1410 - BSS G14B (GSM RAN G14B with BTS G14B)
+1420 - BSS G14B (GSM RAN G14B with BTS G14B1)
+1430 - BSS G14B (GSM RAN G14B with BTS G14B2)
+1510 - BSS G15B (GSM RAN G15B with BTS G15B)
+1520 - BSS G15B (GSM RAN G15B with BTS G16A)
+1610 - BSS G16B (GSM RAN G16B with BTS G16B)
+1611 - BSS G16B (GSM RAN G16B with BTS G17A)
+1615 - BSS G16B (GSM RAN G16B with BTS G17A.7)
+1625 - BSS G16B (GSM RAN G16B with BTS G17.Q2)
+1730 - BSS G17.Q3 (GSM RAN G17.Q3 with BTS G17.Q3)
+1740 - BSS G17.Q4 (GSM RAN G17.Q4 with BTS G17.Q4)
+1810 - BSS G18.Q1 (GSM RAN G18.Q1 with BTS G18.Q1)
+1820 - BSS G18.Q2 (GSM RAN G18.Q2 with BTS G18.Q2)
+
+Depends on 
+RAEPC: PROP=BSSRELEASE</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="2000" min="70"/>
+      </ns1:valueRangeConstraint>
+    </ns1:type>
+    <ns1:default value="1820" xsi:type="ns1:integerValue"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="defaultSyncSrc" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Default TF synchronization source for the BTS.
+If attribute is set to no value, then synchronization source is not controlled by the BSC.
+
+The availability of the attribute values other than the default one depends on commercial agreements.
+
+Depends on 
+RAEPC: PROP=DEFAULTSYNCSRC</ns1:desc>
+    <ns1:type modelUrn="//BscM/SyncSource/5.13.6" xsi:type="ns1:enumRefType"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="exMasterRes" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Automatic Master Reselection activation state.
+
+Indicates whether the support for automatic reselection of Master TG in TG Cluster is activated.
+
+The availability of the attribute value other than the default one depends on commercial agreements.
+
+Depends on 
+RAEPC: PROP=EXMASTERRES</ns1:desc>
+    <ns1:type modelUrn="//BscM/ActiveState/5.13.6" xsi:type="ns1:enumRefType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns1:default value="INACTIVE" xsi:type="ns1:stringValue"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="fCMaxNoPTGLG12" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Maximum number of parallel TG loads at Function Change in BTS logical model G12.
+
+If attribute is set to 0, then no limit is set.
+
+The default value represents the recommended value for the BSC using Serial RP Bus or a mix of Serial RP Bus and Ethernet RP Bus. The recommended value for the BSC using only Ethernet RP Bus is 255.
+
+Depends on 
+RAEPC: PROP=FCMAXNOPTGLG12</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="512" min="0"/>
+      </ns1:valueRangeConstraint>
+    </ns1:type>
+    <ns1:default value="40" xsi:type="ns1:integerValue"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="fCMaxNoPTGUG12" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Maximum number of parallel TG upgrades at Function Change in BTS logical model G12.
+
+If attribute is set to 0, then no limit is set.
+
+Depends on 
+RAEPC  PROP=FCMAXNOPTGUG12</ns1:desc>
+    <ns1:type xsi:type="ns1:shortType">
+      <ns1:notNullConstraint/>
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="64" min="0"/>
+      </ns1:valueRangeConstraint>
+    </ns1:type>
+    <ns1:default value="64" xsi:type="ns1:shortValue"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="mLogDefLev" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Default detail level for the functionality Maintenance Logging.
+
+Depends on 
+RAEPC: PROP=MLOGDEFLEV</ns1:desc>
+    <ns1:type xsi:type="ns1:shortType">
+      <ns1:notNullConstraint/>
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="4" min="0"/>
+      </ns1:valueRangeConstraint>
+    </ns1:type>
+    <ns1:default value="1" xsi:type="ns1:shortValue"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="recCap" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Recovery capacity.
+
+Guaranteed processor capacity that radio network recovery can use after restarts.
+
+Depends on 
+RAEPC: PROP=RECCAP</ns1:desc>
+    <ns1:type xsi:type="ns1:shortType">
+      <ns1:notNullConstraint/>
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="50" min="3"/>
+      </ns1:valueRangeConstraint>
+    </ns1:type>
+    <ns1:default value="10" xsi:type="ns1:shortValue"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="recTime" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Recovery time.
+
+Duration after restart when the increased recovery capacity is allowed.
+
+If attribute is set to 0, then no change in recovery priority takes place.
+
+Depends on 
+RAEPC: PROP=RECTIME</ns1:desc>
+    <ns1:type xsi:type="ns1:shortType">
+      <ns1:notNullConstraint/>
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="50" min="0"/>
+      </ns1:valueRangeConstraint>
+    </ns1:type>
+    <ns1:default value="0" xsi:type="ns1:shortValue"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="regPointProCLd" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Regulation point for Function Change and Program Load.
+
+Specifies the load figure used to determine if a new loading of BTS software can be started.
+
+Depends on 
+RAEPC: PROP=REGPOINTPROCLD</ns1:desc>
+    <ns1:type xsi:type="ns1:shortType">
+      <ns1:notNullConstraint/>
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="80" min="40"/>
+      </ns1:valueRangeConstraint>
+    </ns1:type>
+    <ns1:default value="80" xsi:type="ns1:shortValue"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="rOmtBIpAddr" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>BSC IP address for the Remote Operation and Maintenance Terminal over IP connection.
+
+Depends on 
+RAEPC: PROP=ROMTBIPADDRMSW=ROMTBIPADDRLSW</ns1:desc>
+    <ns1:type xsi:type="ns1:stringType">
+      <ns1:stringLengthConstraint>
+        <ns1:minMaxLength max="15" min="7"/>
+      </ns1:stringLengthConstraint>
+      <ns1:stringContentsConstraint type="REGEX" value="^((22[0-3]|2[01][0-9]|1[013456789][0-9]|12[012345689]|[1-9][0-9]|[1-9])\.(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9][0-9]|[0-9])\.(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9][0-9]|[0-9])\.(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9][0-9]|[0-9]))$"/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="rpBusMaxNoSeg" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Maximum number of file segments at loading.
+
+Specifies the maximum number of 230-byte file segments that can be sent to a RP in a 0.5 s period at loading. The value depends on the capacity of the RP Bus on the physical link.
+
+The default value corresponds to Serial RP Bus capacity of 2100 kbps, therefore it represents the recommended value for the BSC using Serial RP Bus, or a mix of Serial RP Bus and Ethernet RP Bus. In the BSC using only Ethernet RP Bus the attribute can be set to the maximum of the range.
+
+Depends on 
+RAEPC: PROP=RPBUSMAXNOSEG</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="65535" min="100"/>
+      </ns1:valueRangeConstraint>
+    </ns1:type>
+    <ns1:default value="525" xsi:type="ns1:integerValue"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="findFaultyAntennaData" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Activates the FFAD in the BSC.
+
+The availability of attribute values depends on commercial agreements.
+
+Depends on 
+RFADI 
+RFADE</ns1:desc>
+    <ns1:type modelUrn="//BscM/EnableState/5.13.6" xsi:type="ns1:enumRefType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns1:default value="DISABLED" xsi:type="ns1:stringValue"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="findFaultyTransmitAntennaData" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Activates the FFTAD in the BSC.
+
+The availability of attribute values depends on commercial agreements.
+
+Depends on 
+RFTDI 
+RFTDE</ns1:desc>
+    <ns1:type modelUrn="//BscM/EnableState/5.13.6" xsi:type="ns1:enumRefType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns1:default value="DISABLED" xsi:type="ns1:stringValue"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="tchCap1" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>TCH capability 1.
+
+Specifies the TCH capability with the highest weight during TG configuration. TCH capabilities that are not selected by any of attributes tchCap1, tchCap2, or tchCap3 are given with their own default weights.
+
+If attribute is set to no value, then no TCH capability is selected.
+
+0-63
+FR TCH capability is selected.
+
+64-95
+HR TCH capability is selected.
+
+Depends on 
+RAEPC: PROP=TCHCAP1</ns1:desc>
+    <ns1:type xsi:type="ns1:shortType">
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="95" min="0"/>
+      </ns1:valueRangeConstraint>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="tchCap2" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>TCH capability 2.
+
+Specifies the TCH capability with the second highest weight during TG configuration. TCH capabilities that are not selected by any of attributes tchCap1, tchCap2, or tchCap3 are given with their own default weights.
+If attribute is set to no value, then no TCH capability is selected.
+
+0-63
+FR TCH capability is selected.
+
+64-95
+HR TCH capability is selected.
+
+Depends on 
+RAEPC: PROP=TCHCAP2</ns1:desc>
+    <ns1:type xsi:type="ns1:shortType">
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="95" min="0"/>
+      </ns1:valueRangeConstraint>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="tchCap3" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>TCH capability 3.
+
+Specifies the TCH capability with the third highest weight during TG configuration. TCH capabilities which are not selected by any of attributes tchCap1, tchCap2, or tchCap3 are given with their own default weights.
+If attribute is set to no value, then no TCH capability is selected.
+
+0-63
+FR TCH capability is selected.
+
+64-95
+HR TCH capability is selected.
+
+Depends on 
+RAEPC: PROP=TCHCAP3</ns1:desc>
+    <ns1:type xsi:type="ns1:shortType">
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="95" min="0"/>
+      </ns1:valueRangeConstraint>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="tchCapAA" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>TCH capability when additional assignment.
+
+Indicates if special weight is assigned to the presence of additional assignment when determining the TCH capability of equipment during TG configuration. If attribute set to NO, then default weight is assigned which is the same as that given to TCH capabilities not selected by any of attributes tchCap1, tchCap2, or tchCap3.
+
+Depends on 
+RAEPC: PROP=TCHCAPAA</ns1:desc>
+    <ns1:type modelUrn="//BscM/Indicator/5.13.6" xsi:type="ns1:enumRefType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns1:default value="NO" xsi:type="ns1:stringValue"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="tchCapSel" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>TCH capability selection state.
+
+Indicates whether TCH capability selection is activated. TCH capability selection attempts to select equipment with greater TCH capability in preference to equipment with lower TCH capability when configuring a TG.
+
+Depends on 
+RAEPC: PROP=TCHCAPSEL</ns1:desc>
+    <ns1:type modelUrn="//BscM/ActiveState/5.13.6" xsi:type="ns1:enumRefType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns1:default value="ACTIVE" xsi:type="ns1:stringValue"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="abisDropLevel" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Threshold for high rate for dropped calls on Abis interface.
+
+Sets a threshold for high rate of dropped calls. If the rate is higher than or equal to the specified threshold value, an alarm is raised. If the alarm is issued, the RBLT devices can either still be used for traffic or automatically removed from traffic, depending on value of attribute abisDropNoTraf. The check is performed every three minutes.
+If attribute is set to no value, then alarm is not raised, independently of the percentage of the dropped calls rate.
+
+Depends on 
+RAEPC: PROP=ABISDROPLEVEL</ns1:desc>
+    <ns1:type xsi:type="ns1:shortType">
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="60" min="10"/>
+      </ns1:valueRangeConstraint>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="abisDropNoTraf" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>RBLT devices ability to traffic seizure.
+
+Defines if RBLT devices, having a high call drop rate, are kept out of traffic seizure.
+
+Depends on 
+RAEPC: PROP=ABISDROPNOTRAF</ns1:desc>
+    <ns1:type modelUrn="//BscM/DropDeviceUsage/5.13.6" xsi:type="ns1:enumRefType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns1:default value="USED" xsi:type="ns1:stringValue"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="linkCheckTime" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Timer for stability check of links.
+
+Specifies the time period until the OML is considered as stable. During this stability check time, the information frames are discarded.
+
+Depends on 
+RAEPC: PROP=LINKCHECKTIME</ns1:desc>
+    <ns1:type xsi:type="ns1:shortType">
+      <ns1:notNullConstraint/>
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="10" min="0"/>
+      </ns1:valueRangeConstraint>
+    </ns1:type>
+    <ns1:default value="4" xsi:type="ns1:shortValue"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="tsLoopTest" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Indicates if an automatic loop test is performed.
+
+Depends on 
+RAEPC: PROP=TSLOOPTEST</ns1:desc>
+    <ns1:type modelUrn="//BscM/TsLoopTestState/5.13.6" xsi:type="ns1:enumRefType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns1:default value="ENABLED" xsi:type="ns1:stringValue"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="ttaLong" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Specifies the Time Alignment Timer when it is long Abis signalling delay.
+
+Depends on 
+RAEPC: PROP=TTALONG</ns1:desc>
+    <ns1:type xsi:type="ns1:shortType">
+      <ns1:notNullConstraint/>
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="50" min="2"/>
+      </ns1:valueRangeConstraint>
+    </ns1:type>
+    <ns1:default value="15" xsi:type="ns1:shortValue"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="ttaNormal" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Specifies the Time Alignment Time when it is normal Abis signalling delay.
+
+Depends on 
+RAEPC: PROP=TTANORMAL</ns1:desc>
+    <ns1:type xsi:type="ns1:shortType">
+      <ns1:notNullConstraint/>
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="50" min="2"/>
+      </ns1:valueRangeConstraint>
+    </ns1:type>
+    <ns1:default value="10" xsi:type="ns1:shortValue"/>
+  </ns2:primaryTypeAttribute>
+</ns2:PrimaryTypeDefinition>

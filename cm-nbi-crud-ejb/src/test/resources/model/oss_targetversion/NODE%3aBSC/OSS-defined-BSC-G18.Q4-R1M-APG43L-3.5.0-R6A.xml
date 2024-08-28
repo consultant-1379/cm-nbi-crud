@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+
+*******************************************************************************
+* COPYRIGHT Ericsson LMI 2018. All rights reserved.
+*
+* No part of this document may be reproduced in any form without the
+* written permission of the copyright owner.The contents of this document
+* are subject to revision without notice due to continued progress in
+* methodology, design and manufacturing. Ericsson shall have no liability
+* for any error or damage of any kind resulting from the use of this document.
+*
+*******************************************************************************
+
+
+--><ns2:TargetVersionInformation xmlns:ns1="urn:com:ericsson:schema:xml:oss:oss_common" xmlns:ns2="urn:com:ericsson:schema:xml:oss:oss_targetversion" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ns1:name="OSS-defined-BSC-G18.Q4-R1M-APG43L-3.5.0-R6A" ns1:ns="NODE:BSC" targetModelIdentity="BSC-G18.Q4-R1M-APG43L-3.5.0-R6A">
+  <ns1:modelCreationInfo author="Network Model Transformer" creationDate="Wed Oct 03 07:07:33 CEST 2018">
+    <ns1:designedModel componentId="BSC 18.Q4 model"/>
+  </ns1:modelCreationInfo>
+  <ns1:desc>Target Version information model for BSC 18.Q4</ns1:desc>
+  <ns2:supportedModels>
+    <ns2:urn>/cfm_miminfo/BSC/NE-defined/643232300793.1041733669587.531538509319</ns2:urn>
+  </ns2:supportedModels>
+  <ns2:release>18.Q4</ns2:release>
+</ns2:TargetVersionInformation>

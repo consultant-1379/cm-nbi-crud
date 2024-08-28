@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+
+*******************************************************************************
+* COPYRIGHT Ericsson LMI. All rights reserved.
+*
+* No part of this document may be reproduced in any form without the
+* written permission of the copyright owner.The contents of this document
+* are subject to revision without notice due to continued progress in
+* methodology, design and manufacturing. Ericsson shall have no liability
+* for any error or damage of any kind resulting from the use of this document.
+*
+*******************************************************************************
+
+
+--><ns2:PrimaryTypeRelationshipDefinition xmlns:ns1="urn:com:ericsson:schema:xml:oss:oss_common" xmlns:ns2="urn:com:ericsson:schema:xml:oss:dps_relationship" xmlns:ns4="urn:com:ericsson:schema:xml:oss:dps_common" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ns1:name="to_ComTop_all-null" ns1:ns="BrM" ns1:version="3.0.2">
+  <ns1:modelCreationInfo>
+    <ns1:derivedModel derivedFrom="/net_momdtd/BrM/BrM_3_0_2"/>
+  </ns1:modelCreationInfo>
+  <ns1:desc>Inter mim relationships. Mim:BrM</ns1:desc>
+  <ns2:containment ns1:lifeCycle="CURRENT" ns1:name="SystemFunctions_to_BrM">
+    <ns1:desc>SystemFunctions_to_BrM</ns1:desc>
+    <ns2:parent primaryTypeUrn="//ComTop/SystemFunctions/*"/>
+    <ns2:child primaryTypeUrn="//BrM/BrM/3.0.2"/>
+    <ns2:maxSizeConstraint value="1"/>
+    <ns2:notCreatable/>
+    <ns2:notDeleteable/>
+  </ns2:containment>
+</ns2:PrimaryTypeRelationshipDefinition>

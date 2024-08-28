@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+
+*******************************************************************************
+* COPYRIGHT Ericsson LMI. All rights reserved.
+*
+* No part of this document may be reproduced in any form without the
+* written permission of the copyright owner.The contents of this document
+* are subject to revision without notice due to continued progress in
+* methodology, design and manufacturing. Ericsson shall have no liability
+* for any error or damage of any kind resulting from the use of this document.
+*
+*******************************************************************************
+
+
+--><ns2:PrimaryTypeDefinition xmlns:ns1="urn:com:ericsson:schema:xml:oss:oss_common" xmlns:ns2="urn:com:ericsson:schema:xml:oss:dps_primarytype" xmlns:ns3="urn:com:ericsson:schema:xml:oss:dps_common" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" hierarchyType="HIERARCHICAL" ns1:definedBy="NE" ns1:name="nacm" ns1:ns="urn:ietf:params:xml:ns:yang:ietf-netconf-acm" ns1:version="2018.2.14" readBehavior="FROM_PERSISTENCE" writeBehavior="PERSIST_AND_DELEGATE">
+  <ns1:modelCreationInfo>
+    <ns1:derivedModel derivedFrom="/net_yang/urn%3aietf%3aparams%3axml%3ans%3ayang%3aietf-netconf-acm/ietf-netconf-acm-2018.2.14"/>
+  </ns1:modelCreationInfo>
+  <ns1:desc>Parameters for NETCONF access control model.</ns1:desc>
+  <ns2:primaryTypeAttribute mandatory="false" ns1:name="enable-nacm" readBehavior="FROM_PERSISTENCE" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Enables or disables all NETCONF access control enforcement. If 'true', then enforcement is enabled. If 'false', then enforcement is disabled.</ns1:desc>
+    <ns1:type xsi:type="ns1:booleanType"/>
+    <ns1:default value="true" xsi:type="ns1:booleanValue"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute mandatory="false" ns1:name="read-default" readBehavior="FROM_PERSISTENCE" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Controls whether read access is granted if no appropriate rule is found for a particular read request.</ns1:desc>
+    <ns1:type modelUrn="//urn%3aietf%3aparams%3axml%3ans%3ayang%3aietf-netconf-acm/action-type/2018.2.14" xsi:type="ns1:enumRefType"/>
+    <ns1:default value="permit" xsi:type="ns1:stringValue"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute mandatory="false" ns1:name="write-default" readBehavior="FROM_PERSISTENCE" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Controls whether create, update, or delete access is granted if no appropriate rule is found for a particular write request.</ns1:desc>
+    <ns1:type modelUrn="//urn%3aietf%3aparams%3axml%3ans%3ayang%3aietf-netconf-acm/action-type/2018.2.14" xsi:type="ns1:enumRefType"/>
+    <ns1:default value="deny" xsi:type="ns1:stringValue"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute mandatory="false" ns1:name="exec-default" readBehavior="FROM_PERSISTENCE" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Controls whether exec access is granted if no appropriate rule is found for a particular protocol operation request.</ns1:desc>
+    <ns1:type modelUrn="//urn%3aietf%3aparams%3axml%3ans%3ayang%3aietf-netconf-acm/action-type/2018.2.14" xsi:type="ns1:enumRefType"/>
+    <ns1:default value="permit" xsi:type="ns1:stringValue"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute mandatory="false" ns1:name="enable-external-groups" readBehavior="FROM_PERSISTENCE" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Controls whether the server uses the groups reported by the NETCONF transport layer when it assigns the user to a set of NACM groups. If this leaf has the value 'false', any group names reported by the transport layer are ignored by the server.</ns1:desc>
+    <ns1:type xsi:type="ns1:booleanType"/>
+    <ns1:default value="true" xsi:type="ns1:booleanValue"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute mandatory="true" ns1:name="denied-operations" readBehavior="FROM_DELEGATE" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Number of times since the server last restarted that a protocol operation request was denied.</ns1:desc>
+    <ns1:type xsi:type="ns1:longType"/>
+    <ns1:default value="0" xsi:type="ns1:longValue"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute mandatory="true" ns1:name="denied-data-writes" readBehavior="FROM_DELEGATE" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Number of times since the server last restarted that a protocol operation request to alter a configuration datastore was denied.</ns1:desc>
+    <ns1:type xsi:type="ns1:longType"/>
+    <ns1:default value="0" xsi:type="ns1:longValue"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute mandatory="true" ns1:name="denied-notifications" readBehavior="FROM_DELEGATE" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Number of times since the server last restarted that a notification was dropped for a subscription because access to the event type was denied.</ns1:desc>
+    <ns1:type xsi:type="ns1:longType"/>
+    <ns1:default value="0" xsi:type="ns1:longValue"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="true" key="true" mandatory="true" ns1:name="nacm-key" readBehavior="FROM_PERSISTENCE" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Autogenerated Key do not remove</ns1:desc>
+    <ns1:type xsi:type="ns1:stringType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+</ns2:PrimaryTypeDefinition>

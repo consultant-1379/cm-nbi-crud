@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+
+*******************************************************************************
+* COPYRIGHT Ericsson LMI 2018. All rights reserved.
+*
+* No part of this document may be reproduced in any form without the
+* written permission of the copyright owner.The contents of this document
+* are subject to revision without notice due to continued progress in
+* methodology, design and manufacturing. Ericsson shall have no liability
+* for any error or damage of any kind resulting from the use of this document.
+*
+*******************************************************************************
+
+
+--><ns2:ManagementInformationModelInformation xmlns:ns1="urn:com:ericsson:schema:xml:oss:oss_common" xmlns:ns2="urn:com:ericsson:schema:xml:oss:cfm_miminfo" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ns1:name="NE-defined" ns1:ns="BSC" ns1:version="643232300793.1041733669587.531538509319">
+  <ns1:modelCreationInfo author="mom-xml-transformer-tool" creationDate="Wed Oct 03 07:07:33 CEST 2018">
+    <ns1:designedModel componentId="BSC NODE MODEL"/>
+  </ns1:modelCreationInfo>
+  <ns1:desc>This is the MIM Information model for the network element type BSC.</ns1:desc>
+  <ns2:supportedMims>
+    <ns2:mimMappedTo namespace="AxeAlphanumericDevice" originalModelUrn="/net_momdtd/AxeAlphanumericDevice/AxeAlphanumericDevice_2_6_0" version="2.6.0"/>
+    <ns2:mimMappedTo namespace="AxeTransportM" originalModelUrn="/net_momdtd/AxeTransportM/AxeTransportM_1_0_0" version="1.0.0"/>
+    <ns2:mimMappedTo namespace="BscFunction" originalModelUrn="/net_momdtd/BscFunction/BscFunction_1_8_0" version="1.8.0"/>
+    <ns2:mimMappedTo namespace="CmwSwIM" originalModelUrn="/net_momdtd/CmwSwIM/CmwSwIM_3_0_0" referenceMimNamespace="ECIM_SwIM" referenceMimVersion="1.1.0" version="3.0.0"/>
+    <ns2:mimMappedTo namespace="AxeTimeReference" originalModelUrn="/net_momdtd/AxeTimeReference/AxeTimeReference_1_2_0" version="1.2.0"/>
+    <ns2:mimMappedTo namespace="AxeFunctions" originalModelUrn="/net_momdtd/AxeFunctions/AxeFunctions_3_2_0" version="3.2.0"/>
+    <ns2:mimMappedTo namespace="SecSecM" originalModelUrn="/net_momdtd/SecSecM/SecSecM_2_4_0" referenceMimNamespace="ECIM_Security_Management" referenceMimVersion="2.3.1" version="2.4.0"/>
+    <ns2:mimMappedTo namespace="SecLdapAuthentication" originalModelUrn="/net_momdtd/SecLdapAuthentication/SecLdapAuthentication_2_3_0" referenceMimNamespace="ECIM_LDAP_Authentication" referenceMimVersion="3.1.0" version="2.3.0"/>
+    <ns2:mimMappedTo namespace="HealthCheck" originalModelUrn="/net_momdtd/HealthCheck/HealthCheck_2_0_3" version="2.0.3"/>
+    <ns2:mimMappedTo namespace="AxeEquipment" originalModelUrn="/net_momdtd/AxeEquipment/AxeEquipment_4_2_2" version="4.2.2"/>
+    <ns2:mimMappedTo namespace="ComSysM" originalModelUrn="/net_momdtd/ComSysM/ComSysM_3_2_2" referenceMimNamespace="ECIM_SysM" referenceMimVersion="3.2.0" version="3.2.2"/>
+    <ns2:mimMappedTo namespace="CmwSwM" originalModelUrn="/net_momdtd/CmwSwM/CmwSwM_5_1_1" referenceMimNamespace="ECIM_SwM" referenceMimVersion="4.2.0" version="5.1.1"/>
+    <ns2:mimMappedTo namespace="AxeExternalAlarmReceiver" originalModelUrn="/net_momdtd/AxeExternalAlarmReceiver/AxeExternalAlarmReceiver_3_0" version="3.0.0"/>
+    <ns2:mimMappedTo namespace="BscM" originalModelUrn="/net_momdtd/BscM/BscM_5_13_6" version="5.13.6"/>
+    <ns2:mimMappedTo namespace="LdeServiceMarking" originalModelUrn="/net_momdtd/LdeServiceMarking/LdeServiceMarking_1_0_0" version="1.0.0"/>
+    <ns2:mimMappedTo namespace="SecLA" originalModelUrn="/net_momdtd/SecLA/SecLA_2_4_0" referenceMimNamespace="ECIM_Local_Authentication" referenceMimVersion="2.3.0" version="2.4.0"/>
+    <ns2:mimMappedTo namespace="AxeCpReloadClassic" originalModelUrn="/net_momdtd/AxeCpReloadClassic/AxeCpReloadClassic_1_0" version="1.0.0"/>
+    <ns2:mimMappedTo namespace="ComFileTPM" originalModelUrn="/net_momdtd/ComFileTPM/ComFileTPM_1_0_0" referenceMimNamespace="ECIM_FileTPM" referenceMimVersion="2.0.1" version="1.0.0"/>
+    <ns2:mimMappedTo namespace="AxeStatisticalCounter" originalModelUrn="/net_momdtd/AxeStatisticalCounter/AxeStatisticalCounter_3_2_1" version="3.2.1"/>
+    <ns2:mimMappedTo namespace="AxeExtNetworkSurveillance" originalModelUrn="/net_momdtd/AxeExtNetworkSurveillance/AxeExtNetworkSurveillance_2_1" version="2.1.0"/>
+    <ns2:mimMappedTo namespace="AxeCpFileSystem" originalModelUrn="/net_momdtd/AxeCpFileSystem/AxeCpFileSystem_3_3" version="3.3.0"/>
+    <ns2:mimMappedTo namespace="CmwPm" originalModelUrn="/net_momdtd/CmwPm/CmwPm_2_3_0" referenceMimNamespace="ECIM_PM" referenceMimVersion="2.5.0" version="2.3.0"/>
+    <ns2:mimMappedTo namespace="AxeAlarmDisplay" originalModelUrn="/net_momdtd/AxeAlarmDisplay/AxeAlarmDisplay_3_0" version="3.0.0"/>
+    <ns2:mimMappedTo namespace="ComTop" originalModelUrn="/net_momdtd/ComTop/ComTop_10_21_0" referenceMimNamespace="ECIM_Top" referenceMimVersion="2.3.0" version="10.21.0"/>
+    <ns2:mimMappedTo namespace="BladeSwManagement" originalModelUrn="/net_momdtd/BladeSwManagement/BladeSwManagement_2_3_0" version="2.3.0"/>
+    <ns2:mimMappedTo namespace="AxeComputeResource" originalModelUrn="/net_momdtd/AxeComputeResource/AxeComputeResource_1_0_0" version="1.0.0"/>
+    <ns2:mimMappedTo namespace="AxeCpReload" originalModelUrn="/net_momdtd/AxeCpReload/AxeCpReload_1_0" version="1.0.0"/>
+    <ns2:mimMappedTo namespace="AxeLicenseManagement" originalModelUrn="/net_momdtd/AxeLicenseManagement/AxeLicenseManagement_3_0_0" version="3.0.0"/>
+    <ns2:mimMappedTo namespace="SEC_CertM" originalModelUrn="/net_momdtd/SEC_CertM/SEC_CertM_2_6_0" referenceMimNamespace="ECIM_CertM" referenceMimVersion="3.0.0" version="2.6.0"/>
+    <ns2:mimMappedTo namespace="AxeDirectDataTransfer" originalModelUrn="/net_momdtd/AxeDirectDataTransfer/AxeDirectDataTransfer_1_0_3" version="1.0.3"/>
+    <ns2:mimMappedTo namespace="ComSnmp" originalModelUrn="/net_momdtd/ComSnmp/ComSnmp_10_13_0" referenceMimNamespace="ECIM_SNMP" referenceMimVersion="1.5.0" version="10.13.0"/>
+    <ns2:mimMappedTo namespace="AxeMmlAuthorization" originalModelUrn="/net_momdtd/AxeMmlAuthorization/AxeMmlAuthorization_2_2_1" version="2.2.1"/>
+    <ns2:mimMappedTo namespace="ComFileM" originalModelUrn="/net_momdtd/ComFileM/ComFileM_11_1_2" referenceMimNamespace="ECIM_FileM" referenceMimVersion="3.2.0" version="11.1.2"/>
+    <ns2:mimMappedTo namespace="ComFm" originalModelUrn="/net_momdtd/ComFm/ComFm_12_1_0" referenceMimNamespace="ECIM_FM" referenceMimVersion="4.1.0" version="12.1.0"/>
+    <ns2:mimMappedTo namespace="AxeNbiFolders" originalModelUrn="/net_momdtd/AxeNbiFolders/AxeNbiFolders_4_0_0" version="4.0.0"/>
+    <ns2:mimMappedTo namespace="ECIM_CommonLibrary" originalModelUrn="/net_momdtd/ECIM_CommonLibrary/ECIM_CommonLibrary_1_2" version="1.2.0"/>
+    <ns2:mimMappedTo namespace="AxeFunctionDistribution" originalModelUrn="/net_momdtd/AxeFunctionDistribution/AxeFunctionDistribution_1_0_0" version="1.0.0"/>
+    <ns2:mimMappedTo namespace="AxeDataTransfer" originalModelUrn="/net_momdtd/AxeDataTransfer/AxeDataTransfer_3_4_2" version="3.4.2"/>
+    <ns2:mimMappedTo namespace="AxeDataRecord" originalModelUrn="/net_momdtd/AxeDataRecord/AxeDataRecord_2_0_0" version="2.0.0"/>
+    <ns2:mimMappedTo namespace="AxeApSessionManagement" originalModelUrn="/net_momdtd/AxeApSessionManagement/AxeApSessionManagement_3_0_0" version="3.0.0"/>
+    <ns2:mimMappedTo namespace="ComLocalAuthorization" originalModelUrn="/net_momdtd/ComLocalAuthorization/ComLocalAuthorization_11_4_0" referenceMimNamespace="ECIM_Local_Authorization" referenceMimVersion="2.4.0" version="11.4.0"/>
+    <ns2:mimMappedTo namespace="AxeAuditLogging" originalModelUrn="/net_momdtd/AxeAuditLogging/AxeAuditLogging_3_3_0" version="3.3.0"/>
+    <ns2:mimMappedTo namespace="AxeLocalTsUsersPolicy" originalModelUrn="/net_momdtd/AxeLocalTsUsersPolicy/AxeLocalTsUsersPolicy_4_1_0" version="4.1.0"/>
+    <ns2:mimMappedTo namespace="AxeExternalMedia" originalModelUrn="/net_momdtd/AxeExternalMedia/AxeExternalMedia_4_1_0" version="4.1.0"/>
+    <ns2:mimMappedTo namespace="BrM" originalModelUrn="/net_momdtd/BrM/BrM_3_2_0" referenceMimNamespace="ECIM_BrM" referenceMimVersion="3.6.2" version="3.2.0"/>
+    <ns2:mimMappedTo namespace="LdeTimeM" originalModelUrn="/net_momdtd/LdeTimeM/LdeTimeM_1_2_1" referenceMimNamespace="ECIM_TimeM" referenceMimVersion="1.2.0" version="1.2.1"/>
+    <ns2:mimMappedTo namespace="AxeHardwareInventory" originalModelUrn="/net_momdtd/AxeHardwareInventory/AxeHardwareInventory_1_0" version="1.0.0"/>
+  </ns2:supportedMims>
+</ns2:ManagementInformationModelInformation>

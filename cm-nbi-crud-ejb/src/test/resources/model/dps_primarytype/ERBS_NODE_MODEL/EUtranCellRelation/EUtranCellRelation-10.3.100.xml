@@ -1,0 +1,936 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+
+*******************************************************************************
+* COPYRIGHT Ericsson LMI. All rights reserved.
+*
+* No part of this document may be reproduced in any form without the
+* written permission of the copyright owner.The contents of this document
+* are subject to revision without notice due to continued progress in
+* methodology, design and manufacturing. Ericsson shall have no liability
+* for any error or damage of any kind resulting from the use of this document.
+*
+*******************************************************************************
+
+
+--><ns2:PrimaryTypeDefinition xmlns:ns1="urn:com:ericsson:schema:xml:oss:oss_common" xmlns:ns2="urn:com:ericsson:schema:xml:oss:dps_primarytype" xmlns:ns3="urn:com:ericsson:schema:xml:oss:dps_common" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" hierarchyType="HIERARCHICAL" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="EUtranCellRelation" ns1:ns="ERBS_NODE_MODEL" ns1:version="10.3.100">
+  <ns1:modelCreationInfo>
+    <ns1:derivedModel derivedFrom="/net_momdtd/ERBS_NODE_MODEL_J/ERBS_NODE_MODEL_J_3_100"/>
+  </ns1:modelCreationInfo>
+  <ns1:desc>This managed object represents the handover relationship between two neighboring EUTRAN cells.</ns1:desc>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="pmHoPrepSuccLteIntraF" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>The number of successful intra LTE intra frequency handover preparations.
+</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="pmHoPrepAttLteIntraF" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>The number of attempts to start intra LTE intra frequency handover preparation.
+</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="pmHoExeSuccLteIntraF" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>The number of successful intra LTE intra frequency handovers.
+</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="pmHoExeAttLteIntraF" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>The number of intra LTE intra frequency handover execution attempts.
+</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="true" key="true" mandatory="true" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="EUtranCellRelationId" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>The value component of the Relative Distinguished Name (RDN).
+</ns1:desc>
+    <ns1:type xsi:type="ns1:stringType">
+      <ns1:notNullConstraint/>
+      <ns1:stringContentsConstraint type="REGEX" value="[]0-9A-Za-z\[.!$%&amp;':?@^_`{|}~ /()-]*"/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="cellIndividualOffsetEUtran" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Offset value for the neighbor cell. Used when UE is in connected mode. This attribute can be modified by SON functions.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="-24" min="-24"/>
+        <ns1:minMaxRange max="-22" min="-22"/>
+        <ns1:minMaxRange max="-20" min="-20"/>
+        <ns1:minMaxRange max="-18" min="-18"/>
+        <ns1:minMaxRange max="-16" min="-16"/>
+        <ns1:minMaxRange max="-14" min="-14"/>
+        <ns1:minMaxRange max="-12" min="-12"/>
+        <ns1:minMaxRange max="-10" min="-10"/>
+        <ns1:minMaxRange max="-8" min="-8"/>
+        <ns1:minMaxRange max="-6" min="-6"/>
+        <ns1:minMaxRange max="-5" min="-5"/>
+        <ns1:minMaxRange max="-4" min="-4"/>
+        <ns1:minMaxRange max="-3" min="-3"/>
+        <ns1:minMaxRange max="-2" min="-2"/>
+        <ns1:minMaxRange max="-1" min="-1"/>
+        <ns1:minMaxRange max="0" min="0"/>
+        <ns1:minMaxRange max="1" min="1"/>
+        <ns1:minMaxRange max="2" min="2"/>
+        <ns1:minMaxRange max="3" min="3"/>
+        <ns1:minMaxRange max="4" min="4"/>
+        <ns1:minMaxRange max="5" min="5"/>
+        <ns1:minMaxRange max="6" min="6"/>
+        <ns1:minMaxRange max="8" min="8"/>
+        <ns1:minMaxRange max="10" min="10"/>
+        <ns1:minMaxRange max="12" min="12"/>
+        <ns1:minMaxRange max="14" min="14"/>
+        <ns1:minMaxRange max="16" min="16"/>
+        <ns1:minMaxRange max="18" min="18"/>
+        <ns1:minMaxRange max="20" min="20"/>
+        <ns1:minMaxRange max="22" min="22"/>
+        <ns1:minMaxRange max="24" min="24"/>
+      </ns1:valueRangeConstraint>
+      <ns1:unit>dB</ns1:unit>
+    </ns1:type>
+    <ns1:default value="0" xsi:type="ns1:integerValue"/>
+    <ns3:takesEffect>New connection.</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="true" mandatory="true" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="neighborCellRef" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Reference to an instance of EUtranCellFDD, ExternalEUtranCellFDD, EUtranCellTDD or ExternalEUtranCellTDD managed object.
+</ns1:desc>
+    <ns1:type modelUrn="//ERBS_NODE_MODEL/ManagedObject/10.3.100" xsi:type="ns1:moRefType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="isHoAllowed" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Specifies if handover between the cells in this relation is allowed.
+</ns1:desc>
+    <ns1:type xsi:type="ns1:booleanType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns1:default value="true" xsi:type="ns1:booleanValue"/>
+    <ns2:disturbances>Changing this attribute to false stops outgoing HO.</ns2:disturbances>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="qOffsetCellEUtran" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Offset value applied to a specific cell in idle mode mobility state.
+</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="-24" min="-24"/>
+        <ns1:minMaxRange max="-22" min="-22"/>
+        <ns1:minMaxRange max="-20" min="-20"/>
+        <ns1:minMaxRange max="-18" min="-18"/>
+        <ns1:minMaxRange max="-16" min="-16"/>
+        <ns1:minMaxRange max="-14" min="-14"/>
+        <ns1:minMaxRange max="-12" min="-12"/>
+        <ns1:minMaxRange max="-10" min="-10"/>
+        <ns1:minMaxRange max="-8" min="-8"/>
+        <ns1:minMaxRange max="-6" min="-6"/>
+        <ns1:minMaxRange max="-5" min="-5"/>
+        <ns1:minMaxRange max="-4" min="-4"/>
+        <ns1:minMaxRange max="-3" min="-3"/>
+        <ns1:minMaxRange max="-2" min="-2"/>
+        <ns1:minMaxRange max="-1" min="-1"/>
+        <ns1:minMaxRange max="0" min="0"/>
+        <ns1:minMaxRange max="1" min="1"/>
+        <ns1:minMaxRange max="2" min="2"/>
+        <ns1:minMaxRange max="3" min="3"/>
+        <ns1:minMaxRange max="4" min="4"/>
+        <ns1:minMaxRange max="5" min="5"/>
+        <ns1:minMaxRange max="6" min="6"/>
+        <ns1:minMaxRange max="8" min="8"/>
+        <ns1:minMaxRange max="10" min="10"/>
+        <ns1:minMaxRange max="12" min="12"/>
+        <ns1:minMaxRange max="14" min="14"/>
+        <ns1:minMaxRange max="16" min="16"/>
+        <ns1:minMaxRange max="18" min="18"/>
+        <ns1:minMaxRange max="20" min="20"/>
+        <ns1:minMaxRange max="22" min="22"/>
+        <ns1:minMaxRange max="24" min="24"/>
+      </ns1:valueRangeConstraint>
+      <ns1:unit>dB</ns1:unit>
+    </ns1:type>
+    <ns1:default value="0" xsi:type="ns1:integerValue"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="isRemoveAllowed" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Indicates if the Automated Neighbor Relations (ANR) function is allowed to remove this object. It does not restrict operator removal of the object. Objects created by ANR have this parameter set to true initially.</ns1:desc>
+    <ns1:type xsi:type="ns1:booleanType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns1:default value="false" xsi:type="ns1:booleanValue"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="includeInSystemInformation" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Indicates if the referred cell is included in System Information.
+
+When the attribute is set to false, the cell is not included in either freqNeighList or blackCellList in SIB4 or SIB5.</ns1:desc>
+    <ns1:type xsi:type="ns1:booleanType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns1:default value="true" xsi:type="ns1:booleanValue"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="coverageIndicator" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Following options are possible for coverage area of cell indicated by relation:
+- Whether coverage area has approximately same coverage area (overlap) as this cell.
+- Whether coverage area fully covers this cell.
+- Whether coverage area is fully contained in this cell.
+Value influences SCell priority in Dynamic SCell Selection for Carrier Aggregation.</ns1:desc>
+    <ns1:type modelUrn="//ERBS_NODE_MODEL/SupportedCoverage/10.3.100" xsi:type="ns1:enumRefType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns1:default value="NONE" xsi:type="ns1:stringValue"/>
+    <ns2:disturbances>Changes may affect traffic</ns2:disturbances>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="pmHoExeAttLteInterF" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>The number of outgoing intra LTE inter frequency handover execution attempts.
+</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="pmHoExeSuccLteInterF" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>The number of successful outgoing intra LTE inter frequency handovers.
+</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="pmHoPrepAttLteInterF" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>The number of attempts to start outgoing intra LTE inter frequency handover preparation.
+</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="pmHoPrepSuccLteInterF" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>The number of successful outgoing intra LTE inter frequency handover preparations.
+</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="createdBy" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Indicates whether the MO has been created by the Automated Neighbor Relations (ANR) function or operator or X2</ns1:desc>
+    <ns1:type modelUrn="//ERBS_NODE_MODEL/CreatedByEutran/10.3.100" xsi:type="ns1:enumRefType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="timeOfCreation" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Indicates the time and date when the MO was created.
+Format: YYYY-MM-DD HH:MM:SS</ns1:desc>
+    <ns1:type xsi:type="ns1:stringType">
+      <ns1:notNullConstraint/>
+      <ns1:stringLengthConstraint>
+        <ns1:minMaxLength max="19" min="0"/>
+      </ns1:stringLengthConstraint>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="lastModification" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Indicates whether the MO was last modified by the Automated Neighbor Relations (ANR) function or operator or X2 and if the MO is to be deleted who triggered the deletion</ns1:desc>
+    <ns1:type modelUrn="//ERBS_NODE_MODEL/LastModificationEutran/10.3.100" xsi:type="ns1:enumRefType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="timeOfLastModification" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Indicates the time and date when the MO was last modified. 
+Format: YYYY-MM-DD HH:MM:SS</ns1:desc>
+    <ns1:type xsi:type="ns1:stringType">
+      <ns1:notNullConstraint/>
+      <ns1:stringLengthConstraint>
+        <ns1:minMaxLength max="19" min="0"/>
+      </ns1:stringLengthConstraint>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="pmHoOscIntraF" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Counter pmHoOscIntraF counts every intra-frequency HO that is considered to be an oscillating HO. pmHoOscIntraF is incremented when handover preparation is attempted.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="pmHoOscInterF" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Counter pmHoOscInterF counts every inter-frequency HO that is considered to be an oscillating HO. pmHoOscInterF is incremented when handover preparation is attempted.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="pmHoTooEarlyHoIntraF" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Counts every detected event of too early HO on an intra frequency relation. </ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="pmHoTooEarlyHoInterF" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Counts every detected event of too early HO on an inter frequency relation. </ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="pmHoTooLateHoIntraF" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Counts every detected event of too late HO on an intra frequency relation. </ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="pmHoTooLateHoInterF" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Counts every detected event of too late HO on an inter frequency relation. </ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="pmHoWrongCellIntraF" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Counts every detected event of HO to the wrong cell on an intra frequency relation, when this neighbor cell is the attempted target cell.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="pmHoWrongCellInterF" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Counts every detected event of HO to the wrong cell on an inter frequency relation, when this neighbor cell is the attempted target cell.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="pmHoWrongCellReestIntraF" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Counts every detected event of HO to the wrong cell on an intra frequency relation, when this neighbor cell is where the UE reestablished connection after the failed HO.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="pmHoWrongCellReestInterF" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Counts every detected event of HO to the wrong cell on an inter frequency relation, when this neighbor cell is where the UE reestablished connection after the failed HO.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="pmZtemporary36" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Normally this counter is not used, it can however sometimes be temporarily used for very late additions in a release. If so, for description see Network Impact Report in the CPI.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="loadBalancing" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>This attribute indicates whether Inter-Frequency Load Balancing is ALLOWED or NOT_ALLOWED or if Inter-Frequency Offload shall be applied from the current cell to the cell indicated by the cell relation.</ns1:desc>
+    <ns1:type modelUrn="//ERBS_NODE_MODEL/LoadBalancingVals/10.3.100" xsi:type="ns1:enumRefType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns1:default value="NOT_ALLOWED" xsi:type="ns1:stringValue"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="pmLbQualifiedUe" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Records the number of received UE measurement reports that fulfill both RSRP and RSRQ requirements. This is a subcounter of pmLbMeasRepUe.
+</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+      <ns1:unit>Number of UEs</ns1:unit>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="pmHoExeAttLteInterFLb" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>The number of outgoing intra LTE inter frequency handover execution attempts due to load balancing.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="pmHoExeSuccLteInterFLb" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>The number of successful outgoing intra LTE inter frequency handovers that was performed for load balancing reasons.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="pmHoPrepAttLteInterFLb" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>The number of attempts to start outgoing intra LTE inter frequency handover preparation due to load balancing.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="pmHoPrepSuccLteInterFLb" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>The number of successful outgoing intra LTE inter frequency handover preparations that was performed for load balancing reasons.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="sCellCandidate" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>SCell candidate status.
+
+The value indicates whether the cell indicated by parameter cellrelation can be used as SCell for UEs using this cell as their PCell. The SCell can be either local to the eNodeB, or on a remote eNodeB.</ns1:desc>
+    <ns1:type modelUrn="//ERBS_NODE_MODEL/SCellCandidate/10.3.100" xsi:type="ns1:enumRefType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns1:default value="AUTO" xsi:type="ns1:stringValue"/>
+    <ns3:takesEffect>Changed value will take effect in relation to the next SCell configuration during the ongoing connection. When going from state NOT_ALLOWED to ALLOWED the SCell will not be available at re-selection for ongoing connections.</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="pmHoExeAttLteIntraFTuneOut" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>The number of intra LTE intra frequency handover execution attempts made by Tune-out UEs</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="pmHoExeSuccLteIntraFTuneOut" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>The number of successful outgoing intra LTE intra frequency handovers made by Tune-out UEs.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="pmZtemporary72" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Normally this counter is not used, it can however sometimes be temporarily used for very late additions in a release. If so, for description see Network Impact Report in the CPI.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="pmZtemporary73" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Normally this counter is not used, it can however sometimes be temporarily used for very late additions in a release. If so, for description see Network Impact Report in the CPI.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="pmZtemporary74" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Normally this counter is not used, it can however sometimes be temporarily used for very late additions in a release. If so, for description see Network Impact Report in the CPI.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="pmZtemporary75" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Normally this counter is not used, it can however sometimes be temporarily used for very late additions in a release. If so, for description see Network Impact Report in the CPI.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="pmZtemporary76" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Normally this counter is not used, it can however sometimes be temporarily used for very late additions in a release. If so, for description see Network Impact Report in the CPI.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="pmZtemporary77" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Normally this counter is not used, it can however sometimes be temporarily used for very late additions in a release. If so, for description see Network Impact Report in the CPI.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="pmZtemporary78" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Normally this counter is not used, it can however sometimes be temporarily used for very late additions in a release. If so, for description see Network Impact Report in the CPI.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="pmZtemporary79" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Normally this counter is not used, it can however sometimes be temporarily used for very late additions in a release. If so, for description see Network Impact Report in the CPI.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="pmHoPrepAttLteInterFMbms" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>The number of attempts to start outgoing intra LTE inter frequency handover preparation due to MBMS Interest.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+      <ns1:unit>-</ns1:unit>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="pmHoPrepSuccLteInterFMbms" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>The number of successful outgoing intra LTE inter frequency handover preparations that was performed due to MBMS Interest.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+      <ns1:unit>-</ns1:unit>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="pmHoExeAttLteInterFMbms" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>The number of outgoing intra LTE inter frequency handover execution attempts due to MBMS Interest.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="pmHoExeSuccLteInterFMbms" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>The number of successful outgoing intra LTE inter frequency handovers that was performed due to MBMS Interest.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="lbBnrAllowed" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Specifies if the feature Best Neighbor Relations for Intra-LTE Load Management is allowed to automatically change the loadBalancing attribute for this EUtran cell relation.</ns1:desc>
+    <ns1:type xsi:type="ns1:booleanType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns1:default value="true" xsi:type="ns1:booleanValue"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="incomingLoadBalancing" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Determines if feature Overlaid Cell Detection has qualified this cell relation as an overlaid neighbor, i.e. high-hitRate, on the corresponding frequency relation.
+
+The value "true" means the neighbor cell is encouraged to initiate load balancing towards the source cell.
+The value "false" means no specific preferences exist.</ns1:desc>
+    <ns1:type xsi:type="ns1:booleanType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="lbCovIndicated" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Determines if the cell relation has high hitRate towards the source cell.
+The attribute is automatically updated when the feature Overlaid Cell Detection is operable.</ns1:desc>
+    <ns1:type xsi:type="ns1:booleanType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns1:default value="false" xsi:type="ns1:booleanValue"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="pmHoPrepAttLteInterFCaRedirect" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Records the number of attempted inter-frequency handover preparations towards the related cell, due to CA triggered redirection performed during Initial UE connection setup, when the feature CA-aware IFLB is used.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="pmHoPrepSuccLteInterFCaRedirect" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Records the number of successful inter-frequency handover preparations towards the related cell, attempted due to CA Triggered Redirection performed during Initial UE connection setup, when the feature CA-aware IFLB is used.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="pmHoExecAttLteInterFCaRedirect" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Records the number of attempted inter-frequency handover executions towards the related cell, due to CA Triggered Redirection performed during Initial UE connection setup, when the feature CA-aware IFLB is used.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="pmHoExecSuccLteInterFCaRedirect" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Records the number of successful inter-frequency handover executions towards the related cell, attempted due to CA Triggered Redirection performed during Initial UE connection setup, when the feature CA-aware IFLB is used.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="pmCaRedirectQualifiedUe" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Records the number of received UE measurement reports that fulfill both RSRP and RSRQ requirements in connection with CA-triggered redirection, when feature CA-Aware IFLB is used.
+</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="pmSpifhoReportedUe" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>The number of UEs that report the related LTE cell as the cell with the best RSRP value in connection with measurements initiated by Service or Priority-Triggered Inter-frequency Handover. Used to calculate the SPIFHO measurement success rate for the related cell. </ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="pmHoPrepAttLteSpifho" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>The number of attempts to start outgoing intra LTE inter-frequency handover preparation due to feature Service or Priority-Triggered Inter-frequency Handover.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="pmHoPrepSuccLteSpifho" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>The number of successful outgoing intra LTE inter-frequency handover preparations due to feature Service or Priority-Triggered Inter-frequency Handover.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="pmHoExeAttLteSpifho" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>The number of attempted inter-frequency handover executions towards the related cell, due to feature Service or Priority-Triggered Inter-frequency Handover.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="pmHoExeSuccLteSpifho" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>The number of successful outgoing intra LTE inter-frequency handovers that were performed due to feature Service or Priority-Triggered Inter-frequency Handover.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="pmHoPrepAttNonMob" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>The number of attempts to start outgoing intra LTE handover preparation due to non-mobility reasons.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="pmHoPrepSuccNonMob" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>The number of successful outgoing intra LTE handover preparations due to non-mobility reasons.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="pmHoExeAttNonMob" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>The number of attempts to start outgoing intra LTE handover executions towards the related cell due to non-mobility.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="pmHoExeSuccNonMob" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>The number of successful outgoing intra LTE handovers that were performed due to non-mobility reasons.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="pmLbTpEvalUe" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Number of throughput evaluations of UEs that are candidates for throughput based load balancing.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="pmLbTpAcceptedUe" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Number of UEs that are accepted for throughput based load balancing.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="pmAtoQualifiedUe" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Number of received UE measurement reports in connection with Admission-Triggered Offload that fulfill both RSRP and RSRQ requirements. This is a subcounter of pmAtoMeasRepUe. </ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="pmHoExeOutAttLteInterFQci1" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Number of out-going intra-LTE, inter-frequency handover execution attempts for QCI1 ERAB.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="pmHoExeOutSuccLteInterFQci1" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Number of successful out-going intra LTE inter frequency handover execution for QCI1 ERAB.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="sleepModeCovCellCandidate" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Sleep Mode Coverage Cell candidate status.
+
+Indicates if related cell can be used as coverage cell for Cell Sleep Mode.</ns1:desc>
+    <ns1:type modelUrn="//ERBS_NODE_MODEL/CovCellCandidate/10.3.100" xsi:type="ns1:enumRefType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns1:default value="AUTO" xsi:type="ns1:stringValue"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="sleepModeCapacityCell" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Indicates if related cell is a dependent capacity cell for Cell Sleep Mode support.</ns1:desc>
+    <ns1:type xsi:type="ns1:booleanType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="sleepModeCoverageCell" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Indicates if related cell is a coverage cell for Cell Sleep Mode support.</ns1:desc>
+    <ns1:type xsi:type="ns1:booleanType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="covCellDlPrbWakeUpThreshold" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>DL PRB usage percentage threshold. At least one of the coverage cells must exceed this threshold to wake-up the capacity cell.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="100" min="0"/>
+      </ns1:valueRangeConstraint>
+      <ns1:unit>%</ns1:unit>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="covCellRrcConnWakeUpThreshold" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Minimum number of RRC connections needed to wake-up the capacity cell. Sent by the capacity cell.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="3000" min="0"/>
+      </ns1:valueRangeConstraint>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="covCellWakeupMonitorDurTimer" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Minimum duration for coverage cell to satisfy configured load thresholds before the capacity cell can wake-up. Used in feature Cell Sleep Mode.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="120" min="1"/>
+      </ns1:valueRangeConstraint>
+      <ns1:unit>minutes</ns1:unit>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="crsAssistanceInfoPriority" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Priority of neighbor cell whose CRS Assistance Information is sent to UE. For values between 1 and 100, the smaller the value, the higher the neighbor cell is prioritized for selection. Value 0 means the CRS Assistance Information of this neighbor cell is not sent.
+Note: This attribute is valid only for FDD cells.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="100" min="0"/>
+      </ns1:valueRangeConstraint>
+    </ns1:type>
+    <ns1:default value="0" xsi:type="ns1:integerValue"/>
+    <ns3:takesEffect>New connection</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="pmAtoMeasRepUe" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Number of UEs that report the related EUTRAN cell as the strongest cell in connection with measurements initiated for Admission-Triggered Offload.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="pmLbMeasRepUe" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Number of UEs that report the related EUTRAN cell as the strongest cell in connection with measurements initiated for load balancing or offload.
+
+</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="pmCaRedirectMeasRepUe" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Number of UEs that report the related EUTRAN cell as the strongest cell in connection with CA-triggered redirection, when feature CA-Aware IFLB is used.
+
+</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="mobilityStatus" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Mobility status information for EUTRAN cell relation. When struct member mobilityStatus.available is set to false, no HO is performed on EUTRAN cell relation. Reason why HO is not allowed on EUTRAN cell relation is shown on mobilityStatus.reason.</ns1:desc>
+    <ns1:type modelUrn="//ERBS_NODE_MODEL/MobilityStatus/10.3.100" xsi:type="ns1:complexRefType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns3:takesEffect>Ongoing connection</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="hoSuccLevel" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Handover statistics status information. Each value corresponds to the status of the handover statistics.</ns1:desc>
+    <ns1:type modelUrn="//ERBS_NODE_MODEL/HoStatisticsStatus/10.3.100" xsi:type="ns1:enumRefType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns3:takesEffect>Ongoing connection</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="pmHoPrepAttLteInterFUl" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Number of attempts to start outgoing intra-LTE inter-frequency handover preparation, triggered by bad UL quality in the source cell.
+Used when feature Uplink-Triggered Inter-Frequency Mobility is activated.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="pmHoPrepSuccLteInterFUl" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Number of successful outgoing intra-LTE inter-frequency handover preparations, triggered by bad UL quality in the source cell.
+Used when feature Uplink-Triggered Inter-Frequency Mobility is activated.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="pmLbTpUlAcceptedUe" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Number of UEs that are accepted for throughput based load balancing and accepted in UL evaluation.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="esCellCaConfigurationAvail" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>If indicated cell is able to serve as ESCell, following applies:
+- ExternalEUtranCellFDD::remoteCellState (or ExternalEUtranCellTDD::remoteCellState) must be operState ENABLED.
+- Inter-eNodeB CA license must be active and baseband-to-baseband GTPU tunnel connection between ESCell and this eNodeB must be enabled. Or Elastic RAN license must be active and baseband-to-baseband connections must be enabled.
+If not, no UEs are configured with this candidate.
+Note that UEs already configured with this cell can retain configuration.
+If SCell is not external, this attribute is NOT_APPLICABLE in single baseband configuration.
+In dual baseband as one node, this attribute is set to ENABLED_ERAN if SCell is located on different baseband.</ns1:desc>
+    <ns1:type modelUrn="//ERBS_NODE_MODEL/EScellState/10.3.100" xsi:type="ns1:enumRefType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns3:dependencies>Depends on feature license and success of tunnels in the following options:
+- TermPointToLbm for IeNodeB-CA feature only
+- TermPointToENB::interEnbSwCompatibilityState
+- ExternalEUtranCellFDD::remoteCellState or ExternalEUtranCellTDD::remoteCellState</ns3:dependencies>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="pmHoPrepAttLteInterFRedirectCsg" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Number of attempted handover preparations that are:
+- outgoing intra-LTE,
+- inter-frequency,
+- triggered by handover preparation failure from target CSG or Hybrid CSG cell.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="pmHoPrepSuccLteInterFRedirectCsg" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Number of successful handover preparations that are:
+- outgoing intra-LTE,
+- inter-frequency and
+- triggered by handover preparation failure from target CSG or Hybrid CSG cell.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="pmHoExeAttLteInterFRedirectCsg" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Number of attempted handover executions that are:
+- outgoing intra-LTE,
+- inter-frequency and
+- triggered by handover preparation failure from target CSG or Hybrid CSG cell.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="pmHoExeSuccLteInterFRedirectCsg" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Number of successful handovers that are:
+- outgoing intra-LTE,
+- inter-frequency and
+- triggered by handover preparation failure from target CSG or Hybrid CSG cell.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="amoAllowed" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Whether or not AMO function is allowed. Used to turn off AMO function on cell relation level.</ns1:desc>
+    <ns1:type xsi:type="ns1:booleanType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns1:default value="true" xsi:type="ns1:booleanValue"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="amoState" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Describes AMO function enabling state. RBS system sets the value.</ns1:desc>
+    <ns1:type modelUrn="//ERBS_NODE_MODEL/AmoStateVals/10.3.100" xsi:type="ns1:enumRefType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns3:dependencies>Depends on the operator configuration of AmoFunction::amoAllowedInterVendor, EUtranFreqRelation::amoAllowed, EUtranCellRelation::amoAllowed and the type of cell relation.</ns3:dependencies>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="sCellPriority" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Used for selecting an SCell within a frequency carrier. The SCell with highest priority is selected during initial blind SCell selection. 0 means lowest priority. -1 means the cell is excluded from blind SCell selection.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="7" min="-1"/>
+      </ns1:valueRangeConstraint>
+    </ns1:type>
+    <ns1:default value="7" xsi:type="ns1:integerValue"/>
+    <ns3:dependencies>Only applicable when Configurable SCell Priority is active with following apply:
+- dynamicSCellSelectionMethod is set to PRIORITIZED.
+- dynamicSCellSelectionMethod is set to GLOBAL_EVALUATION.</ns3:dependencies>
+    <ns3:takesEffect>New connection or next SCell configuration.</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="DEPRECATED" ns1:lifeCycleDesc="Since 17.Q2. Has no functional behavior. Planned to be removed." ns1:name="isShuttingdownSCellAllowed" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="DELEGATE">
+    <ns1:desc>Indicates whether a shutting down cell can be chosen as SCell or not.</ns1:desc>
+    <ns1:type xsi:type="ns1:booleanType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns1:default value="true" xsi:type="ns1:booleanValue"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="ieNBUlCompCoopCellAllowed" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Whether external cell is allowed to be used as cooperating cell candidates for inter-eNodeB UL CoMP.</ns1:desc>
+    <ns1:type xsi:type="ns1:booleanType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns1:default value="true" xsi:type="ns1:booleanValue"/>
+    <ns3:takesEffect>Next tunnel setup</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="externalUlCompGroupAvail" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Whether external cell belongs to external UL Comp Group for each serving cell.</ns1:desc>
+    <ns1:type modelUrn="//ERBS_NODE_MODEL/ExternalUlCompGroupAvail/10.3.100" xsi:type="ns1:enumRefType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns3:dependencies>Depends on feature license and success of UL CoMP tunnels in TermPointToLbm, which is decided by the values of TermPointToENB::interEnbUlCompSwCompatibility and ExternalEUtranCellFDD::remoteCellStateInterEnbUlComp (or ExternalEUtranCellTDD::remoteCellStateInterEnbUlComp) and EUtranCellRelation::ieNBUlCompCoopCellAllowed.
+Also depends on remote cell configuration, following conditions must be compatible with serving cell.
+- Same Frame Structure and Duplex mode
+- Same DL&amp;UL EARFCN and UL Bandwidth for FDD
+- Same DL EARFCN, Bandwidth, Subframe Assignment for TDD</ns3:dependencies>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="eranExternalUlCompGroupAvail" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Whether external cell belongs to Elastic RAN external UL Comp Group for each serving cell.</ns1:desc>
+    <ns1:type modelUrn="//ERBS_NODE_MODEL/EranExternalUlCompGroupAvail/10.3.100" xsi:type="ns1:enumRefType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns3:dependencies>Depends on feature license and success of Elastic RAN UL CoMP tunnels in EranInterMeLink, which is decided by the values of TermPointToENB::eranUlCompSwCompatibility and ExternalEUtranCellFDD::remoteCellStateEranUlComp (or ExternalEUtranCellTDD::remoteCellStateIEranUlComp).
+Also depends on remote cell configuration, following conditions must be compatible with serving cell.
+- Same Frame Structure and Duplex mode
+- Same DL&amp;UL EARFCN and UL Bandwidth for FDD
+- Same DL EARFCN, Bandwidth, Subframe Assignment for TDD</ns3:dependencies>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="eranUlCompCoopCellAllowed" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Whether external cell is allowed to be used as cooperating cell candidates for Elastic RAN UL CoMP.</ns1:desc>
+    <ns1:type xsi:type="ns1:booleanType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns1:default value="true" xsi:type="ns1:booleanValue"/>
+    <ns3:takesEffect>Next tunnel setup</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="isHoAllowedBr" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Specifies if CAT-M Connected Mode Mobility between the cells in this relation is allowed.</ns1:desc>
+    <ns1:type xsi:type="ns1:booleanType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns1:default value="true" xsi:type="ns1:booleanValue"/>
+    <ns2:disturbances>Changing this attribute to false stops outgoing HO for CAT-M UE.</ns2:disturbances>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="cellIndividualOffsetEUtranQci1" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Cell Individual Offset for QCI1 and QCIs with serviceType PTT. Used when UE with QCI1 or QCI with serviceType PTT bearer is in connected mode. Can be modified by SON functions.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="-24" min="-24"/>
+        <ns1:minMaxRange max="-22" min="-22"/>
+        <ns1:minMaxRange max="-20" min="-20"/>
+        <ns1:minMaxRange max="-18" min="-18"/>
+        <ns1:minMaxRange max="-16" min="-16"/>
+        <ns1:minMaxRange max="-14" min="-14"/>
+        <ns1:minMaxRange max="-12" min="-12"/>
+        <ns1:minMaxRange max="-10" min="-10"/>
+        <ns1:minMaxRange max="-8" min="-8"/>
+        <ns1:minMaxRange max="-6" min="-6"/>
+        <ns1:minMaxRange max="-5" min="-5"/>
+        <ns1:minMaxRange max="-4" min="-4"/>
+        <ns1:minMaxRange max="-3" min="-3"/>
+        <ns1:minMaxRange max="-2" min="-2"/>
+        <ns1:minMaxRange max="-1" min="-1"/>
+        <ns1:minMaxRange max="0" min="0"/>
+        <ns1:minMaxRange max="1" min="1"/>
+        <ns1:minMaxRange max="2" min="2"/>
+        <ns1:minMaxRange max="3" min="3"/>
+        <ns1:minMaxRange max="4" min="4"/>
+        <ns1:minMaxRange max="5" min="5"/>
+        <ns1:minMaxRange max="6" min="6"/>
+        <ns1:minMaxRange max="8" min="8"/>
+        <ns1:minMaxRange max="10" min="10"/>
+        <ns1:minMaxRange max="12" min="12"/>
+        <ns1:minMaxRange max="14" min="14"/>
+        <ns1:minMaxRange max="16" min="16"/>
+        <ns1:minMaxRange max="18" min="18"/>
+        <ns1:minMaxRange max="20" min="20"/>
+        <ns1:minMaxRange max="22" min="22"/>
+        <ns1:minMaxRange max="24" min="24"/>
+      </ns1:valueRangeConstraint>
+      <ns1:unit>dB</ns1:unit>
+    </ns1:type>
+    <ns1:default value="0" xsi:type="ns1:integerValue"/>
+    <ns3:takesEffect>New connection</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="pmHoTooEarlyHoQci1" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Detected event of "Too Early Handover" with QCI1 bearer.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="pmHoTooLateHoQci1" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Detected event of "Too Late Handover" with QCI1 bearer.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="pmHoWrongCellQci1" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Detected event of "Handover to Wrong Cell" with QCI1 bearer, when this neighbor cell is attempted target cell.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="pmHoWrongCellReestQci1" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Detected event of "Handover to Wrong Cell" with QCI1 bearer, when this neighbor cell is where UE is reestablished after failed HO.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="pmHoOscQci1" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>An oscillating HO with QCI1 bearer. Incremented when handover preparation is attempted.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="coverageIndicatorBr" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Coverage area of cell indicated by relation, compared to this cell. Coverage area is approximately the same (overlap), it fully covers this cell, or it is fully contained in this cell for CAT-M UE.</ns1:desc>
+    <ns1:type modelUrn="//ERBS_NODE_MODEL/SupportedCoverage/10.3.100" xsi:type="ns1:enumRefType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns1:default value="NONE" xsi:type="ns1:stringValue"/>
+    <ns3:takesEffect>New connection</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="zzzTemporary1" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Temporary attributes are intended as temporary solutions. Their usage can vary depending on the installed software. It is strongly recommended to only set the attributes that correspond to a desired functionality and leave all other temporary attributes set to default value. Information in the descriptions about what attributes are in use can be overridden by the information in CPI documents. Note that a later release can use another attribute to control functionality previously provided by a temporary attribute, or can remove functionality altogether. In these cases, the change is documented in the NIR.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns1:default value="-2000000000" xsi:type="ns1:integerValue"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="zzzTemporary2" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Temporary attributes are intended as temporary solutions. Their usage can vary depending on the installed software. It is strongly recommended to only set the attributes that correspond to a desired functionality and leave all other temporary attributes set to default value. Information in the descriptions about what attributes are in use can be overridden by the information in CPI documents. Note that a later release can use another attribute to control functionality previously provided by a temporary attribute, or can remove functionality altogether. In these cases, the change is documented in the NIR.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns1:default value="-2000000000" xsi:type="ns1:integerValue"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="zzzTemporary3" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Temporary attributes are intended as temporary solutions. Their usage can vary depending on the installed software. It is strongly recommended to only set the attributes that correspond to a desired functionality and leave all other temporary attributes set to default value. Information in the descriptions about what attributes are in use can be overridden by the information in CPI documents. Note that a later release can use another attribute to control functionality previously provided by a temporary attribute, or can remove functionality altogether. In these cases, the change is documented in the NIR.</ns1:desc>
+    <ns1:type xsi:type="ns1:stringType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+</ns2:PrimaryTypeDefinition>

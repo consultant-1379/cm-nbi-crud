@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+
+*******************************************************************************
+* COPYRIGHT Ericsson LMI. All rights reserved.
+*
+* No part of this document may be reproduced in any form without the
+* written permission of the copyright owner.The contents of this document
+* are subject to revision without notice due to continued progress in
+* methodology, design and manufacturing. Ericsson shall have no liability
+* for any error or damage of any kind resulting from the use of this document.
+*
+*******************************************************************************
+
+
+--><ns2:ManagementInformationModelInformation xmlns:ns1="urn:com:ericsson:schema:xml:oss:oss_common" xmlns:ns2="urn:com:ericsson:schema:xml:oss:cfm_miminfo" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ns1:name="NE-defined" ns1:ns="EPG-OI" ns1:version="769683211803.403611404735.692993977366">
+  <ns1:modelCreationInfo>
+    <ns1:designedModel componentId="EPG-OI NODE MODEL"/>
+  </ns1:modelCreationInfo>
+  <ns1:desc>This is the MIM Information model for the network element type EPG-OI.</ns1:desc>
+  <ns2:supportedMims>
+    <ns2:mimMappedTo namespace="urn:ietf:params:xml:ns:yang:ietf-inet-types" originalModelUrn="/net_yang/urn%3aietf%3aparams%3axml%3ans%3ayang%3aietf-inet-types/ietf-inet-types-2013.7.15" version="2013.7.15"/>
+    <ns2:mimMappedTo namespace="urn:ietf:params:xml:ns:yang:ietf-yang-types" originalModelUrn="/net_yang/urn%3aietf%3aparams%3axml%3ans%3ayang%3aietf-yang-types/ietf-yang-types-2013.7.15" version="2013.7.15"/>
+    <ns2:mimMappedTo namespace="http://tail-f.com/yang/xsd-types" originalModelUrn="/net_yang/http%3a%2f%2ftail-f.com%2fyang%2fxsd-types/tailf-xsd-types-2017.11.20" version="2017.11.20"/>
+    <ns2:mimMappedTo namespace="http:tailf-meta-extensions" originalModelUrn="/net_yang/http%3atailf-meta-extensions/tailf-meta-extensions-2017.3.8" version="2017.3.8"/>
+    <ns2:mimMappedTo namespace="http:tailf-cli-extensions" originalModelUrn="/net_yang/http%3atailf-cli-extensions/tailf-cli-extensions-2019.3.16" version="2019.3.16"/>
+    <ns2:mimMappedTo namespace="http://tail-f.com/yang/common" originalModelUrn="/net_yang/http%3a%2f%2ftail-f.com%2fyang%2fcommon/tailf-common-2019.3.16" version="2019.3.16"/>
+    <ns2:mimMappedTo namespace="http://tail-f.com/ns/confd_dyncfg/1.0" originalModelUrn="/net_yang/http%3a%2f%2ftail-f.com%2fns%2fconfd_dyncfg%2f1.0/confd_dyncfg-2019.9.9" version="2019.9.9"/>
+    <ns2:mimMappedTo namespace="urn:rdns:com:ericsson:oammodel:ericsson-yang-extensions" originalModelUrn="/net_yang/urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-yang-extensions/ericsson-yang-extensions-2019.7.4" version="2.3.1"/>
+    <ns2:mimMappedTo namespace="urn:rdns:com:ericsson:oammodel:ericsson-contexts-ipos" originalModelUrn="/net_yang/urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-contexts-ipos/ericsson-contexts-ipos-2019.7.4" version="1.4.1"/>
+    <ns2:mimMappedTo namespace="urn:rdns:com:ericsson:oammodel:ericsson-types-ipos" originalModelUrn="/net_yang/urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-types-ipos/ericsson-types-ipos-2019.7.4" version="2.0.3"/>
+    <ns2:mimMappedTo namespace="urn:rdns:com:ericsson:oammodel:ericsson-context-ipos" originalModelUrn="/net_yang/urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-context-ipos/ericsson-context-ipos-2019.7.31" version="2.7.4"/>
+    <ns2:mimMappedTo namespace="urn:ietf:params:xml:ns:yang:ietf-netconf-acm" originalModelUrn="/net_yang/urn%3aietf%3aparams%3axml%3ans%3ayang%3aietf-netconf-acm/ietf-netconf-acm-2012.2.22" version="2012.2.22"/>
+    <ns2:mimMappedTo namespace="urn:ietf:params:xml:ns:yang:iana-crypt-hash" originalModelUrn="/net_yang/urn%3aietf%3aparams%3axml%3ans%3ayang%3aiana-crypt-hash/iana-crypt-hash-2014.8.6" version="2014.8.6"/>
+    <ns2:mimMappedTo namespace="urn:ietf:params:xml:ns:yang:ietf-system" originalModelUrn="/net_yang/urn%3aietf%3aparams%3axml%3ans%3ayang%3aietf-system/ietf-system-2014.8.6" version="2014.8.6"/>
+    <ns2:mimMappedTo namespace="urn:rdns:com:ericsson:oammodel:ericsson-aaa-ipos" originalModelUrn="/net_yang/urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-aaa-ipos/ericsson-aaa-ipos-2019.9.30" version="1.2.3"/>
+    <ns2:mimMappedTo namespace="urn:rdns:com:ericsson:oammodel:ericsson-acl-ipos" originalModelUrn="/net_yang/urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-acl-ipos/ericsson-acl-ipos-2019.7.4" version="2.0.6"/>
+    <ns2:mimMappedTo namespace="urn:rdns:com:ericsson:oammodel:ericsson-alarm-pc-types" originalModelUrn="/net_yang/urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-alarm-pc-types/ericsson-alarm-pc-types-2017.5.15" version="2.0.0"/>
+    <ns2:mimMappedTo namespace="urn:rdns:com:ericsson:oammodel:ericsson-arp-ipos" originalModelUrn="/net_yang/urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-arp-ipos/ericsson-arp-ipos-2019.7.4" version="1.0.2"/>
+    <ns2:mimMappedTo namespace="urn:rdns:com:ericsson:oammodel:ericsson-qos-ipos" originalModelUrn="/net_yang/urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-qos-ipos/ericsson-qos-ipos-2019.12.9" version="2.2.7"/>
+    <ns2:mimMappedTo namespace="urn:rdns:com:ericsson:oammodel:ericsson-arp-qos-ipos" originalModelUrn="/net_yang/urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-arp-qos-ipos/ericsson-arp-qos-ipos-2019.7.4" version="1.0.3"/>
+    <ns2:mimMappedTo namespace="urn:rdns:com:ericsson:oammodel:ericsson-card-ipr" originalModelUrn="/net_yang/urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-card-ipr/ericsson-card-ipr-2019.7.5" version="1.1.4"/>
+    <ns2:mimMappedTo namespace="urn:ietf:params:xml:ns:yang:ietf-interfaces" originalModelUrn="/net_yang/urn%3aietf%3aparams%3axml%3ans%3ayang%3aietf-interfaces/ietf-interfaces-2014.5.8" version="2014.5.8"/>
+    <ns2:mimMappedTo namespace="urn:rdns:com:ericsson:oammodel:ericsson-asp-ipr" originalModelUrn="/net_yang/urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-asp-ipr/ericsson-asp-ipr-2019.7.5" version="1.2.1"/>
+    <ns2:mimMappedTo namespace="urn:rdns:com:ericsson:oammodel:ericsson-mirror-policy-ipos" originalModelUrn="/net_yang/urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-mirror-policy-ipos/ericsson-mirror-policy-ipos-2019.7.4" version="1.0.3"/>
+    <ns2:mimMappedTo namespace="urn:rdns:com:ericsson:oammodel:ericsson-mpls-ipos" originalModelUrn="/net_yang/urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-mpls-ipos/ericsson-mpls-ipos-2019.7.4" version="1.0.2"/>
+    <ns2:mimMappedTo namespace="urn:rdns:com:ericsson:oammodel:ericsson-qos-config-ipos" originalModelUrn="/net_yang/urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-qos-config-ipos/ericsson-qos-config-ipos-2019.7.4" version="1.0.6"/>
+    <ns2:mimMappedTo namespace="urn:ietf:params:xml:ns:yang:iana-if-type" originalModelUrn="/net_yang/urn%3aietf%3aparams%3axml%3ans%3ayang%3aiana-if-type/iana-if-type-2014.5.8" version="2014.5.8"/>
+    <ns2:mimMappedTo namespace="urn:rdns:com:ericsson:oammodel:ericsson-ethernet-ext-ipos" originalModelUrn="/net_yang/urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-ethernet-ext-ipos/ericsson-ethernet-ext-ipos-2019.8.29" version="1.1.3"/>
+    <ns2:mimMappedTo namespace="urn:rdns:com:ericsson:oammodel:ericsson-auto-negotiate-ipr" originalModelUrn="/net_yang/urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-auto-negotiate-ipr/ericsson-auto-negotiate-ipr-2019.7.5" version="2.0.2"/>
+    <ns2:mimMappedTo namespace="urn:rdns:com:ericsson:oammodel:ericsson-banner-ipos" originalModelUrn="/net_yang/urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-banner-ipos/ericsson-banner-ipos-2019.7.4" version="1.1.1"/>
+    <ns2:mimMappedTo namespace="urn:rdns:com:ericsson:oammodel:ericsson-bfd-ipos" originalModelUrn="/net_yang/urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-bfd-ipos/ericsson-bfd-ipos-2019.7.4" version="1.1.3"/>
+    <ns2:mimMappedTo namespace="urn:rdns:com:ericsson:oammodel:ericsson-bfd-dev-ssr" originalModelUrn="/net_yang/urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-bfd-dev-ssr/ericsson-bfd-dev-ssr-2019.7.4" version="1.0.2"/>
+    <ns2:mimMappedTo namespace="urn:rdns:com:ericsson:oammodel:ericsson-bgp-ipos" originalModelUrn="/net_yang/urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-bgp-ipos/ericsson-bgp-ipos-2019.12.19" version="4.3.0"/>
+    <ns2:mimMappedTo namespace="urn:rdns:com:ericsson:oammodel:ericsson-bgp-dev-ssr" originalModelUrn="/net_yang/urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-bgp-dev-ssr/ericsson-bgp-dev-ssr-2019.7.4" version="2.0.1"/>
+    <ns2:mimMappedTo namespace="urn:rdns:com:ericsson:oammodel:ericsson-bridge-ipos" originalModelUrn="/net_yang/urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-bridge-ipos/ericsson-bridge-ipos-2019.7.4" version="1.0.8"/>
+    <ns2:mimMappedTo namespace="urn:rdns:com:ericsson:oammodel:ericsson-bridge-dev-ipos" originalModelUrn="/net_yang/urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-bridge-dev-ipos/ericsson-bridge-dev-ipos-2018.3.29" version="1.0.0"/>
+    <ns2:mimMappedTo namespace="urn:ietf:params:xml:ns:netconf:base:1.0" originalModelUrn="/net_yang/urn%3aietf%3aparams%3axml%3ans%3anetconf%3abase%3a1.0/ietf-netconf-2011.6.1" version="2011.6.1"/>
+    <ns2:mimMappedTo namespace="urn:ietf:params:xml:ns:yang:ietf-netconf-notifications" originalModelUrn="/net_yang/urn%3aietf%3aparams%3axml%3ans%3ayang%3aietf-netconf-notifications/ietf-netconf-notifications-2012.2.6" version="2012.2.6"/>
+    <ns2:mimMappedTo namespace="urn:rdns:com:ericsson:oammodel:ericsson-notifications" originalModelUrn="/net_yang/urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-notifications/ericsson-notifications-2017.5.12" version="2.0.4"/>
+    <ns2:mimMappedTo namespace="urn:rdns:com:ericsson:oammodel:ericsson-yang-types" originalModelUrn="/net_yang/urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-yang-types/ericsson-yang-types-2016.12.1" version="1.2.0"/>
+    <ns2:mimMappedTo namespace="urn:rdns:com:ericsson:oammodel:ericsson-brm" originalModelUrn="/net_yang/urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-brm/ericsson-brm-2017.10.18" version="3.0.1"/>
+    <ns2:mimMappedTo namespace="urn:rdns:com:ericsson:oammodel:ericsson-brm-dev-ipr" originalModelUrn="/net_yang/urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-brm-dev-ipr/ericsson-brm-dev-ipr-2017.5.15" version="1.1.0"/>
+    <ns2:mimMappedTo namespace="urn:rdns:com:ericsson:oammodel:ericsson-bvi-ext-ipos" originalModelUrn="/net_yang/urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-bvi-ext-ipos/ericsson-bvi-ext-ipos-2019.7.4" version="1.1.2"/>
+    <ns2:mimMappedTo namespace="urn:rdns:com:ericsson:oammodel:ericsson-bvi-dev-ipos" originalModelUrn="/net_yang/urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-bvi-dev-ipos/ericsson-bvi-dev-ipos-2019.7.4" version="1.0.2"/>
+    <ns2:mimMappedTo namespace="urn:rdns:com:ericsson:oammodel:ericsson-card-dev-ssr" originalModelUrn="/net_yang/urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-card-dev-ssr/ericsson-card-dev-ssr-2019.7.4" version="1.0.1"/>
+    <ns2:mimMappedTo namespace="urn:rdns:com:ericsson:oammodel:ericsson-context-dev-ssr" originalModelUrn="/net_yang/urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-context-dev-ssr/ericsson-context-dev-ssr-2019.7.4" version="1.1.1"/>
+    <ns2:mimMappedTo namespace="urn:rdns:com:ericsson:oammodel:ericsson-contexts-dev-ssr" originalModelUrn="/net_yang/urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-contexts-dev-ssr/ericsson-contexts-dev-ssr-2019.7.4" version="1.0.1"/>
+    <ns2:mimMappedTo namespace="urn:rdns:com:ericsson:oammodel:ericsson-diag-ipr" originalModelUrn="/net_yang/urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-diag-ipr/ericsson-diag-ipr-2019.7.4" version="1.0.1"/>
+    <ns2:mimMappedTo namespace="urn:rdns:com:ericsson:oammodel:ericsson-dns-ipos" originalModelUrn="/net_yang/urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-dns-ipos/ericsson-dns-ipos-2019.7.4" version="1.1.3"/>
+    <ns2:mimMappedTo namespace="urn:rdns:com:ericsson:oammodel:ericsson-dvsr-ipos" originalModelUrn="/net_yang/urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-dvsr-ipos/ericsson-dvsr-ipos-2019.7.4" version="2.0.4"/>
+    <ns2:mimMappedTo namespace="urn:rdns:com:ericsson:oammodel:ericsson-ethernet-ext-dev-ssr" originalModelUrn="/net_yang/urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-ethernet-ext-dev-ssr/ericsson-ethernet-ext-dev-ssr-2019.7.4" version="1.0.2"/>
+    <ns2:mimMappedTo namespace="urn:rdns:com:ericsson:oammodel:ericsson-event-tracking-ipos" originalModelUrn="/net_yang/urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-event-tracking-ipos/ericsson-event-tracking-ipos-2019.7.4" version="1.0.5"/>
+    <ns2:mimMappedTo namespace="urn:rdns:com:ericsson:oammodel:ericsson-fm" originalModelUrn="/net_yang/urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-fm/ericsson-fm-2017.5.15" version="3.0.0"/>
+    <ns2:mimMappedTo namespace="urn:rdns:com:ericsson:oammodel:ericsson-fm-ext-ipos" originalModelUrn="/net_yang/urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-fm-ext-ipos/ericsson-fm-ext-ipos-2019.9.9" version="1.0.2"/>
+    <ns2:mimMappedTo namespace="urn:rdns:com:ericsson:oammodel:ericsson-icr-ipos" originalModelUrn="/net_yang/urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-icr-ipos/ericsson-icr-ipos-2019.7.4" version="1.1.2"/>
+    <ns2:mimMappedTo namespace="urn:rdns:com:ericsson:oammodel:ericsson-igmp-ipos" originalModelUrn="/net_yang/urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-igmp-ipos/ericsson-igmp-ipos-2019.7.4" version="1.1.3"/>
+    <ns2:mimMappedTo namespace="urn:rdns:com:ericsson:oammodel:ericsson-interfaces-ext-ipos" originalModelUrn="/net_yang/urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-interfaces-ext-ipos/ericsson-interfaces-ext-ipos-2019.9.18" version="2.3.3"/>
+    <ns2:mimMappedTo namespace="urn:rdns:com:ericsson:oammodel:ericsson-interface-arp-ext-ipos" originalModelUrn="/net_yang/urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-interface-arp-ext-ipos/ericsson-interface-arp-ext-ipos-2019.7.4" version="1.0.4"/>
+    <ns2:mimMappedTo namespace="urn:rdns:com:ericsson:oammodel:ericsson-interface-igmp-ext-ipos" originalModelUrn="/net_yang/urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-interface-igmp-ext-ipos/ericsson-interface-igmp-ext-ipos-2019.7.4" version="1.1.1"/>
+    <ns2:mimMappedTo namespace="urn:rdns:com:ericsson:oammodel:ericsson-lag-ext-ipos" originalModelUrn="/net_yang/urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-lag-ext-ipos/ericsson-lag-ext-ipos-2019.9.9" version="1.1.3"/>
+    <ns2:mimMappedTo namespace="urn:rdns:com:ericsson:oammodel:ericsson-l2vlan-ext-ipos" originalModelUrn="/net_yang/urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-l2vlan-ext-ipos/ericsson-l2vlan-ext-ipos-2019.7.4" version="1.1.1"/>
+    <ns2:mimMappedTo namespace="urn:rdns:com:ericsson:oammodel:ericsson-pbr-ipos" originalModelUrn="/net_yang/urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-pbr-ipos/ericsson-pbr-ipos-2019.7.4" version="1.1.6"/>
+    <ns2:mimMappedTo namespace="urn:rdns:com:ericsson:oammodel:ericsson-interface-pbr-ext-ipos" originalModelUrn="/net_yang/urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-interface-pbr-ext-ipos/ericsson-interface-pbr-ext-ipos-2019.7.4" version="1.0.4"/>
+    <ns2:mimMappedTo namespace="urn:rdns:com:ericsson:oammodel:ericsson-interface-pbr-ext-dev-ipr" originalModelUrn="/net_yang/urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-interface-pbr-ext-dev-ipr/ericsson-interface-pbr-ext-dev-ipr-2019.7.4" version="1.1.1"/>
+    <ns2:mimMappedTo namespace="urn:rdns:com:ericsson:oammodel:ericsson-l2-service-ipos" originalModelUrn="/net_yang/urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-l2-service-ipos/ericsson-l2-service-ipos-2019.7.4" version="2.1.3"/>
+    <ns2:mimMappedTo namespace="urn:rdns:com:ericsson:oammodel:ericsson-interface-qos-ext-ipos" originalModelUrn="/net_yang/urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-interface-qos-ext-ipos/ericsson-interface-qos-ext-ipos-2019.7.4" version="3.1.4"/>
+    <ns2:mimMappedTo namespace="urn:rdns:com:ericsson:oammodel:ericsson-interface-qos-ext-dev-ssr" originalModelUrn="/net_yang/urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-interface-qos-ext-dev-ssr/ericsson-interface-qos-ext-dev-ssr-2019.7.4" version="3.0.1"/>
+    <ns2:mimMappedTo namespace="urn:rdns:com:ericsson:oammodel:ericsson-interfaces-ext-dev-ssr" originalModelUrn="/net_yang/urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-interfaces-ext-dev-ssr/ericsson-interfaces-ext-dev-ssr-2019.7.4" version="1.1.1"/>
+    <ns2:mimMappedTo namespace="urn:rdns:com:ericsson:oammodel:ericsson-iprouting-ipos" originalModelUrn="/net_yang/urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-iprouting-ipos/ericsson-iprouting-ipos-2019.7.4" version="2.2.4"/>
+    <ns2:mimMappedTo namespace="urn:rdns:com:ericsson:oammodel:ericsson-isis-ipos" originalModelUrn="/net_yang/urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-isis-ipos/ericsson-isis-ipos-2019.9.3" version="3.1.2"/>
+    <ns2:mimMappedTo namespace="urn:rdns:com:ericsson:oammodel:ericsson-key-chain-ipos" originalModelUrn="/net_yang/urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-key-chain-ipos/ericsson-key-chain-ipos-2019.7.4" version="1.0.2"/>
+    <ns2:mimMappedTo namespace="urn:rdns:com:ericsson:oammodel:ericsson-l2-service-dev-ipos" originalModelUrn="/net_yang/urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-l2-service-dev-ipos/ericsson-l2-service-dev-ipos-2019.7.4" version="1.0.1"/>
+    <ns2:mimMappedTo namespace="urn:rdns:com:ericsson:oammodel:ericsson-l2vlan-ext-dev-ssr" originalModelUrn="/net_yang/urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-l2vlan-ext-dev-ssr/ericsson-l2vlan-ext-dev-ssr-2019.7.4" version="1.0.2"/>
+    <ns2:mimMappedTo namespace="urn:rdns:com:ericsson:oammodel:ericsson-lag-ext-dev-ssr" originalModelUrn="/net_yang/urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-lag-ext-dev-ssr/ericsson-lag-ext-dev-ssr-2019.9.9" version="1.0.3"/>
+    <ns2:mimMappedTo namespace="urn:rdns:com:ericsson:oammodel:ericsson-ldp-ipos" originalModelUrn="/net_yang/urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-ldp-ipos/ericsson-ldp-ipos-2019.7.4" version="1.0.3"/>
+    <ns2:mimMappedTo namespace="urn:rdns:com:ericsson:oammodel:ericsson-ldp-dev-ssr" originalModelUrn="/net_yang/urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-ldp-dev-ssr/ericsson-ldp-dev-ssr-2019.7.4" version="1.0.2"/>
+    <ns2:mimMappedTo namespace="urn:rdns:com:ericsson:oammodel:ericsson-lm" originalModelUrn="/net_yang/urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-lm/ericsson-lm-2018.8.30" version="2.1.1"/>
+    <ns2:mimMappedTo namespace="urn:rdns:com:ericsson:oammodel:ericsson-lm-dev-ssr" originalModelUrn="/net_yang/urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-lm-dev-ssr/ericsson-lm-dev-ssr-2019.9.9" version="1.0.3"/>
+    <ns2:mimMappedTo namespace="urn:rdns:com:ericsson:oammodel:ericsson-lm-ext-cba" originalModelUrn="/net_yang/urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-lm-ext-cba/ericsson-lm-ext-cba-2019.9.9" version="2.0.2"/>
+    <ns2:mimMappedTo namespace="urn:rdns:com:ericsson:oammodel:ericsson-lm-ext-ipos" originalModelUrn="/net_yang/urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-lm-ext-ipos/ericsson-lm-ext-ipos-2019.9.9" version="1.0.4"/>
+    <ns2:mimMappedTo namespace="urn:rdns:com:ericsson:oammodel:ericsson-lm-ext-dev-ssr" originalModelUrn="/net_yang/urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-lm-ext-dev-ssr/ericsson-lm-ext-dev-ssr-2018.10.31" version="1.0.0"/>
+    <ns2:mimMappedTo namespace="urn:rdns:com:ericsson:oammodel:ericsson-logger-ipos" originalModelUrn="/net_yang/urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-logger-ipos/ericsson-logger-ipos-2019.7.4" version="1.3.1"/>
+    <ns2:mimMappedTo namespace="urn:rdns:com:ericsson:oammodel:ericsson-mld-ipos" originalModelUrn="/net_yang/urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-mld-ipos/ericsson-mld-ipos-2019.7.4" version="1.0.4"/>
+    <ns2:mimMappedTo namespace="urn:rdns:com:ericsson:oammodel:ericsson-msdp-ipos" originalModelUrn="/net_yang/urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-msdp-ipos/ericsson-msdp-ipos-2019.7.4" version="1.0.4"/>
+    <ns2:mimMappedTo namespace="urn:rdns:com:ericsson:oammodel:ericsson-nacm-dev-ipos" originalModelUrn="/net_yang/urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-nacm-dev-ipos/ericsson-nacm-dev-ipos-2019.7.5" version="1.0.1"/>
+    <ns2:mimMappedTo namespace="urn:rdns:com:ericsson:oammodel:ericsson-nat-ipos" originalModelUrn="/net_yang/urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-nat-ipos/ericsson-nat-ipos-2019.7.4" version="1.0.2"/>
+    <ns2:mimMappedTo namespace="urn:rdns:com:ericsson:oammodel:ericsson-nd-ipos" originalModelUrn="/net_yang/urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-nd-ipos/ericsson-nd-ipos-2019.7.4" version="1.1.1"/>
+    <ns2:mimMappedTo namespace="urn:rdns:com:ericsson:oammodel:ericsson-ospf-ipos" originalModelUrn="/net_yang/urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-ospf-ipos/ericsson-ospf-ipos-2019.8.5" version="1.7.3"/>
+    <ns2:mimMappedTo namespace="urn:rdns:com:ericsson:oammodel:ericsson-ospf-dev-ipr" originalModelUrn="/net_yang/urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-ospf-dev-ipr/ericsson-ospf-dev-ipr-2019.7.4" version="1.0.1"/>
+    <ns2:mimMappedTo namespace="urn:rdns:com:ericsson:oammodel:ericsson-ospf3-ipos" originalModelUrn="/net_yang/urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-ospf3-ipos/ericsson-ospf3-ipos-2019.7.4" version="1.5.1"/>
+    <ns2:mimMappedTo namespace="urn:rdns:com:ericsson:oammodel:ericsson-pbr-ipos-dev-vre" originalModelUrn="/net_yang/urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-pbr-ipos-dev-vre/ericsson-pbr-ipos-dev-vre-2019.7.4" version="1.1.2"/>
+    <ns2:mimMappedTo namespace="urn:rdns:com:ericsson:oammodel:ericsson-pim-ipos" originalModelUrn="/net_yang/urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-pim-ipos/ericsson-pim-ipos-2019.7.4" version="3.2.1"/>
+    <ns2:mimMappedTo namespace="urn:rdns:com:ericsson:oammodel:ericsson-pm" originalModelUrn="/net_yang/urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-pm/ericsson-pm-2017.10.31" version="3.0.0"/>
+    <ns2:mimMappedTo namespace="urn:rdns:com:ericsson:oammodel:ericsson-pm-dev-ipos" originalModelUrn="/net_yang/urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-pm-dev-ipos/ericsson-pm-dev-ipos-2018.7.17" version="3.0.1"/>
+    <ns2:mimMappedTo namespace="urn:rdns:com:ericsson:oammodel:ericsson-qos-dev-ssr" originalModelUrn="/net_yang/urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-qos-dev-ssr/ericsson-qos-dev-ssr-2019.7.24" version="1.0.6"/>
+    <ns2:mimMappedTo namespace="urn:rdns:com:ericsson:oammodel:ericsson-rmon-ipos" originalModelUrn="/net_yang/urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-rmon-ipos/ericsson-rmon-ipos-2019.7.4" version="1.0.2"/>
+    <ns2:mimMappedTo namespace="urn:rdns:com:ericsson:oammodel:ericsson-route-policy-ipos" originalModelUrn="/net_yang/urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-route-policy-ipos/ericsson-route-policy-ipos-2019.7.4" version="1.0.4"/>
+    <ns2:mimMappedTo namespace="urn:rdns:com:ericsson:oammodel:ericsson-rsvp-ipos" originalModelUrn="/net_yang/urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-rsvp-ipos/ericsson-rsvp-ipos-2019.7.4" version="1.0.6"/>
+    <ns2:mimMappedTo namespace="urn:rdns:com:ericsson:oammodel:ericsson-rsvp-dev-ssr" originalModelUrn="/net_yang/urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-rsvp-dev-ssr/ericsson-rsvp-dev-ssr-2019.7.4" version="1.0.1"/>
+    <ns2:mimMappedTo namespace="urn:rdns:com:ericsson:oammodel:ericsson-security-ipr" originalModelUrn="/net_yang/urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-security-ipr/ericsson-security-ipr-2019.10.10" version="1.0.0"/>
+    <ns2:mimMappedTo namespace="urn:rdns:com:ericsson:oammodel:ericsson-segment-routing-ipos" originalModelUrn="/net_yang/urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-segment-routing-ipos/ericsson-segment-routing-ipos-2019.7.4" version="1.1.2"/>
+    <ns2:mimMappedTo namespace="urn:rdns:com:ericsson:oammodel:ericsson-service-ipos" originalModelUrn="/net_yang/urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-service-ipos/ericsson-service-ipos-2019.7.4" version="1.2.2"/>
+    <ns2:mimMappedTo namespace="urn:rdns:com:ericsson:oammodel:ericsson-service-dev-ssr" originalModelUrn="/net_yang/urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-service-dev-ssr/ericsson-service-dev-ssr-2019.7.4" version="1.0.1"/>
+    <ns2:mimMappedTo namespace="urn:rdns:com:ericsson:oammodel:ericsson-snmp-ipos" originalModelUrn="/net_yang/urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-snmp-ipos/ericsson-snmp-ipos-2019.11.15" version="1.3.1"/>
+    <ns2:mimMappedTo namespace="urn:rdns:com:ericsson:oammodel:ericsson-static-route-ipos" originalModelUrn="/net_yang/urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-static-route-ipos/ericsson-static-route-ipos-2019.7.4" version="1.0.3"/>
+    <ns2:mimMappedTo namespace="urn:rdns:com:ericsson:oammodel:ericsson-statsd-ipos" originalModelUrn="/net_yang/urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-statsd-ipos/ericsson-statsd-ipos-2019.7.4" version="1.0.3"/>
+    <ns2:mimMappedTo namespace="urn:rdns:com:ericsson:oammodel:ericsson-swim" originalModelUrn="/net_yang/urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-swim/ericsson-swim-2016.7.5" version="1.0.0"/>
+    <ns2:mimMappedTo namespace="urn:rdns:com:ericsson:oammodel:ericsson-swim-dev-ipr" originalModelUrn="/net_yang/urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-swim-dev-ipr/ericsson-swim-dev-ipr-2016.7.5" version="1.0.0"/>
+    <ns2:mimMappedTo namespace="urn:rdns:com:ericsson:oammodel:ericsson-swm" originalModelUrn="/net_yang/urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-swm/ericsson-swm-2017.11.27" version="3.0.1"/>
+    <ns2:mimMappedTo namespace="urn:rdns:com:ericsson:oammodel:ericsson-swm-dev-ipr" originalModelUrn="/net_yang/urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-swm-dev-ipr/ericsson-swm-dev-ipr-2017.11.1" version="2.0.0"/>
+    <ns2:mimMappedTo namespace="urn:rdns:com:ericsson:oammodel:ericsson-synchronization-ipos" originalModelUrn="/net_yang/urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-synchronization-ipos/ericsson-synchronization-ipos-2019.7.5" version="1.0.2"/>
+    <ns2:mimMappedTo namespace="urn:rdns:com:ericsson:oammodel:ericsson-system-console-ipr" originalModelUrn="/net_yang/urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-system-console-ipr/ericsson-system-console-ipr-2019.7.5" version="1.0.2"/>
+    <ns2:mimMappedTo namespace="urn:ietf:params:xml:ns:yang:ietf-crypto-types" originalModelUrn="/net_yang/urn%3aietf%3aparams%3axml%3ans%3ayang%3aietf-crypto-types/ietf-crypto-types-2018.9.20" version="2018.9.20"/>
+    <ns2:mimMappedTo namespace="urn:ietf:params:xml:ns:yang:ietf-keystore" originalModelUrn="/net_yang/urn%3aietf%3aparams%3axml%3ans%3ayang%3aietf-keystore/ietf-keystore-2018.9.20" version="2018.9.20"/>
+    <ns2:mimMappedTo namespace="urn:ietf:params:xml:ns:yang:ietf-tls-common" originalModelUrn="/net_yang/urn%3aietf%3aparams%3axml%3ans%3ayang%3aietf-tls-common/ietf-tls-common-2018.9.20" version="2018.9.20"/>
+    <ns2:mimMappedTo namespace="urn:ietf:params:xml:ns:yang:ietf-trust-anchors" originalModelUrn="/net_yang/urn%3aietf%3aparams%3axml%3ans%3ayang%3aietf-trust-anchors/ietf-trust-anchors-2018.9.20" version="2018.9.20"/>
+    <ns2:mimMappedTo namespace="urn:ietf:params:xml:ns:yang:ietf-tls-client" originalModelUrn="/net_yang/urn%3aietf%3aparams%3axml%3ans%3ayang%3aietf-tls-client/ietf-tls-client-2018.9.20" version="2018.9.20"/>
+    <ns2:mimMappedTo namespace="urn:rdns:com:ericsson:oammodel:ericsson-system-ext" originalModelUrn="/net_yang/urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-system-ext/ericsson-system-ext-2019.1.4" version="3.0.1"/>
+    <ns2:mimMappedTo namespace="urn:rdns:com:ericsson:oammodel:ericsson-system-dev-ipos" originalModelUrn="/net_yang/urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-system-dev-ipos/ericsson-system-dev-ipos-2019.9.9" version="1.1.2"/>
+    <ns2:mimMappedTo namespace="urn:rdns:com:ericsson:oammodel:ericsson-system-ext-dev-ipos" originalModelUrn="/net_yang/urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-system-ext-dev-ipos/ericsson-system-ext-dev-ipos-2019.1.30" version="1.0.0"/>
+    <ns2:mimMappedTo namespace="urn:rdns:com:ericsson:oammodel:ericsson-system-ext-ipos" originalModelUrn="/net_yang/urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-system-ext-ipos/ericsson-system-ext-ipos-2019.10.18" version="1.0.12"/>
+    <ns2:mimMappedTo namespace="urn:rdns:com:ericsson:oammodel:ericsson-tunnel-ipos" originalModelUrn="/net_yang/urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-tunnel-ipos/ericsson-tunnel-ipos-2020.1.8" version="1.0.8"/>
+    <ns2:mimMappedTo namespace="urn:rdns:com:ericsson:oammodel:ericsson-tunnel-dev-ssr" originalModelUrn="/net_yang/urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-tunnel-dev-ssr/ericsson-tunnel-dev-ssr-2019.7.4" version="1.0.1"/>
+    <ns2:mimMappedTo namespace="urn:rdns:com:ericsson:oammodel:ericsson-twamp-ipos" originalModelUrn="/net_yang/urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-twamp-ipos/ericsson-twamp-ipos-2019.7.4" version="1.0.4"/>
+    <ns2:mimMappedTo namespace="urn:rdns:com:ericsson:oammodel:ericsson-twamp-dev-ssr" originalModelUrn="/net_yang/urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-twamp-dev-ssr/ericsson-twamp-dev-ssr-2019.7.4" version="1.0.2"/>
+    <ns2:mimMappedTo namespace="urn:rdns:com:ericsson:oammodel:ericsson-vpws-ipos" originalModelUrn="/net_yang/urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-vpws-ipos/ericsson-vpws-ipos-2019.9.5" version="1.2.0"/>
+    <ns2:mimMappedTo namespace="urn:rdns:com:ericsson:oammodel:ericsson-vpls-ipos" originalModelUrn="/net_yang/urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-vpls-ipos/ericsson-vpls-ipos-2019.7.4" version="1.0.4"/>
+    <ns2:mimMappedTo namespace="urn:rdns:com:ericsson:oammodel:ericsson-vrrp-ipos" originalModelUrn="/net_yang/urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-vrrp-ipos/ericsson-vrrp-ipos-2019.7.4" version="1.0.6"/>
+    <ns2:mimMappedTo namespace="urn:rdns:com:ericsson:oammodel:ericsson-xc-group-ipos" originalModelUrn="/net_yang/urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-xc-group-ipos/ericsson-xc-group-ipos-2019.7.25" version="1.0.9"/>
+    <ns2:mimMappedTo namespace="urn:ietf:params:xml:ns:yang:ietf-yang-library" originalModelUrn="/net_yang/urn%3aietf%3aparams%3axml%3ans%3ayang%3aietf-yang-library/ietf-yang-library-2016.6.21" version="2016.6.21"/>
+    <ns2:mimMappedTo namespace="urn:rdns:com:ericsson:oammodel:ericsson-yang-library-ext" originalModelUrn="/net_yang/urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-yang-library-ext/ericsson-yang-library-ext-2017.11.7" version="2.1.1"/>
+    <ns2:mimMappedTo namespace="urn:rdns:com:ericsson:oammodel:ericsson-yang-server-ipos" originalModelUrn="/net_yang/urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-yang-server-ipos/ericsson-yang-server-ipos-2019.1.9" version="1.1.4"/>
+    <ns2:mimMappedTo namespace="urn:ietf:params:xml:ns:yang:ietf-netconf-monitoring" originalModelUrn="/net_yang/urn%3aietf%3aparams%3axml%3ans%3ayang%3aietf-netconf-monitoring/ietf-netconf-monitoring-2010.10.4" version="2010.10.4"/>
+    <ns2:mimMappedTo namespace="urn:ietf:params:xml:ns:yang:ietf-netconf-with-defaults" originalModelUrn="/net_yang/urn%3aietf%3aparams%3axml%3ans%3ayang%3aietf-netconf-with-defaults/ietf-netconf-with-defaults-2011.6.1" version="2011.6.1"/>
+    <ns2:mimMappedTo namespace="urn:ietf:params:xml:ns:yang:ietf-restconf-monitoring" originalModelUrn="/net_yang/urn%3aietf%3aparams%3axml%3ans%3ayang%3aietf-restconf-monitoring/ietf-restconf-monitoring-2017.1.26" version="2017.1.26"/>
+    <ns2:mimMappedTo namespace="urn:rdns:com:ericsson:oammodel:ericsson-types-epg" originalModelUrn="/net_yang/urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-types-epg/ericsson-types-epg-2019.2.1" version="2019.2.1"/>
+    <ns2:mimMappedTo namespace="urn:rdns:com:ericsson:oammodel:ericsson-epg" originalModelUrn="/net_yang/urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-epg/ericsson-epg-2020.2.12" version="3.5.0"/>
+    <ns2:mimMappedTo namespace="EpgOiTop" originalModelUrn="/dps_primarytype/EpgOiTop/ManagedElement/1.0.0" version="1.0.0"/>
+    <ns2:mimMappedTo namespace="union-test-namespace" originalModelUrn="/dps_primarytype/union-test-namespace/union-test-type/0.0.1" version="0.0.1"/>
+    <ns2:mimMappedTo namespace="bits-test-namespace" originalModelUrn="/dps_primarytype/bits-test-namespace/bits-test-type/0.0.1" version="0.0.1"/>
+  </ns2:supportedMims>
+</ns2:ManagementInformationModelInformation>

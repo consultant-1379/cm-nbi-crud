@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+
+*******************************************************************************
+* COPYRIGHT Ericsson LMI. All rights reserved.
+*
+* No part of this document may be reproduced in any form without the
+* written permission of the copyright owner.The contents of this document
+* are subject to revision without notice due to continued progress in
+* methodology, design and manufacturing. Ericsson shall have no liability
+* for any error or damage of any kind resulting from the use of this document.
+*
+*******************************************************************************
+
+
+--><ns2:ComplexDataTypeDefinition xmlns:ns1="urn:com:ericsson:schema:xml:oss:oss_common" xmlns:ns2="urn:com:ericsson:schema:xml:oss:oss_cdt" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ns1:lifeCycle="CURRENT" ns1:lifeCycleDesc="" ns1:name="PlmnIdentity" ns1:ns="ERBS_NODE_MODEL" ns1:version="10.3.100">
+  <ns1:modelCreationInfo>
+    <ns1:derivedModel derivedFrom="/net_momdtd/ERBS_NODE_MODEL_J/ERBS_NODE_MODEL_J_3_100"/>
+  </ns1:modelCreationInfo>
+  <ns1:desc>Describes a PLMN id.</ns1:desc>
+  <ns2:attribute ns1:lifeCycle="CURRENT" ns1:name="mcc">
+    <ns1:desc>The MCC part of a PLMN identity used in the radio network.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="999" min="0"/>
+      </ns1:valueRangeConstraint>
+    </ns1:type>
+  </ns2:attribute>
+  <ns2:attribute ns1:lifeCycle="CURRENT" ns1:name="mnc">
+    <ns1:desc>The MNC part of a PLMN identity used in the radio network.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="999" min="0"/>
+      </ns1:valueRangeConstraint>
+    </ns1:type>
+  </ns2:attribute>
+  <ns2:attribute ns1:lifeCycle="CURRENT" ns1:name="mncLength">
+    <ns1:desc>The length of the MNC part of a PLMN identity used in the radio network.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="3" min="2"/>
+      </ns1:valueRangeConstraint>
+    </ns1:type>
+  </ns2:attribute>
+</ns2:ComplexDataTypeDefinition>

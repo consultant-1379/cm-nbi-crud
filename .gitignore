@@ -1,0 +1,10 @@
+.classpath
+.project
+.settings/
+bin/
+build/
+target/
+*.iml
+.idea/
+*.orig
+*test_file_2.txt

@@ -1,0 +1,1159 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+
+*******************************************************************************
+* COPYRIGHT Ericsson LMI 2018. All rights reserved.
+*
+* No part of this document may be reproduced in any form without the
+* written permission of the copyright owner.The contents of this document
+* are subject to revision without notice due to continued progress in
+* methodology, design and manufacturing. Ericsson shall have no liability
+* for any error or damage of any kind resulting from the use of this document.
+*
+*******************************************************************************
+
+
+--><ns2:PrimaryTypeDefinition xmlns:ns1="urn:com:ericsson:schema:xml:oss:oss_common" xmlns:ns2="urn:com:ericsson:schema:xml:oss:dps_primarytype" xmlns:ns3="urn:com:ericsson:schema:xml:oss:dps_common" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" hierarchyType="HIERARCHICAL" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="G12Tg" ns1:ns="BscM" ns1:version="5.13.6">
+  <ns1:modelCreationInfo author="mom-xml-transformer-tool" creationDate="2018-10-03 07:07:25.35">
+    <ns1:derivedModel derivedFrom="/net_momdtd/BscM/BscM_5_13_6"/>
+  </ns1:modelCreationInfo>
+  <ns1:desc>Represents a TG MO in the BTS logical model G12.
+
+A BTS is, by GSM definition, the base station equipment required to support a cell. The G12 model implementation of the BTS functionality is termed a TG. However, it should be noted that a TG can support a part of a cell, a single cell, or any number of cells up to a maximum of 16.
+
+A TG in the logical model of the BTS consists of a set of MOs and is in itself a managed object.
+BTS logical model G12 is realized by RBSs in the RBS 2000 family and RBSs in the 6000 family equipped with DUG.
+
+In order to delete TG, connected channel group state, set by attribute ChannelGroup.state must be Halted.</ns1:desc>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="true" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="rSite" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Identity of the radio site where the TG is located.
+
+Depends on 
+RXMOI: RSITE 
+RXMOC: RSITE 
+RXMSC: RSITE</ns1:desc>
+    <ns1:type xsi:type="ns1:stringType">
+      <ns1:notNullConstraint/>
+      <ns1:stringLengthConstraint>
+        <ns1:minMaxLength max="15" min="3"/>
+      </ns1:stringLengthConstraint>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="true" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="comb" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Combiner type used in the TG.
+
+Depends on 
+RXMOI: COMB 
+RXMOC: COMB</ns1:desc>
+    <ns1:type modelUrn="//BscM/CombinerType/5.13.6" xsi:type="ns1:enumRefType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="fHop" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Frequency hopping to be performed in the TG MO.
+
+If attribute comb is set to FLT, default value of this attribute is equal BB.
+If attribute comb is set to HYB, default value of this attribute is equal SY.
+
+Attribute can be set to no value only by the system.
+
+Depends on 
+RXMOC: FHOP</ns1:desc>
+    <ns1:type modelUrn="//BscM/TgHoppingType/5.13.6" xsi:type="ns1:enumRefType"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="true" key="true" mandatory="true" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="g12TgId" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Holds the number of TG MO and is also used when identifying the MO.</ns1:desc>
+    <ns1:type xsi:type="ns1:stringType">
+      <ns1:notNullConstraint/>
+      <ns1:stringContentsConstraint type="REGEX" value="^(204[0-7]|20[0-3][0-9]|1[0-9]{3}|[1-9][0-9]{2}|[1-9][0-9]|[0-9])$"/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="PRELIMINARY" ns1:name="usesSuperChannelGroup" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="DELEGATE">
+    <ns1:desc>Group of SCs that terminate in the TG.
+
+The availability of this parameter depends on commercial agreements.
+
+Depends on 
+RXMOI: SCGR 
+RXMOC: SCGR</ns1:desc>
+    <ns1:type modelUrn="//BscM/SuperChannelGroup/5.13.6" xsi:type="ns1:moRefType"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="connectedChannelGroup" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Connection between channel group and the TG MO.
+
+Depends on 
+RXTCI: CELL CHGR 
+RXTCE: CELL CHGR</ns1:desc>
+    <ns1:type xsi:type="ns1:listType">
+      <ns1:collectionSizeConstraint>
+        <ns1:minMaxSize max="16" min="0"/>
+      </ns1:collectionSizeConstraint>
+      <ns1:collectionUniquenessConstraint/>
+      <ns1:collectionValuesType modelUrn="//BscM/ChannelGroup/5.13.6" xsi:type="ns1:moRefType"/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="confMd" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Configuration method used during the radio network configuration process.
+
+These methods impact the use of recovered MOs in baseband hopping, synthesizer hopping, and mixed mode hopping channel groups.
+
+Default value is  NODEL, when Market Adaptation M-068 is not activated. 
+Default value is  FACTREC, when Market Adaptation M-068 is activated. 
+
+The availability of attribute values FASTREC and MINDIST depend on commercial agreements.
+
+Depends on 
+RXMOC: CONFMD 
+RXMSC: CONFMD</ns1:desc>
+    <ns1:type modelUrn="//BscM/ConfigurationMethod/5.13.6" xsi:type="ns1:enumRefType"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="true" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="swVer" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Defines the name of the disk file with the BTS software version.
+
+This is the default software version to be loaded into the TRXCs and CF belonging to a TG.
+
+DEFAULT
+Default software version
+
+Depends on 
+RXMOI: SWVER 
+RXMOC: SWVER 
+RXMSC: SWVER</ns1:desc>
+    <ns1:type xsi:type="ns1:stringType">
+      <ns1:notNullConstraint/>
+      <ns1:stringLengthConstraint>
+        <ns1:minMaxLength max="12" min="1"/>
+      </ns1:stringLengthConstraint>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="swVerAct" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Actual operational software version.
+
+Depends on 
+RXMOP: SWVERACT</ns1:desc>
+    <ns1:type xsi:type="ns1:stringType"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="conFact" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Maximum number of TRXCs that must be LAPD concentrated on the same transmission device.
+
+If attribute G12Tg.tMode is set to SCM, default value of this attribute is equal 1.
+If attribute G12Tg.tMode is set to TDM, default value of this attribute is equal 4.
+
+Attribute can be set to no value only by the system.
+
+Depends on 
+RXMOC: CONFACT 
+RXMSC: CONFACT</ns1:desc>
+    <ns1:type xsi:type="ns1:shortType">
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="16" min="1"/>
+      </ns1:valueRangeConstraint>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="traCo" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Transcoder connection type.
+
+Depends on 
+RXMOI: TRACO 
+RXMOC: TRACO</ns1:desc>
+    <ns1:type modelUrn="//BscM/TranscoderConnectionType/5.13.6" xsi:type="ns1:enumRefType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns1:default value="POOL" xsi:type="ns1:stringValue"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="sigDel" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Signaling delay for LAPD data links established on physical connection between the BSC and the BTS.
+
+Depends on 
+RXMOI: SIGDEL 
+RXMOC: SIGDEL</ns1:desc>
+    <ns1:type modelUrn="//BscM/SignalingDelayG12/5.13.6" xsi:type="ns1:enumRefType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns1:default value="NORMAL" xsi:type="ns1:stringValue"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="swVerDld" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>BTS downloaded software version.
+Defines software version downloaded into BTS flash memory and used for all future non command ordered loading attempts of the specified MO if the last software download has been successful.
+If the last command ordered download of replacement software version has not been completed or failed the software version ordered by the operator is still indicated by replacement software version.
+If the swVerDld and swVerAct are not the same, this indicates that the object contains downloaded software which has not yet been upgraded. In this case, either a command or non command ordered start results in the downloaded software version being started and the actual software version is updated to the downloaded software version value.
+
+Depends on 
+RXMOP: SWVERDLD</ns1:desc>
+    <ns1:type xsi:type="ns1:stringType"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="aHop" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>State of the functionality antenna hopping for the TG MO.
+
+The availability of this attribute depends on commercial agreements.
+Attribute can be set to no value only by the system.
+
+Depends on 
+RXBFC: AHOP</ns1:desc>
+    <ns1:type modelUrn="//BscM/AntennaHoppingState/5.13.6" xsi:type="ns1:enumRefType"/>
+    <ns1:default value="OFF" xsi:type="ns1:stringValue"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="abisAlloc" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>The allocation method for the Abis paths for a TG.
+
+Attribute can be set to no value only by the system.
+The availability of this attribute depends on commercial agreements.
+
+Depends on 
+RXMOI: ABISALLOC 
+RXMOC: ABISALLOC 
+RXMSC: ABISALLOC</ns1:desc>
+    <ns1:type modelUrn="//BscM/AbisAllocationPath/5.13.6" xsi:type="ns1:enumRefType"/>
+    <ns1:default value="FIXED" xsi:type="ns1:stringValue"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="clusterId" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>TG cluster identity for TG.
+
+The availability of this attribute depends on commercial agreements.
+
+Depends on 
+RXMOI: CLUSTERID 
+RXMOC: CLUSTERID</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="1023" min="0"/>
+      </ns1:valueRangeConstraint>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="abis64kThr" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Packing threshold for pool of 64 kbps Abis paths reserved for use by suitably configured TSs.
+
+Changes a packing threshold for pool of reserved 64 kbps Abis paths. The threshold value is expressed as a percentage of the total number of paths in pool of reserved 64 kbps Abis paths. The packing starts when the number of idle paths in pool of reserved 64 kbps Abis paths falls below the threshold value and ends when the number of idle paths in pool of reserved 64 kbps Abis paths exceeds the value determined by this attribute. The packing is stopped when the threshold value is set to 0.
+
+The availability of this attribute depends on commercial agreements.
+Attribute can be set to no value only by the system.
+
+Default value for TG in the transmission mode TDM is 0.
+
+Depends on 
+RXATC: ABIS64KTHR</ns1:desc>
+    <ns1:type xsi:type="ns1:shortType">
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="100" min="0"/>
+      </ns1:valueRangeConstraint>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="dAmrCr" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>State of functionality AMR FR with reduced codec allocation control.
+
+Defines if the functionality AMR FR is activated per TG.
+
+The availability of this attribute depends on commercial agreements.
+Attribute can be set to no value only by the system.
+
+Depends on 
+RXMOI: DAMRCR 
+RXMOC: DAMRCR 
+RXMSC: DAMRCR</ns1:desc>
+    <ns1:type modelUrn="//BscM/ActivationState/5.13.6" xsi:type="ns1:enumRefType"/>
+    <ns1:default value="OFF" xsi:type="ns1:stringValue"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="dFrMaAbisThr" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Dynamic FR to HR mode adaptation threshold for 16 kbps pool of Abis paths.
+
+Defines a threshold value for starting and stopping packing of FR and AMR FR channels and for starting and stopping of move from FR to HR channels, including AMR, using 16 kbps Abis devices in the 16 kbps pool. The threshold value is expressed as percentage of idle 16 kbps devices out of nominal number of devices in the pool.
+Default value for TG in the transmission mode TDM is 0.
+
+The availability of this attribute depends on commercial agreements.
+Attribute can be set to no value only by the system.
+
+Depends on 
+RXATC: DFRMAABISTHR</ns1:desc>
+    <ns1:type xsi:type="ns1:shortType">
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="100" min="0"/>
+      </ns1:valueRangeConstraint>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="dHrMaAbisThr" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Dynamic HR to FR mode adaptation threshold for 16 kbps pool of Abis paths.
+
+Defines a threshold value for starting and stopping of move from HR to FR channels, including AMR, using 16 kbps Abis devices in the 16 kbps pool. The threshold value is expressed as percentage of idle 16 kbps devices out of nominal number of devices in the pool.
+
+The availability of this attribute depends on commercial agreements.
+Attribute can be set to no value only by the system.
+Default value for TG in the transmission mode TDM is 100.
+
+Depends on 
+RXATC: DHRMAABISTHR</ns1:desc>
+    <ns1:type xsi:type="ns1:shortType">
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="100" min="0"/>
+      </ns1:valueRangeConstraint>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="dAmrRedAbisThr" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>AMR FR with reduced codec allocation threshold for 16 kbps pool of Abis paths.
+
+Defines a threshold value for starting and stopping the allocation of AMR FR channels with reduced codec set using Abis devices from the 16 kbps pool. The threshold value is expressed as percentage of idle 16 kbps devices, out of nominal number of devices in the pool. The allocation of these channels due to shortage of Abis resources starts when the number of idle 16 kbps devices falls below the threshold value and ends when the number of idle 16 kbps Abis devices exceeds the value determined by this parameter.
+
+Default value for TG in the transmission mode TDM is 20.
+
+The availability of this attribute depends on commercial agreements.
+Attribute can be set to no value only by the system.
+
+Depends on 
+RXATC: DAMRREDABISTHR</ns1:desc>
+    <ns1:type xsi:type="ns1:shortType">
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="100" min="1"/>
+      </ns1:valueRangeConstraint>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="dHraAbisThr" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Dynamic HR allocation threshold for 16 kbps pool of Abis paths.
+
+Defines a threshold value for starting and stopping the allocation of AMR HR and HR channels using Abis devices from the 16 kbps pool. The threshold value is expressed as percentage of idle 16 kbps Abis devices, out of nominal number of devices in the pool. The allocation of HR channels due to shortage of Abis resources starts when the number of idle 16 kbps Abis devices falls below the threshold value and ends when the number of idle 16 kbps Abis devices exceeds the value determined by this parameter. The allocation is stopped when the threshold value is set to 0.
+Default value for TG in the transmission mode TDM is 0.
+
+The availability of this attribute depends on commercial agreements.
+Attribute can be set to no value only by the system.
+
+Depends on 
+RXATC: DHRAABISTHR</ns1:desc>
+    <ns1:type xsi:type="ns1:shortType">
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="100" min="0"/>
+      </ns1:valueRangeConstraint>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="dHraAbisThrWb" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Dynamic HR allocation threshold for 16 kbps pool of Abis paths for AMR-WB MSs.
+
+Defines  a threshold value for starting and stopping the allocation of AMR HR  and HR channels using Abis devices from the 16 kbps pool. This threshold is used in AMR-WB capable cells for MSs that support AMR-WB. The threshold value is expressed as percentage of idle 16 kbps Abis devices, out of nominal number of devices in the pool. The allocation of HR channels due to shortage of Abis resources starts when the number of idle 16 kbps Abis devices falls below the threshold value and ends when the number of idle 16 kbps Abis devices exceeds the value determined by this parameter. The allocation is stopped when the threshold value is set to 0.
+Default value for TG in the transmission mode TDM is 0.
+
+
+The availability of this attribute depends on commercial agreements.
+Attribute can be set to no value only by the system.
+
+Depends on 
+RXATC: DHRAABISTHRWB</ns1:desc>
+    <ns1:type xsi:type="ns1:shortType">
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="100" min="0"/>
+      </ns1:valueRangeConstraint>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="sdFrMaAbisThr" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Dynamic FR to HR mode adaptation threshold for packet Abis.
+
+Defines a threshold value for starting and stopping packing of FR and AMR FR channels and for starting and stopping the move from FR to HR channels, including AMR, in case of high transmission load on packet Abis. The threshold value is expressed as percentage counted as the number of HDLC packets transmitted through the packet Abis divided by the maximum number of HDLC packets that can be transmitted within the timeframe. The packing and moving of channels due to shortage of packet Abis resources starts when the number of transmitted HDLC packets exceeds the threshold value and ends when the number of transmitted HDLC packets falls below the value determined by this attribute. The packing and moving is stopped when the threshold value is set to 100.
+
+Default value for TG in the transmission mode SCM is 100.
+
+The availability of this attribute depends on commercial agreements.
+Attribute can be set to no value only by the system.
+
+Depends on 
+RXATC: SDFRMAABISTHR</ns1:desc>
+    <ns1:type xsi:type="ns1:shortType">
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="100" min="1"/>
+      </ns1:valueRangeConstraint>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="sdHrMaAbisThr" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Dynamic HR to FR mode adaptation threshold for packet Abis.
+
+Defines a threshold value for starting and stopping the move from HR to FR channels, including AMR, in case of low transmission load on packet Abis. The threshold value is expressed as percentage counted as the number of HDLC packets transmitted through the packet Abis divided by the maximum number of HDLC packets that can be transmitted within the timeframe. The moving of channels due to low usage of packet Abis resources starts when the number of transmitted HDLC packets falls below the threshold value and ends when the number of transmitted HDLC packets exceeds the value determined by this attribute.
+
+Default value for TG in the transmission mode SCM is 0.
+
+The availability of this attribute depends on commercial agreements.
+Attribute can be set to no value only by the system.
+
+Depends on 
+RXATC: SDHRMAABISTHR</ns1:desc>
+    <ns1:type xsi:type="ns1:shortType">
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="100" min="0"/>
+      </ns1:valueRangeConstraint>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="sdAmrRedAbisThr" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>AMR FR with reduced codec allocation threshold for packet Abis.
+
+Defines a threshold value for starting and stopping the allocation of AMR FR channels with reduced codec set, in case of high transmission load on a packet Abis. The threshold value is expressed as percentage counted as the number of HDLC packets transmitted through the packed Abis divided by the maximum number of HDLC packets that can be transmitted within the timeframe. The allocation of these channels due to shortage of packet Abis resources starts when the number of transmitted HDLC packets exceeds the threshold value and ends when the number of transmitted HDLC packets falls below the value determined by this attribute. The allocation is stopped when the threshold value is set to 100.
+
+Default value for TG in the transmission mode SCM is 100.
+
+The availability of this attribute depends on commercial agreements.
+Attribute can be set to no value only by the system.
+
+Depends on 
+RXATC: SDAMRREDABISTHR</ns1:desc>
+    <ns1:type xsi:type="ns1:shortType">
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="100" min="1"/>
+      </ns1:valueRangeConstraint>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="sdHraAbisThr" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Dynamic HR allocation threshold for packet Abis.
+
+Defines a threshold value for starting and stopping the allocation of AMR HR and HR channels, in case of high transmission load on packet Abis. The threshold value is expressed as percentage counted as the number of HDLC packets transmitted through the packet Abis divided by the maximum number of HDLC packets that can be transmitted within the timeframe. The allocation of HR channels due to shortage of packet Abis resources starts when the number of transmitted HDLC packets exceeds the threshold value and ends when the number of transmitted HDLC packets falls below the value determined by this attribute. The allocation is stopped when the threshold value is set to 100.
+
+Default value for TG in the transmission mode SCM is 100.
+
+The availability of this attribute depends on commercial agreements.
+Attribute can be set to no value only by the system.
+
+Depends on 
+RXATC: SDHRAABISTHR</ns1:desc>
+    <ns1:type xsi:type="ns1:shortType">
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="100" min="1"/>
+      </ns1:valueRangeConstraint>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="sdHraAbisThrWb" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Dynamic HR allocation threshold for packet Abis for AMR WB capable MSs.
+
+Defines a threshold value for starting and stopping the allocation of AMR HR and HR channels, in case of high transmission load on packet Abis. This threshold is used in AMR-WB capable cells for MSs that support AMR-WB. The threshold value is expressed as percentage counted as the number of HDLC packets transmitted through the packet Abis divided by the maximum number of HDLC packets that can be transmitted within the timeframe. The allocation of HR channels due to shortage of packet Abis resources starts when the number of transmitted HDLC packets exceeds the threshold value and ends when the number of transmitted HDLC packets falls below the value determined by this attribute. The allocation is stopped when the threshold value is set to 100.
+
+Default value for TG in the transmission mode SCM is 100.
+
+The availability of this attribute depends on commercial agreements.
+Attribute can be set to no value only by the system.
+
+Depends on 
+RXATC: SDHRAABISTHRWB</ns1:desc>
+    <ns1:type xsi:type="ns1:shortType">
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="100" min="1"/>
+      </ns1:valueRangeConstraint>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="tMode" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>TG transmission mode on Abis interface.
+
+Depends on 
+RXMOC: TMODE 
+RXMOI: TMODE</ns1:desc>
+    <ns1:type modelUrn="//BscM/TransmissionMode/5.13.6" xsi:type="ns1:enumRefType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns1:default value="TDM" xsi:type="ns1:stringValue"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="packAlg" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Packing algorithm.
+
+Defines if transmission data in the SCGR is packed and what packing algorithm is used for a TG in the transmission mode SCM.
+
+The availability of this attribute depends on commercial agreements.
+
+Attribute can be set to no value only by the system.
+
+Depends on 
+RXMOI: PACKALG 
+RXMOC: PACKALG 
+RXMSC: PACKALG</ns1:desc>
+    <ns1:type modelUrn="//BscM/AbisPackingAlgorithm/5.13.6" xsi:type="ns1:enumRefType"/>
+    <ns1:default value="ALGORITHM1" xsi:type="ns1:stringValue"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="pta" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>P-GSL timing advance.
+
+Defines a number of TDMA frames for counting the timing advance for P-GSL when P-GSL timing advance regulation is not activated with attribute G12Tg.pal.
+
+The availability of this attribute depends on commercial agreements.
+
+Attribute can be set to no value only by the system.
+
+Depends on 
+RXMOI: PTA 
+RXMOC: PTA</ns1:desc>
+    <ns1:type xsi:type="ns1:shortType">
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="63" min="0"/>
+      </ns1:valueRangeConstraint>
+    </ns1:type>
+    <ns1:default value="7" xsi:type="ns1:shortValue"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="jbsDl" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Size of downlink jitter buffer.
+
+The availability of this attribute depends on commercial agreements.
+
+Attribute can be set to no value only by the system.
+
+Depends on 
+RXMOI: JBSDL 
+RXMOC: JBSDL</ns1:desc>
+    <ns1:type xsi:type="ns1:shortType">
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="255" min="0"/>
+      </ns1:valueRangeConstraint>
+    </ns1:type>
+    <ns1:default value="20" xsi:type="ns1:shortValue"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="psuPs" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>State of functionality PSU power savings for the TG MO.
+
+The availability of this attribute depends on commercial agreements.
+Attribute can be set to no value only by the system.
+
+Depends on 
+RXBFC: PSUPS</ns1:desc>
+    <ns1:type modelUrn="//BscM/ActivationState/5.13.6" xsi:type="ns1:enumRefType"/>
+    <ns1:default value="OFF" xsi:type="ns1:stringValue"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="pal" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Defines if P-GSL timing advance regulation is used and then which regulation algorithm is used.
+
+The availability of this attribute depends on commercial agreements.
+Attribute can be set to no value only by the system.
+
+Depends on 
+RXMOI: PAL 
+RXMOC: PAL</ns1:desc>
+    <ns1:type modelUrn="//BscM/AbisTimingAdvanceAlgorithm/5.13.6" xsi:type="ns1:enumRefType"/>
+    <ns1:default value="NOREG" xsi:type="ns1:stringValue"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="jbPta" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>BTS jitter buffer depth for P-GSL timing advance.
+
+Defines the delay time in the BTS buffer of the data packets when P-GSL timing advance regulation with algorithm 1 is activated with attribute G12Tg.pal. The value means the maximum jitter delay the BTS can manage in downlink.
+
+The availability of this attribute depends on commercial agreements.
+Attribute can be set to no value only by the system.
+
+Depends on 
+RXMOI: JBPTA 
+RXMOC: JBPTA</ns1:desc>
+    <ns1:type xsi:type="ns1:byteType">
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="120" min="0"/>
+      </ns1:valueRangeConstraint>
+      <ns1:valueResolutionConstraint value="2"/>
+    </ns1:type>
+    <ns1:default value="20" xsi:type="ns1:byteValue"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="clTgInst" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Unique TG identifier within a TG cluster.
+
+The availability of this attribute depends on commercial agreements.
+Attribute can be set to no value only by the system.
+
+Depends on 
+RXMOI: CLTGINST 
+RXMOC: CLTGINST</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="511" min="0"/>
+      </ns1:valueRangeConstraint>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="tsPs" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>State of the functionality time slot power savings.
+
+The availability of this attribute depends on commercial agreements.
+
+Attribute can be set to no value only by the system.
+
+Depends on 
+RXBFC: TSPS</ns1:desc>
+    <ns1:type modelUrn="//BscM/ActivationState/5.13.6" xsi:type="ns1:enumRefType"/>
+    <ns1:default value="OFF" xsi:type="ns1:stringValue"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="ccchCmd" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>CCCH configuration method.
+
+Defines the CCCH configuration method used during the radio network configuration process when state of equipment is changed.
+
+The availability of this attribute depends on commercial agreements.
+Attribute can be set to no value only by the system.
+
+Depends on 
+RXMOC: CCCHCMD 
+RXMSC: CCCHCMD</ns1:desc>
+    <ns1:type modelUrn="//BscM/CcchConfigurationMethod/5.13.6" xsi:type="ns1:enumRefType"/>
+    <ns1:default value="NORMAL" xsi:type="ns1:stringValue"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="csTma" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>State of the functionality current supervised TMA state for the TG MO.
+
+The availability of this attribute depends on commercial agreements.
+Attribute can be set to no value only by the system.
+
+Depends on 
+RXBFC  CSTMA</ns1:desc>
+    <ns1:type modelUrn="//BscM/ActivationState/5.13.6" xsi:type="ns1:enumRefType"/>
+    <ns1:default value="OFF" xsi:type="ns1:stringValue"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="aisgTma" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>State of the functionality antenna interface standards group TMA for the TG MO.
+
+The availability of this attribute depends on commercial agreements.
+Attribute can be set to no value only by the system.
+
+Depends on 
+RXBFC: AISGTMA</ns1:desc>
+    <ns1:type modelUrn="//BscM/ActivationState/5.13.6" xsi:type="ns1:enumRefType"/>
+    <ns1:default value="OFF" xsi:type="ns1:stringValue"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="aisgRet" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>State of the functionality antenna interface standards group RET for the TG MO.
+
+The availability of this attribute depends on commercial agreements.
+Attribute can be set to no value only by the system.
+
+Depends on 
+RXBFC: AISGRET</ns1:desc>
+    <ns1:type modelUrn="//BscM/ActivationState/5.13.6" xsi:type="ns1:enumRefType"/>
+    <ns1:default value="OFF" xsi:type="ns1:stringValue"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="rCasc" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>State of functionality RRUS cascading for the TG MO.
+
+The availability of this attribute depends on commercial agreements.
+Attribute can be set to no value only by the system.
+
+Depends on 
+RXBFC: RCASC</ns1:desc>
+    <ns1:type modelUrn="//BscM/ActivationState/5.13.6" xsi:type="ns1:enumRefType"/>
+    <ns1:default value="OFF" xsi:type="ns1:stringValue"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="tgCoord" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Alarm coordination level.
+
+Allows coordination of alarms at different levels so that only the highest severity alarm is issued at that level.
+
+Depends on 
+RXALC: TGCOORD</ns1:desc>
+    <ns1:type modelUrn="//BscM/AlarmCoordLevel/5.13.6" xsi:type="ns1:enumRefType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns1:default value="MO_LEVEL" xsi:type="ns1:stringValue"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="alCoTim" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Alarm coordination timer.
+
+Defines filter time that allows the BTS related fault situation to settle before the alarm coordination analysis begins.
+
+Depends on 
+RXALC: ALCOTIM</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="300" min="90"/>
+      </ns1:valueRangeConstraint>
+    </ns1:type>
+    <ns1:default value="90" xsi:type="ns1:integerValue"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="exalTim" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>External alarm coordination timer.
+
+Defines a time in which the reported BTS external alarm situation is allowed to settle before the actual alarm is raised.
+
+Attribute can be set to no value only by the system.
+
+Depends on 
+RXALC: EXALTIM</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="300" min="1"/>
+      </ns1:valueRangeConstraint>
+    </ns1:type>
+    <ns1:default value="30" xsi:type="ns1:integerValue"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="moOperState" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Actual global state of the TG MO.</ns1:desc>
+    <ns1:type modelUrn="//BscM/MoOperState/5.13.6" xsi:type="ns1:enumRefType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="moAdmState" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Wanted global state of the TG MO.
+
+The actual TG MO state is stored in G12Tg.moOperState.
+
+Depends on 
+RXESI 
+RXESE 
+RXBLI 
+RXBLE</ns1:desc>
+    <ns1:type modelUrn="//BscM/MoAdmState/5.13.6" xsi:type="ns1:enumRefType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns1:default value="OUT_OF_SERVICE" xsi:type="ns1:stringValue"/>
+    <ns2:disturbances>Changing of moAdmState from DEBLOCKED to BLOCKED:
+The blocking order is executed immediately, and the MO is taken out of operation. This results in handover attempts for the traffic channels associated with each MO. If the handover attempts fail, the traffic associated with each MO is immediately ended.</ns2:disturbances>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="blState" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Blocking state of the TG MO.
+
+If more than one blocking is active, the attribute is set to the blocking with highest priority.</ns1:desc>
+    <ns1:type modelUrn="//BscM/MoBlockingState/5.13.6" xsi:type="ns1:enumRefType"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="changeSubordState" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Indicates if state of subordinate MOs to the TG MO is changed when moAdmState is changed.
+
+Depends on 
+RXESI: SUBORD 
+RXESE: SUBORD  
+RXBLI: SUBORD  
+RXBLE: SUBORD</ns1:desc>
+    <ns1:type modelUrn="//BscM/Indicator/5.13.6" xsi:type="ns1:enumRefType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns1:default value="YES" xsi:type="ns1:stringValue"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="PRELIMINARY" ns1:name="scgr" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="DELEGATE">
+    <ns1:desc>Group of SCs that terminate in the same TG.
+
+The attribute must be set to empty before assigning a new value.
+
+The availability of this attribute depends on commercial agreements.
+
+Depends on 
+RXMOI: SCGR 
+RXMOC: SCGR</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="2047" min="0"/>
+      </ns1:valueRangeConstraint>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="PRELIMINARY" ns1:name="g12TgIndividual" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Internal individual id.</ns1:desc>
+    <ns1:type xsi:type="ns1:longType"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="cascap" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>CAS capability indicator.</ns1:desc>
+    <ns1:type modelUrn="//BscM/Indicator/5.13.6" xsi:type="ns1:enumRefType"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="omlF1Cap" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>A bitmap that describes the supported optional OML functions.
+
+This bitmap is expressed as a set of bit strings, where:
+
+String 1 - Contains bits from f1 to f16
+String 2 - Contains bits from f17 to f32
+String 3 - Contains bits from f33 to f48
+String 4 - Contains bits from f49 to f64
+String 5 - Contains bits from f65 to f80
+
+All bits, except for the bits from f1 to f31 and f33, in this bitmap are currently unused.
+
+f1
+    TRXC function change
+    0 - TRXC function change not supported by the BTS
+    1 - TRXC function change supported by the BTS
+
+f2
+    Automatic ciphering
+    0 - Automatic ciphering not supported by the BTS
+    1 - Automatic ciphering supported by the BTS
+
+f3
+    IRC
+    0 - IRC not supported by the BTS
+    1 - IRC supported by the BTS
+
+f4
+    Antenna Hopping
+    0 - Antenna Hopping not supported by the BTS
+    1 - Antenna Hopping supported by the BTS
+
+f5
+    Frame synchronization using GPS
+    0 - Frame synchronization using GPS not supported by the BTS
+    1 - Frame synchronization using GPS supported by the BTS
+
+f6
+    4WRD
+    0 - 4WRD not supported by the BTS
+    1 - 4WRD supported by the BTS
+
+f7
+    Automatic parameter setting in TG synchronization on TG level
+    0 - Automatic parameter setting in TG synchronization on TG level not supported by the BTS
+    1 - Automatic parameter setting in TG synchronization on TG level supported by the BTS
+
+f8
+    Feature Packet Abis over TDM
+    0 - Feature Packet Abis over TDM not supported by the BTS
+    1 - Feature Packet Abis over TDM supported by the BTS
+
+f9
+    Feature Packet Abis over IP
+    0 - Feature Packet Abis over IP not supported by the BTS
+    1 - Feature Packet Abis over IP supported by the BTS
+
+f10
+    FFTAD
+    0 - FFTAD not supported by the BTS
+    1 - FFTAD supported by the BTS
+
+f11
+    PSU Power Savings
+    0 - PSU Power Savings not supported by the BTS
+    1 - PSU Power Savings supported by the BTS
+
+f12
+    SC Quality Report II
+    0 - SC Quality Report II not supported by the BTS
+    1 - SC Quality Report II supported by the BTS
+
+f13
+    Time Slot Power Savings
+    0 - Time Slot Power Savings not supported by the BTS
+    1 - Time Slot Power Savings supported by the BTS
+
+f14
+    Multiple CCCH
+    0 - Multiple CCCH not supported by the BTS
+    1 - Multiple CCCH supported by the BTS
+
+f15
+    MCTR
+    0 - MCTR not supported by the BTS
+    1 - MCTR supported by the BTS
+
+f16
+    Current supervised TMA
+    0 - Current supervised TMA not supported by the BTS
+    1 - Current supervised TMA supported by the BTS
+
+f17
+    Antenna interface standards group TMA
+    0 - Antenna interface standards group TMA not supported by the BTS
+    1 - Antenna interface standards group TMA supported by the BTS
+
+f18
+    Antenna interface standards group RET
+    0 - Antenna interface standards group RET not supported by BTS
+    1 - Antenna interface standards group RET supported by the BTS
+
+f19
+    VAMOS
+    0 - VAMOS not supported by the BTS
+    1 - VAMOS supported by the BTS
+
+f20
+    TS configuration split
+    0 - TS configuration split not supported by the BTS
+    1 - TS configuration split supported by the BTS
+
+f21
+    AQPSK with non-zero Subchannel Power Imbalance Ratio (SCPIR)
+    0 - AQPSK with non-zero SCPIR not supported by the BTS
+    1 - AQPSK with non-zero SCPIR supported by the BTS
+
+f22
+    MCTR maximum allowed power extension
+    0 - MCTR maximum allowed power extension not supported by the BTS
+    1 - MCTR maximum allowed power extension supported by the BTS
+
+f23
+    BCCH Power Savings
+    0 - BCCH Power Savings not supported by the BTS
+    1 - BCCH Power Savings supported by the BTS
+
+f24
+    BTS Soft Synchronization
+    0 - BTS Soft Synchronization not supported by the BTS
+    1 - BTS Soft Synchronization supported by the BTS
+
+f25
+    Native IP Configuration
+    0 - Native IP Configuration not supported by the BTS
+    1 - Native IP Configuration supported by the BTS
+
+f26
+    RRUS Cascading
+    0 - RRUS Cascading not supported by the BTS
+    1 - RUS Cascading supported by the BTS
+
+f27
+    Reporting of Access Burst Info
+    0 - Reporting of Access Burst Info not supported by the BTS
+    1 - Reporting of Access Burst Info supported by the BTS
+
+f28
+    Support for decimal resolution of configured power
+    0 - Decimal resolution of configured power not supported by the BTS
+    1 - Decimal resolution of configured power supported by the BTS
+
+f29
+    Node Group Synchronization
+    0 - Node Group Synchronization not supported by the BTS
+    1 - Node Group Synchronization supported by the BTS
+
+f30
+    Extended Coverage
+    0 - Extended Coverage not supported by the BTS
+    1 - Extended Coverage supported by the BTS
+
+f31
+    Synchronization Observability
+    0 - Synchronization Observability not supported by the BTS
+    1 - Synchronization Observability supported by the BTS
+
+f33
+    Combined cell
+    0 - Combined cell not supported by the BTS
+    1 - Combined cell supported by the BTS</ns1:desc>
+    <ns1:type xsi:type="ns1:listType">
+      <ns1:collectionSizeConstraint>
+        <ns1:minMaxSize max="5" min="0"/>
+      </ns1:collectionSizeConstraint>
+      <ns1:collectionValuesType xsi:type="ns1:stringType"/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="omlF2Cap" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>A bitmap that describes the supported mandatory OML functions.
+
+This bitmap is expressed as a set of bit strings, where:
+
+String 1 - Contains bits from f1 to f16
+String 2 - Contains bits from f17 to f32
+String 3 - Contains bits from f33 to f48
+String 4 - Contains bits from f49 to f64
+String 5 - Contains bits from f65 to f80
+
+All bits, except for the bit f1, in this bitmap are currently unused.
+
+f1
+    Frequency measurements support
+    0 - Frequency measurements not supported by the BTS
+    1 - Frequency measurements supported by the BTS</ns1:desc>
+    <ns1:type xsi:type="ns1:listType">
+      <ns1:collectionSizeConstraint>
+        <ns1:minMaxSize max="5" min="0"/>
+      </ns1:collectionSizeConstraint>
+      <ns1:collectionValuesType xsi:type="ns1:stringType"/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="rslF1Cap" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>A bitmap that describes the supported optional RSL functions.
+
+This bitmap is expressed as a set of bit strings, where:
+
+String 1 - Contains bits from f1 to f16
+String 2 - Contains bits from f17 to f32
+String 3 - Contains bits from f33 to f48
+String 4 - Contains bits from f49 to f64
+String 5 - Contains bits from f65 to f80
+
+All bits, except for the bits from f1 to f38, in this bitmap are currently unused.
+
+f1
+    Paging command
+    0 - Channel Needed not supported
+    1 - Channel Needed supported
+
+f2
+    BTS phase handling
+    0 - BCCH information phase 2 not supported, Layer 3 information must be included in SACCH filling, and immediate assign phase 2 not supported
+    1 - BCCH Information phases 1 and 2 supported, Layer 3 information may be excluded from SACCH filling, and immediate assign phases 1 and 2 supported
+
+f3
+    Extended range
+    0 - Extended range not supported by the BTS
+    1 - Extended range supported by the BTS
+
+f4
+    A5/2 algorithm
+    0 - A5/2 algorithm not supported by the BTS
+    1 - A5/2 algorithm supported by the BTS
+
+f5
+    Base station power control
+    0 - BS power control not supported
+    1 - BS power control supported
+
+f6
+    Multiband operation
+    0 - Multiband operation not supported
+    1 - Multiband operation supported
+
+f7
+    Power information support
+    0 - Power information not supported by the BTS
+    1 - Power information supported by the BTS
+
+f8
+    A5/1 algorithm
+    0 - A5/1 algorithm not supported by the BTS
+    1 - A5/1 algorithm supported by the BTS
+
+f9
+    GPRS support
+    0 - GPRS not supported by the BTS
+    1 - GPRS supported by the BTS
+
+f10
+    Enhanced Multi-Level Precedence and Preemption Service priority
+    0 - Enhanced Multi-Level Precedence and Preemption Service priority not supported
+    1 - Enhanced Multi-Level Precedence and Preemption Service priority supported
+
+f11
+    CBCH
+    0 - Extended CBCH not supported by the BTS
+    1 - Extended CBCH supported by the BTS
+
+f12
+    Main channel reference
+    0 - Main channel reference not supported
+    1 - Main channel reference supported
+
+f13
+    A5/3 algorithm
+    0 - A5/3 algorithm not supported by the BTS
+    1 - A5/3 algorithm supported by the BTS
+
+f14
+    BTS Counters
+    0 - Reporting of BTS Counters not supported by the BTS
+    1 - Reporting of BTS Counters supported by the BTS
+
+f15
+    Dynamic IS configuration
+    0 - ICP List in channel activation not supported
+    1 - ICP List in channel activation supported
+
+f16
+    EMR
+    0 - EMR functionality not supported by the BTS
+    1 - EMR functionality supported by the BTS
+
+f17
+    TFO
+    0 - TFO not supported
+    1 - TFO supported
+
+f18
+    VGCS
+    0 - VGCS not supported by the BTS
+    1 - VGCS supported by the BTS
+
+f19
+    VGCS Enhancements
+    0 - VGCS Enhancements not supported by the BTS
+    1 - VGCS Enhancements supported by the BTS
+
+f20
+    FFAD
+    0 - FFAD not supported by the BTS
+    1 - FFAD supported by the BTS
+
+f21
+    Enhanced Handover Success Rate
+    0 - Enhanced Handover Success Rate not supported by the BTS
+    1 - Enhanced Handover Success Rate supported by the BTS
+
+f22
+    Repeated SACCH support
+    0 - Repeated SACCH not supported by the BTS
+    1 - Repeated SACCH supported by the BTS
+
+f23
+    RTTI support
+    0 - RTTI not supported by the BTS
+    1 - RTTI supported by the BTS
+
+f24
+    PTA regulation mode PAL 1
+    0 - PTA regulation algorithm 1 not supported by the BTS
+    1 - PTA regulation algorithm 1 supported by the BTS
+
+f25
+    PAN Support
+    0 - PAN not supported by the BTS
+    1 - PAN supported by the BTS
+
+f26
+    Random fill bits
+    0 - Random fill bits not supported by the BTS
+    1 - Random fill bits supported by the BTS
+
+f27
+    BS Power 2 support
+    0 - BS Power 2 not supported by the BTS
+    1 - BS Power 2 supported by the BTS
+
+f28
+    SMSCB DRX mode support
+    0 - DRX mode not supported by the BTS
+    1 - DRX mode supported by the BTS
+
+f29
+    VAMOS Advanced support
+    0 - VAMOS Advanced not supported by the BTS
+    1 - VAMOS Advanced supported by the BTS
+
+f30
+    PDCH options support
+    0 - PDCH options not supported by the BTS
+    1 - PDCH options supported by the BTS
+
+f31
+    Random fill bits in System Information Type 6
+    0 - Random SI6 fill bits not supported by the BTS
+    1 - Random SI6 fill bits supported by the BTS
+
+f32
+    Channel Specific Measurement Information support
+    0 - Channel Specific Measurement Information not supported
+    1 - Channel Specific Measurement Information supported
+
+f33
+    UL Data Compression support
+    0 - UL Data Compression not supported
+    1 - UL Data Compression supported
+
+f34
+    A5/4 algorithm
+    0 - A5/4 algorithm not supported by the BTS
+    1 - A5/4 algorithm supported by the BTS
+
+f35
+    Extended Coverage
+    0 - Extended Coverage not supported by the BTS
+    1 - Extended Coverage supported by the BTS
+
+f36
+    Extended DRX
+    0 - Extended DRX not supported by the BTS
+    1 - Extended DRX supported by the BTS
+
+f37
+    IoT Load Control
+    0 - IoT Load Control not supported by the BTS
+    1 - IoT Load Control supported by the BTS
+
+f38
+    Paging Command 3
+    0 - Paging Command 3 not supported by the BTS
+    1 - Paging Command 3 supported by the BTS</ns1:desc>
+    <ns1:type xsi:type="ns1:listType">
+      <ns1:collectionSizeConstraint>
+        <ns1:minMaxSize max="5" min="0"/>
+      </ns1:collectionSizeConstraint>
+      <ns1:collectionValuesType xsi:type="ns1:stringType"/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="rslF2Cap" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>A bitmap that describes the supported mandatory RSL functions.
+
+This bitmap is currently unused.</ns1:desc>
+    <ns1:type xsi:type="ns1:listType">
+      <ns1:collectionSizeConstraint>
+        <ns1:minMaxSize max="5" min="0"/>
+      </ns1:collectionSizeConstraint>
+      <ns1:collectionValuesType xsi:type="ns1:stringType"/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="fTxAddrCap" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Fixed TX address support indicator.</ns1:desc>
+    <ns1:type modelUrn="//BscM/Indicator/5.13.6" xsi:type="ns1:enumRefType"/>
+  </ns2:primaryTypeAttribute>
+</ns2:PrimaryTypeDefinition>

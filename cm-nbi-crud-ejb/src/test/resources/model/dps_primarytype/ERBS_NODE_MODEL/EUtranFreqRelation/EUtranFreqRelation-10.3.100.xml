@@ -1,0 +1,966 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+
+*******************************************************************************
+* COPYRIGHT Ericsson LMI. All rights reserved.
+*
+* No part of this document may be reproduced in any form without the
+* written permission of the copyright owner.The contents of this document
+* are subject to revision without notice due to continued progress in
+* methodology, design and manufacturing. Ericsson shall have no liability
+* for any error or damage of any kind resulting from the use of this document.
+*
+*******************************************************************************
+
+
+--><ns2:PrimaryTypeDefinition xmlns:ns1="urn:com:ericsson:schema:xml:oss:oss_common" xmlns:ns2="urn:com:ericsson:schema:xml:oss:dps_primarytype" xmlns:ns3="urn:com:ericsson:schema:xml:oss:dps_common" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" hierarchyType="HIERARCHICAL" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="EUtranFreqRelation" ns1:ns="ERBS_NODE_MODEL" ns1:version="10.3.100">
+  <ns1:modelCreationInfo>
+    <ns1:derivedModel derivedFrom="/net_momdtd/ERBS_NODE_MODEL_J/ERBS_NODE_MODEL_J_3_100"/>
+  </ns1:modelCreationInfo>
+  <ns1:desc>This MO represents a mobility relation between a EUtranCellFDD and a EUtranFrequency. It contains parameters that are specific for this relation.
+To include SIB3 in System Information, one instance of this MO must be created which refers to a EUtranFrequency MO with the parameter arfcnValueEUtranDl set to the same value as the parent EUtranCellFDD/EUtranCellTDDs parameter earfcndl.
+
+ It is only allowed to remove the EUtranFreqRelation, refering to the same frequency as the parent MO EUtranCellFDD/EUtranCellTDD has, when the EUtranCellFDD/EUtranCellTDD is locked.
+
+Deleting this MO while the parent EUtranCellFDD/EUtranCellTDD has operationalState set to ENABLED is not recommended as it may affect traffic.</ns1:desc>
+  <ns2:primaryTypeAttribute immutable="true" key="true" mandatory="true" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="EUtranFreqRelationId" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>The value component of the Relative Distinguished Name (RDN).
+</ns1:desc>
+    <ns1:type xsi:type="ns1:stringType">
+      <ns1:notNullConstraint/>
+      <ns1:stringContentsConstraint type="REGEX" value="[]0-9A-Za-z\[.!$%&amp;':?@^_`{|}~ /()-]*"/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="userLabel" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Label for free use.
+</ns1:desc>
+    <ns1:type xsi:type="ns1:stringType">
+      <ns1:notNullConstraint/>
+      <ns1:stringLengthConstraint>
+        <ns1:minMaxLength max="128" min="0"/>
+      </ns1:stringLengthConstraint>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="true" mandatory="true" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="eutranFrequencyRef" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Refers to the EUTRAN frequency MO, EUtranFrequency.</ns1:desc>
+    <ns1:type modelUrn="//ERBS_NODE_MODEL/EUtranFrequency/10.3.100" xsi:type="ns1:moRefType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="qRxLevMin" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>The required minimum received Reference Symbol Received Power
+(RSRP) level in the (E-UTRA) frequency for cell reselection. Corresponds to parameter Qrxlevmin in 3GPP TS 36.304. This attribute is broadcast in SIB3 or SIB5, depending on whether the related frequency is intra- or inter-frequency.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="-44" min="-140"/>
+      </ns1:valueRangeConstraint>
+      <ns1:valueResolutionConstraint value="2"/>
+      <ns1:unit>dBm</ns1:unit>
+    </ns1:type>
+    <ns1:default value="-140" xsi:type="ns1:integerValue"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="pMax" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Calculates the parameter Pcompensation (defined in 3GPP TS 36.304), at cell reselection to an E-UTRAN Cell. Corresponds to parameter PEMAX in 3GPP TS 36.101.
+Value 1000 means the parameter is not sent in the system information block.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="33" min="-30"/>
+        <ns1:minMaxRange max="1000" min="1000"/>
+      </ns1:valueRangeConstraint>
+      <ns1:unit>dBm</ns1:unit>
+    </ns1:type>
+    <ns1:default value="1000" xsi:type="ns1:integerValue"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="tReselectionEutra" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>The cell reselection timer TreselectionRAT for E-UTRA. Value in seconds.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="7" min="0"/>
+      </ns1:valueRangeConstraint>
+      <ns1:unit>s</ns1:unit>
+    </ns1:type>
+    <ns1:default value="2" xsi:type="ns1:integerValue"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="tReselectionEutraSfHigh" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>The attribute t-ReselectionEUTRA is multiplied with this factor if the UE is in high mobility state. Corresponds to the parameter Speed dependent ScalingFactor for TreselectionEUTRAN for medium high state in 3GPP TS 36.304.
+Value mapping:
+25 = 0.25
+50 = 0.5
+75 = 0.75
+100 = 1.0</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="100" min="25"/>
+      </ns1:valueRangeConstraint>
+      <ns1:valueResolutionConstraint value="25"/>
+      <ns1:unit>%</ns1:unit>
+    </ns1:type>
+    <ns1:default value="100" xsi:type="ns1:integerValue"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="tReselectionEutraSfMedium" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>The attribute t-ReselectionEUTRA is multiplied with this factor if the UE is in medium mobility state. Corresponds to the parameter Speed dependent ScalingFactor for TreselectionEUTRAN for medium mobility state in 3GPP TS 36.304.
+Value mapping:
+25 = 0.25
+50 = 0.5
+75 = 0.75
+100 = 1.0</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="100" min="25"/>
+      </ns1:valueRangeConstraint>
+      <ns1:valueResolutionConstraint value="25"/>
+      <ns1:unit>%</ns1:unit>
+    </ns1:type>
+    <ns1:default value="100" xsi:type="ns1:integerValue"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="cellReselectionPriority" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Absolute priority of carrier frequency used by cell reselection procedure. Corresponds to parameter priority in 3GPP TS 36.304, Evolved Universal Terrestrial Radio Access (E-UTRA); User Equipment (UE) procedures in idle mode.
+
+Value 0 means lowest priority. UE behavior when no value is entered is specified in 3GPP TS 36.304.
+Value -1 means frequency is excluded from SIB5 and IdleModeMobilityControlInfo.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="7" min="-1"/>
+      </ns1:valueRangeConstraint>
+    </ns1:type>
+    <ns1:default value="7" xsi:type="ns1:integerValue"/>
+    <ns3:dependencies>Value must be unique and not already used by other RAT, that is, equal priorities between RATs are not supported.
+Value -1 cannot be assigned if this EUtranFreqRelation MO is associated with frequency equal to parent cell frequency.</ns3:dependencies>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="threshXHigh" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>The threshold used by the UE when reselecting towards the higher priority frequency X from the current serving frequency. Each frequency of E-UTRAN can have a specific threshold. Refer to the parameter Thresx,high in 3GPP TS 36.304.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="62" min="0"/>
+      </ns1:valueRangeConstraint>
+      <ns1:valueResolutionConstraint value="2"/>
+      <ns1:unit>dB</ns1:unit>
+    </ns1:type>
+    <ns1:default value="4" xsi:type="ns1:integerValue"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="threshXLow" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>The threshold used in reselection towards frequency X priority from a higher priority frequency. Each frequency of E-UTRAN can have a specific threshold. Corresponds to parameter Thresx,low in 3GPP TS 36.304.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="62" min="0"/>
+      </ns1:valueRangeConstraint>
+      <ns1:valueResolutionConstraint value="2"/>
+      <ns1:unit>dB</ns1:unit>
+    </ns1:type>
+    <ns1:default value="0" xsi:type="ns1:integerValue"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="allowedMeasBandwidth" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>The maximum allowed measurement bandwidth on a carrier frequency.
+Note: The values indicate the number of resource blocks and correspond to the channel bandwidth 1,4MHz, 3MHz, 5MHz, 10MHz, 15MHz, 20MHz respectively specified in 3GPP TS 36.104.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="6" min="6"/>
+        <ns1:minMaxRange max="15" min="15"/>
+        <ns1:minMaxRange max="25" min="25"/>
+        <ns1:minMaxRange max="50" min="50"/>
+        <ns1:minMaxRange max="75" min="75"/>
+        <ns1:minMaxRange max="100" min="100"/>
+      </ns1:valueRangeConstraint>
+      <ns1:unit>Number of PRBs</ns1:unit>
+    </ns1:type>
+    <ns1:default value="6" xsi:type="ns1:integerValue"/>
+    <ns2:disturbances>Changing this attribute can cause loss of traffic.</ns2:disturbances>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="qOffsetFreq" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Frequency specific offset for E-UTRAN frequencies used in connected mode. In idle mode,  the negative value of this offset is used.
+Specification: 3GPP TS 36.331</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="-24" min="-24"/>
+        <ns1:minMaxRange max="-22" min="-22"/>
+        <ns1:minMaxRange max="-20" min="-20"/>
+        <ns1:minMaxRange max="-18" min="-18"/>
+        <ns1:minMaxRange max="-16" min="-16"/>
+        <ns1:minMaxRange max="-14" min="-14"/>
+        <ns1:minMaxRange max="-12" min="-12"/>
+        <ns1:minMaxRange max="-10" min="-10"/>
+        <ns1:minMaxRange max="-8" min="-8"/>
+        <ns1:minMaxRange max="-6" min="-6"/>
+        <ns1:minMaxRange max="-5" min="-5"/>
+        <ns1:minMaxRange max="-4" min="-4"/>
+        <ns1:minMaxRange max="-3" min="-3"/>
+        <ns1:minMaxRange max="-2" min="-2"/>
+        <ns1:minMaxRange max="-1" min="-1"/>
+        <ns1:minMaxRange max="0" min="0"/>
+        <ns1:minMaxRange max="1" min="1"/>
+        <ns1:minMaxRange max="2" min="2"/>
+        <ns1:minMaxRange max="3" min="3"/>
+        <ns1:minMaxRange max="4" min="4"/>
+        <ns1:minMaxRange max="5" min="5"/>
+        <ns1:minMaxRange max="6" min="6"/>
+        <ns1:minMaxRange max="8" min="8"/>
+        <ns1:minMaxRange max="10" min="10"/>
+        <ns1:minMaxRange max="12" min="12"/>
+        <ns1:minMaxRange max="14" min="14"/>
+        <ns1:minMaxRange max="16" min="16"/>
+        <ns1:minMaxRange max="18" min="18"/>
+        <ns1:minMaxRange max="20" min="20"/>
+        <ns1:minMaxRange max="22" min="22"/>
+        <ns1:minMaxRange max="24" min="24"/>
+      </ns1:valueRangeConstraint>
+      <ns1:unit>dB</ns1:unit>
+    </ns1:type>
+    <ns1:default value="0" xsi:type="ns1:integerValue"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="presenceAntennaPort1" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Indicates if all the neighboring cells use Antenna Port 1.  When set to TRUE, the UE expects that at least two cell-specific antenna ports are used in all neighboring cells.</ns1:desc>
+    <ns1:type xsi:type="ns1:booleanType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns1:default value="false" xsi:type="ns1:booleanValue"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="allowedPlmnList" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Lists all Public Land Mobile Network (PLMN) IDs allowed for this frequency relation.
+
+A UE that does not support a PLMN included in allowedPlmnList does not measure on this frequency according to the UE Handover Restriction List.
+
+No values in allowedPlmnList imply that the frequency has no restrictions for PLMN.
+
+The PLMN identity consists of the following parts:
+1. MobileCountryCode, MCC, 3 digits
+2. MobileNetworkCode, MNC, 2 or 3 digits (the correct number of digits is set in the mncLength member of this Struct)
+
+For example, if MCC=125 and MNC=46, then plmnId=12546.</ns1:desc>
+    <ns1:type xsi:type="ns1:listType">
+      <ns1:notNullConstraint/>
+      <ns1:collectionSizeConstraint>
+        <ns1:minMaxSize max="15" min="0"/>
+      </ns1:collectionSizeConstraint>
+      <ns1:collectionValuesType modelUrn="//ERBS_NODE_MODEL/PlmnIdentity/10.3.100" xsi:type="ns1:complexRefType"/>
+    </ns1:type>
+    <ns2:disturbances>Changing this attribute can cause loss of traffic.</ns2:disturbances>
+    <ns3:takesEffect>New connection</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="connectedModeMobilityPrio" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Prioritizes EUTRAN frequencies among all frequencies related to the cell for UEs in connected mode.
+(0 means the lowest priority. -1 means the frequency is excluded.)</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="7" min="-1"/>
+      </ns1:valueRangeConstraint>
+    </ns1:type>
+    <ns1:default value="7" xsi:type="ns1:integerValue"/>
+    <ns3:takesEffect>New connection</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="mobilityAction" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>The preferred way to transfer a UE in connected mode to this EUTRA frequency.</ns1:desc>
+    <ns1:type modelUrn="//ERBS_NODE_MODEL/MobilityActionEUtran/10.3.100" xsi:type="ns1:enumRefType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns1:default value="HANDOVER" xsi:type="ns1:stringValue"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="createdBy" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>MO is created by operator or X2.</ns1:desc>
+    <ns1:type modelUrn="//ERBS_NODE_MODEL/CreatedByEutran/10.3.100" xsi:type="ns1:enumRefType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="timeOfCreation" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Indicates the time and date when the MO was created. 
+Format: YYYY-MM-DD HH:MM:SS</ns1:desc>
+    <ns1:type xsi:type="ns1:stringType">
+      <ns1:notNullConstraint/>
+      <ns1:stringLengthConstraint>
+        <ns1:minMaxLength max="19" min="0"/>
+      </ns1:stringLengthConstraint>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="lastModification" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Indicates whether the MO was last modified by the Automated Neighbor Relations (ANR) function or operator or X2 and if the MO is to be deleted who triggered the deletion</ns1:desc>
+    <ns1:type modelUrn="//ERBS_NODE_MODEL/LastModificationEutran/10.3.100" xsi:type="ns1:enumRefType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="timeOfLastModification" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Indicates the time and date when the MO was last modified. 
+Format: YYYY-MM-DD HH:MM:SS</ns1:desc>
+    <ns1:type xsi:type="ns1:stringType">
+      <ns1:notNullConstraint/>
+      <ns1:stringLengthConstraint>
+        <ns1:minMaxLength max="19" min="0"/>
+      </ns1:stringLengthConstraint>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="threshXHighQ" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Parameter "ThreshX, HighQ" in TS 36.304.
+
+For the EUtranFreqRelation that points to the intra frequency EUtranFrequency MO, the attribute is invalid, that is, this attribute does not affect SIB3.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="31" min="0"/>
+      </ns1:valueRangeConstraint>
+      <ns1:unit>dB</ns1:unit>
+    </ns1:type>
+    <ns1:default value="2" xsi:type="ns1:integerValue"/>
+    <ns3:dependencies>The field is mandatory present if the Struct Member threshServingLowQ in SIB3 is used in systemInformationBlockType3.</ns3:dependencies>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="threshXLowQ" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Parameter "ThreshX, LowQ" in TS 36.304.
+
+For the EUtranFreqRelation that points to the intra frequency EUtranFrequency MO, the attribute is invalid, that is, this attribute does not affect SIB3.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="31" min="0"/>
+      </ns1:valueRangeConstraint>
+      <ns1:unit>dB</ns1:unit>
+    </ns1:type>
+    <ns1:default value="0" xsi:type="ns1:integerValue"/>
+    <ns3:dependencies>The field is mandatory present if the Struct Member threshServingLowQ in SIB3 is used in systemInformationBlockType3.</ns3:dependencies>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="qQualMin" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Parameter "Qqualmin" in TS 36.304. 
+
+Value 0 means that it is not sent and UE applies in such case the (default) value of negative infinity for Qqualmin. Sent in SIB3 or SIB5.
+</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="-3" min="-34"/>
+        <ns1:minMaxRange max="0" min="0"/>
+      </ns1:valueRangeConstraint>
+      <ns1:unit>dB</ns1:unit>
+    </ns1:type>
+    <ns1:default value="0" xsi:type="ns1:integerValue"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="neighCellConfig" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Provides to the UE information related to MBSFN and TDD UL/DL configuration of neighbor cells.
+
+For TDD, the values DIFF_MBSFN_SUBFRAMES, SAME_MBSFN_SUBFRAMES and NO_MBSFN_SUBFRAMES indicates same UL/DL allocation in neighboring cells compared to the serving cell.
+
+The value is included in SIB3, SIB5 and MeasObjectEUTRA.</ns1:desc>
+    <ns1:type modelUrn="//ERBS_NODE_MODEL/NeighCellConfig/10.3.100" xsi:type="ns1:enumRefType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns1:default value="SAME_MBSFN_SUBFRAMES" xsi:type="ns1:stringValue"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="pmLbMeasuredUe" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Records the number of UEs selected for measurements that qualify for load balancing action towards cells on the related frequency. Used to calculate the LB measurement success rate for the related cells. </ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+      <ns1:unit>Number of UEs</ns1:unit>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="voicePrio" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Prioritizes EUTRAN frequencies among all frequencies related to the cell for UEs in connected mode. Sets priority to frequency that mobility for a voice session is performed to. Valid for VoLTE and PTT.
+Value -1 means frequency is excluded.
+Value 0 means lowest priority.
+Value 7 means highest priority.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="7" min="-1"/>
+      </ns1:valueRangeConstraint>
+    </ns1:type>
+    <ns1:default value="0" xsi:type="ns1:integerValue"/>
+    <ns3:takesEffect>New connection</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="blackListEntry" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>This parameter specifies a list of PCI that are blacklisted in EUTRAN measurements as described in 3GPP TS 36.331.</ns1:desc>
+    <ns1:type xsi:type="ns1:listType">
+      <ns1:notNullConstraint/>
+      <ns1:collectionSizeConstraint>
+        <ns1:minMaxSize max="32" min="0"/>
+      </ns1:collectionSizeConstraint>
+      <ns1:collectionValuesType modelUrn="//ERBS_NODE_MODEL/BlackListEntry/10.3.100" xsi:type="ns1:complexRefType"/>
+    </ns1:type>
+    <ns3:takesEffect>New connection</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="interFreqMeasType" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>The type of event based measurements on other LTE frequencies.</ns1:desc>
+    <ns1:type modelUrn="//ERBS_NODE_MODEL/InterFreqMeasType/10.3.100" xsi:type="ns1:enumRefType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns1:default value="EVENT_A5" xsi:type="ns1:stringValue"/>
+    <ns3:takesEffect>New connection</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="eutranFreqToQciProfileRelation" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Encapsulates parameters for service specific load management for a certain QCI profile.</ns1:desc>
+    <ns1:type xsi:type="ns1:listType">
+      <ns1:notNullConstraint/>
+      <ns1:collectionSizeConstraint>
+        <ns1:minMaxSize max="23" min="0"/>
+      </ns1:collectionSizeConstraint>
+      <ns1:collectionUniquenessConstraint/>
+      <ns1:collectionValuesType modelUrn="//ERBS_NODE_MODEL/EUtranFreqToQciProfileRelation/10.3.100" xsi:type="ns1:complexRefType"/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="blackListEntryIdleMode" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>This parameter specifies blacklisted cells in SIB4 and SIB5.</ns1:desc>
+    <ns1:type xsi:type="ns1:listType">
+      <ns1:notNullConstraint/>
+      <ns1:collectionSizeConstraint>
+        <ns1:minMaxSize max="16" min="0"/>
+      </ns1:collectionSizeConstraint>
+      <ns1:collectionValuesType modelUrn="//ERBS_NODE_MODEL/BlackListEntry/10.3.100" xsi:type="ns1:complexRefType"/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="pmMbmsInterestIndication" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>The number of received RRC MBMS INTEREST INDICATION messages that indicate a MBMS frequency different to the cell's frequency.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+      <ns1:unit>-</ns1:unit>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="lbBnrPolicy" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Specifies the policy for updating the loadBalancing attribute by the feature Best Neighbor Relations for Intra-LTE Load Management. The policy is valid for all cell relations corresponding to this EUtranFreqRelation.</ns1:desc>
+    <ns1:type modelUrn="//ERBS_NODE_MODEL/EUtranLbBnrPolicyVals/10.3.100" xsi:type="ns1:enumRefType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns1:default value="AUTO" xsi:type="ns1:stringValue"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="anrMeasOn" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>ANR performs measurement on the referenced frequency if this parameter is set to true. Otherwise, ANR does not perform any measurements on this frequency.</ns1:desc>
+    <ns1:type xsi:type="ns1:booleanType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns1:default value="true" xsi:type="ns1:booleanValue"/>
+    <ns3:takesEffect>New connection</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="lbActivationThreshold" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>The minimum target cell load (subscription ratio) the source cell takes into account when determining the amount of load balancing action to a cell using this carrier frequency.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="1000" min="0"/>
+      </ns1:valueRangeConstraint>
+      <ns1:multiplicationFactor>0.001</ns1:multiplicationFactor>
+    </ns1:type>
+    <ns1:default value="0" xsi:type="ns1:integerValue"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="caTriggeredRedirectionActive" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Parameter used to specify whether or not CA triggered redirection is activated from the current cell towards a certain frequency.</ns1:desc>
+    <ns1:type xsi:type="ns1:booleanType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns1:default value="true" xsi:type="ns1:booleanValue"/>
+    <ns2:disturbances>Changing this attribute can affect traffic</ns2:disturbances>
+    <ns3:takesEffect>New connection</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="pmCaRedirectMeasuredUe" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Records the number of UEs selected for measurements that qualify for CA triggered redirection towards cells on the related frequency, when the feature CA-aware IFLB is used. Used to calculate the LB measurement success rate for the related cells.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="arpPrio" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Prioritizes EUTRAN frequencies among all frequencies related to the cell. Sets the priority to which frequency to perform mobility for a bearer with specific ARP Priority Level when the feature Service or Priority-Triggered Inter-Frequency Handover is activated.
+The value -1 means the frequency is excluded.
+The value 0 means the lowest priority.
+The value 7 means the highest priority.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="7" min="-1"/>
+      </ns1:valueRangeConstraint>
+    </ns1:type>
+    <ns1:default value="0" xsi:type="ns1:integerValue"/>
+    <ns3:takesEffect>New connection</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="pmSpifhoMeasuredUe" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>The number of UEs selected for measurements that qualify for feature Service or Priority-Triggered Inter-frequency Handover action towards cells on the related frequency. Used to calculate the SPIFHO measurement success rate for the related cells.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="nonPlannedPhysCellId" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Specific PCI reserved by operator for Femto Cell. It is the initial physical cell ID of Non-planned PCI. If value equals 1000, Non-planned PCI is not configured for this frequency relation.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="503" min="0"/>
+        <ns1:minMaxRange max="1000" min="1000"/>
+      </ns1:valueRangeConstraint>
+    </ns1:type>
+    <ns1:default value="1000" xsi:type="ns1:integerValue"/>
+    <ns3:dependencies>This attribute has a dependency to nonPlannedPhysCellIdRange.</ns3:dependencies>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="nonPlannedPhysCellIdRange" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>PCI range for the Non-planned PCI.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="504" min="1"/>
+      </ns1:valueRangeConstraint>
+    </ns1:type>
+    <ns1:default value="1" xsi:type="ns1:integerValue"/>
+    <ns3:dependencies>If nonPlannedPhysCellId != 1000, nonPlannedPhysCellId + nonPlannedPhysCellIdRange &lt;= 504</ns3:dependencies>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="nonPlannedPciCIO" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Cell Individual Offset value for the Non-planned PCI, CSG or Hybrid CSG neighbor cell. Used when UE is in connected mode.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="-24" min="-24"/>
+        <ns1:minMaxRange max="-22" min="-22"/>
+        <ns1:minMaxRange max="-20" min="-20"/>
+        <ns1:minMaxRange max="-18" min="-18"/>
+        <ns1:minMaxRange max="-16" min="-16"/>
+        <ns1:minMaxRange max="-14" min="-14"/>
+        <ns1:minMaxRange max="-12" min="-12"/>
+        <ns1:minMaxRange max="-10" min="-10"/>
+        <ns1:minMaxRange max="-8" min="-8"/>
+        <ns1:minMaxRange max="-6" min="-6"/>
+        <ns1:minMaxRange max="-5" min="-5"/>
+        <ns1:minMaxRange max="-4" min="-4"/>
+        <ns1:minMaxRange max="-3" min="-3"/>
+        <ns1:minMaxRange max="-2" min="-2"/>
+        <ns1:minMaxRange max="-1" min="-1"/>
+        <ns1:minMaxRange max="0" min="0"/>
+        <ns1:minMaxRange max="1" min="1"/>
+        <ns1:minMaxRange max="2" min="2"/>
+        <ns1:minMaxRange max="3" min="3"/>
+        <ns1:minMaxRange max="4" min="4"/>
+        <ns1:minMaxRange max="5" min="5"/>
+        <ns1:minMaxRange max="6" min="6"/>
+        <ns1:minMaxRange max="8" min="8"/>
+        <ns1:minMaxRange max="10" min="10"/>
+        <ns1:minMaxRange max="12" min="12"/>
+        <ns1:minMaxRange max="14" min="14"/>
+        <ns1:minMaxRange max="16" min="16"/>
+        <ns1:minMaxRange max="18" min="18"/>
+        <ns1:minMaxRange max="20" min="20"/>
+        <ns1:minMaxRange max="22" min="22"/>
+        <ns1:minMaxRange max="24" min="24"/>
+      </ns1:valueRangeConstraint>
+      <ns1:unit>dB</ns1:unit>
+    </ns1:type>
+    <ns1:default value="0" xsi:type="ns1:integerValue"/>
+    <ns3:takesEffect>New connection</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="nonPlannedPciTargetIdType" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Target eNodeB Identity type for the Non-planned PCI neighbor cell. Attribute is used to encode the message Handover Required when it is defined in TS36.413 ch. 9.1.5.1, S1AP parameter Global eNB ID.</ns1:desc>
+    <ns1:type modelUrn="//ERBS_NODE_MODEL/NonPlannedPciTargetIdType/10.3.100" xsi:type="ns1:enumRefType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns1:default value="MACRO_ENODEB_ID" xsi:type="ns1:stringValue"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="candNeighborRel" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>The neighbor relations candidate list.</ns1:desc>
+    <ns1:type xsi:type="ns1:listType">
+      <ns1:notNullConstraint/>
+      <ns1:collectionSizeConstraint>
+        <ns1:minMaxSize max="256" min="0"/>
+      </ns1:collectionSizeConstraint>
+      <ns1:collectionUniquenessConstraint/>
+      <ns1:collectionValuesType modelUrn="//ERBS_NODE_MODEL/CandNeighborRelInfo/10.3.100" xsi:type="ns1:complexRefType"/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="a5Thr1RsrpFreqOffset" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>The frequency-relation specific offset for the absolute threshold a5Threshold1Rsrp, RSRP threshold1 for event A5, used for Multi-Layer Service-Triggered Mobility.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="100" min="-100"/>
+      </ns1:valueRangeConstraint>
+      <ns1:unit>dB</ns1:unit>
+    </ns1:type>
+    <ns1:default value="0" xsi:type="ns1:integerValue"/>
+    <ns3:takesEffect>Ongoing connection</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="a5Thr1RsrqFreqOffset" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>The frequency-relation specific offset for the absolute threshold a5Threshold1Rsrq, RSRQ threshold1 for event A5, used for Multi-Layer Service-Triggered Mobility.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="240" min="-240"/>
+      </ns1:valueRangeConstraint>
+      <ns1:unit>dB</ns1:unit>
+      <ns1:multiplicationFactor>0.1</ns1:multiplicationFactor>
+    </ns1:type>
+    <ns1:default value="0" xsi:type="ns1:integerValue"/>
+    <ns3:takesEffect>Ongoing connection</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="a5Thr2RsrpFreqOffset" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>The frequency-relation specific offset for the absolute threshold a5Threshold2Rsrp, RSRP threshold2 for event A5, used for Multi-Layer Service-Triggered Mobility.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="100" min="-100"/>
+      </ns1:valueRangeConstraint>
+      <ns1:unit>dB</ns1:unit>
+    </ns1:type>
+    <ns1:default value="0" xsi:type="ns1:integerValue"/>
+    <ns3:takesEffect>Ongoing connection</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="a5Thr2RsrqFreqOffset" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>The frequency-relation specific offset for the absolute threshold a5Threshold2Rsrq, RSRQ threshold2 for event A5, used for Multi-Layer Service-Triggered Mobility.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="240" min="-240"/>
+      </ns1:valueRangeConstraint>
+      <ns1:unit>dB</ns1:unit>
+      <ns1:multiplicationFactor>0.1</ns1:multiplicationFactor>
+    </ns1:type>
+    <ns1:default value="0" xsi:type="ns1:integerValue"/>
+    <ns3:takesEffect>Ongoing connection</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="atoAllowed" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Specifies whether Admission-triggered offload (ATO) is activated from the current cell towards a certain EUTRAN frequency.</ns1:desc>
+    <ns1:type xsi:type="ns1:booleanType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns1:default value="false" xsi:type="ns1:booleanValue"/>
+    <ns2:disturbances>Changing this attribute can affect traffic.</ns2:disturbances>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="pmAtoMeasuredUe" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Records number of UEs selected for measurements that qualify for Admission-Triggered Offload (ATO) towards cells on the related LTE frequency. Used to calculate the ATO measurement success rate for related cells. </ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="cellSleepCovCellMeasOn" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Cell sleep mode performs measurement on the referenced frequency for coverage cell discovery if this parameter is set to true. Otherwise, cell sleep mode does not perform any measurements on this frequency.</ns1:desc>
+    <ns1:type xsi:type="ns1:booleanType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns1:default value="true" xsi:type="ns1:booleanValue"/>
+    <ns3:takesEffect>New connection</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="interFreqMeasTypeUlSinr" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>The type of event based measurements used for inter-frequency LTE measurements when the measurements are uplink triggered.</ns1:desc>
+    <ns1:type modelUrn="//ERBS_NODE_MODEL/InterFreqMeasType/10.3.100" xsi:type="ns1:enumRefType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns1:default value="EVENT_A5" xsi:type="ns1:stringValue"/>
+    <ns3:takesEffect>New connection</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="csgPhysCellId" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>PCI for the closed access mode CSG cell. It is the start physical cell ID in the SIB4. If value is equal to 1000, it means that csg-PhysCellIdRange IE is not presented in SIB4.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="503" min="0"/>
+        <ns1:minMaxRange max="1000" min="1000"/>
+      </ns1:valueRangeConstraint>
+    </ns1:type>
+    <ns1:default value="1000" xsi:type="ns1:integerValue"/>
+    <ns3:dependencies>If csgPhysCellId != 1000, csgPhysCellId + csgPhysCellIdRange &lt;= 504</ns3:dependencies>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="csgPhysCellIdRange" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>The range of PCI for the closed access mode CSG cell. The information is broadcasted in SIB4.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="1" min="1"/>
+        <ns1:minMaxRange max="4" min="4"/>
+        <ns1:minMaxRange max="8" min="8"/>
+        <ns1:minMaxRange max="12" min="12"/>
+        <ns1:minMaxRange max="16" min="16"/>
+        <ns1:minMaxRange max="24" min="24"/>
+        <ns1:minMaxRange max="32" min="32"/>
+        <ns1:minMaxRange max="48" min="48"/>
+        <ns1:minMaxRange max="64" min="64"/>
+        <ns1:minMaxRange max="84" min="84"/>
+        <ns1:minMaxRange max="96" min="96"/>
+        <ns1:minMaxRange max="128" min="128"/>
+        <ns1:minMaxRange max="168" min="168"/>
+        <ns1:minMaxRange max="252" min="252"/>
+        <ns1:minMaxRange max="504" min="504"/>
+      </ns1:valueRangeConstraint>
+    </ns1:type>
+    <ns1:default value="1" xsi:type="ns1:integerValue"/>
+    <ns3:dependencies>If csgPhysCellId != 1000, csgPhysCellId + csgPhysCellIdRange &lt;= 504</ns3:dependencies>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="hybridCsgPhysCellId" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>PCI for the Hybrid CSG cell. It is the start physical cell ID of Hybrid CSG cell. If value is equal to 1000, it means that Hybrid CSG cell is not supported for this frequency relation.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="503" min="0"/>
+        <ns1:minMaxRange max="1000" min="1000"/>
+      </ns1:valueRangeConstraint>
+    </ns1:type>
+    <ns1:default value="1000" xsi:type="ns1:integerValue"/>
+    <ns3:dependencies>If hybridCsgPhysCellId != 1000, hybridCsgPhysCellId + hybridCsgPhysCellIdRange &lt;= 504</ns3:dependencies>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="hybridCsgPhysCellIdRange" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>The range of PCI for the Hybrid CSG cell.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="504" min="1"/>
+      </ns1:valueRangeConstraint>
+    </ns1:type>
+    <ns1:default value="1" xsi:type="ns1:integerValue"/>
+    <ns3:dependencies>If hybridCsgPhysCellId != 1000, hybridCsgPhysCellId + hybridCsgPhysCellIdRange &lt;= 504</ns3:dependencies>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="csgCellTargetIdType" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Target eNodeB ID type for the CSG and Hybrid CSG neighbor cell. Attribute is used to encode the message Handover Required when it is defined in TS36.413 ch. 9.1.5.1, S1AP parameter Global eNB ID.</ns1:desc>
+    <ns1:type modelUrn="//ERBS_NODE_MODEL/NonPlannedPciTargetIdType/10.3.100" xsi:type="ns1:enumRefType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns1:default value="MACRO_ENODEB_ID" xsi:type="ns1:stringValue"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="amoAllowed" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Whether or not AMO function is allowed. Used to turn off AMO function on frequency relation level.</ns1:desc>
+    <ns1:type xsi:type="ns1:booleanType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns1:default value="true" xsi:type="ns1:booleanValue"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="pmMbmsInterestIndicationPCell" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Number of received RRC MBMS INTEREST INDICATION messages that result in UE setup so it can receive eMBMS on PCell frequency.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="pmMbmsInterestIndicationSCell" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Number of received RRC MBMS INTEREST INDICATION messages that result in UE setup so it can receive eMBMS on an SCell frequency.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="pmMbmsInterestIndicationNonServ" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Number of received RRC MBMS INTEREST INDICATION messages that result in UE setup so it can receive eMBMS on a non-serving cell frequency.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="lbA5Thr1RsrpFreqOffset" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>The frequency-relation specific offset for the absolute threshold a5Threshold1Rsrp, RSRP threshold1 for event A5, used for Inter-frequency load balancing.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="100" min="0"/>
+      </ns1:valueRangeConstraint>
+      <ns1:unit>dB</ns1:unit>
+    </ns1:type>
+    <ns1:default value="0" xsi:type="ns1:integerValue"/>
+    <ns3:takesEffect>Ongoing connection</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="caFreqPriority" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Prioritizes EUTRAN frequency carriers from which to pick SCells for carrier aggregation. 0 means lowest priority. -1 means the frequency is excluded from SCell selection.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="7" min="-1"/>
+      </ns1:valueRangeConstraint>
+    </ns1:type>
+    <ns1:default value="4" xsi:type="ns1:integerValue"/>
+    <ns3:dependencies>Only applicable when Configurable SCell Priority is active with following apply:
+- dynamicSCellSelectionMethod is set to PRIORITIZED.
+- dynamicSCellSelectionMethod is set to GLOBAL_EVALUATION.</ns3:dependencies>
+    <ns3:takesEffect>New connection or next SCell configuration.</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="caFreqProportion" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>In conjunction with caPrioThreshold the value sets a threshold for the number of SCells on this frequency carrier that can be configured using prioritized SCell selection. A normalized value is applied. When frequency carriers have same priority, SCells are selected on the carrier with the lowest proportional SCell utilization.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="100" min="0"/>
+      </ns1:valueRangeConstraint>
+    </ns1:type>
+    <ns1:default value="100" xsi:type="ns1:integerValue"/>
+    <ns3:dependencies>Only applicable when Configurable SCell Priority is active with following apply:
+- dynamicSCellSelectionMethod is set to PRIORITIZED.
+- dynamicSCellSelectionMethod is set to GLOBAL_EVALUATION.</ns3:dependencies>
+    <ns3:takesEffect>New connection or next SCell configuration.</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="tReselectionEutraCe" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>The cell reselection timer TreselectionEUTRA_CE for E-UTRA.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="15" min="0"/>
+      </ns1:valueRangeConstraint>
+      <ns1:unit>s</ns1:unit>
+    </ns1:type>
+    <ns1:default value="2" xsi:type="ns1:integerValue"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="qRxLevMinCe" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Min received RSRP level in E-UTRA frequency for cell reselection for UE in enhanced coverage mode. Corresponds to parameter Qrxlevmin_CE in 3GPP TS 36.304. This attribute is broadcast in SIB1-BR. This attribute is broadcast in SIB3 or SIB5. Depends on whether related frequency is intra- or inter-frequency.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="-44" min="-140"/>
+      </ns1:valueRangeConstraint>
+      <ns1:valueResolutionConstraint value="2"/>
+      <ns1:unit>dBm</ns1:unit>
+    </ns1:type>
+    <ns1:default value="-140" xsi:type="ns1:integerValue"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="qQualMinRsrqCe" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Min quality level (RSRQ) in cell for UE in enhanced coverage mode.
+Corresponds to Qqualmin_CE in TS 36.304. Sent in SIB3 or SIB5. Depends on whether related frequency is intra- or inter-frequency. If 0, it is not sent and UE applies default value of negative infinity for Qqualmin_CE.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="-3" min="-34"/>
+        <ns1:minMaxRange max="0" min="0"/>
+      </ns1:valueRangeConstraint>
+      <ns1:unit>dB</ns1:unit>
+    </ns1:type>
+    <ns1:default value="0" xsi:type="ns1:integerValue"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="csmUeCapMonitorEnabled" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Whether or not UE capability monitoring for the coverage frequency on capacity cell is enabled.</ns1:desc>
+    <ns1:type xsi:type="ns1:booleanType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns1:default value="false" xsi:type="ns1:booleanValue"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="csmUeCapMonitorTime" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Length of time that sleep criteria monitors UE capability for coverage frequency. Only valid if attribute csmUeCapMonitorEnabled is set to true. Value 0 means that sleep criteria checks connected UEs.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="1440" min="0"/>
+      </ns1:valueRangeConstraint>
+      <ns1:unit>min</ns1:unit>
+    </ns1:type>
+    <ns1:default value="60" xsi:type="ns1:integerValue"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="mdtMeasOn" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>If true, MDT measures referenced frequency. Otherwise, MDT does not perform any MDT measurements on this frequency. This attribute is only applicable for MDT reportingTrigger set to PERIODICAL.</ns1:desc>
+    <ns1:type xsi:type="ns1:booleanType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns1:default value="true" xsi:type="ns1:booleanValue"/>
+    <ns3:takesEffect>New connection</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="a5OffsetPerPC" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>The frequency-relation specific offset for the absolute threshold, RSRP/RSRQ threshold1 and threshold2 for event A5, used for Multi-Layer Service-Triggered Mobility and high power UE.</ns1:desc>
+    <ns1:type xsi:type="ns1:listType">
+      <ns1:notNullConstraint/>
+      <ns1:collectionSizeConstraint>
+        <ns1:minMaxSize max="2" min="0"/>
+      </ns1:collectionSizeConstraint>
+      <ns1:collectionUniquenessConstraint/>
+      <ns1:collectionValuesType modelUrn="//ERBS_NODE_MODEL/A5PCOffsetMCPC/10.3.100" xsi:type="ns1:complexRefType"/>
+    </ns1:type>
+    <ns3:takesEffect>Ongoing connection</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="cioQci1Enabled" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Enables cellIndividualOffsetEUtranQci1 on frequency relation level. Valid for QCI1 and QCIs with serviceType PTT.</ns1:desc>
+    <ns1:type xsi:type="ns1:booleanType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns1:default value="false" xsi:type="ns1:booleanValue"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="connectedModeMobilityPrioBr" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>E-UTRAN frequency priority among frequencies related to cell for CAT-M UEs in connected mode. Value 0 means lowest priority, value -1 means frequency is excluded.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="7" min="-1"/>
+      </ns1:valueRangeConstraint>
+    </ns1:type>
+    <ns1:default value="7" xsi:type="ns1:integerValue"/>
+    <ns3:takesEffect>New connection</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="voicePrioBr" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>E-UTRAN frequency priority among frequencies related to cell for UEs in connected mode. Priority of frequency to perform mobility to for a voice session. Value -1 means frequency is excluded, value 0 means lowest priority, value 7 means highest priority.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="7" min="-1"/>
+      </ns1:valueRangeConstraint>
+    </ns1:type>
+    <ns1:default value="0" xsi:type="ns1:integerValue"/>
+    <ns3:takesEffect>New connection</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="mobilityActionBr" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Preferred transfer of CAT-M UE in connected mode to this E-UTRA frequency. Value 0 means Release with redirect, value 1 means Handover.</ns1:desc>
+    <ns1:type modelUrn="//ERBS_NODE_MODEL/MobilityActionEUtran/10.3.100" xsi:type="ns1:enumRefType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns1:default value="HANDOVER" xsi:type="ns1:stringValue"/>
+    <ns3:takesEffect>New connection</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="a3RsrpFreqOffsetAdjustment" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Frequency-relation specific offset adjustment for absolute offset a3OffsetRsrp for event A3, used for Multi-Layer Service-Triggered Mobility.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="150" min="-150"/>
+      </ns1:valueRangeConstraint>
+      <ns1:valueResolutionConstraint value="5"/>
+      <ns1:unit>dB</ns1:unit>
+      <ns1:multiplicationFactor>0.1</ns1:multiplicationFactor>
+    </ns1:type>
+    <ns1:default value="0" xsi:type="ns1:integerValue"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="a3RsrqFreqOffsetAdjustment" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Frequency-relation specific offset adjustment for absolute offset a3OffsetRsrq for event A3, used for Multi-Layer Service-Triggered Mobility.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="150" min="-150"/>
+      </ns1:valueRangeConstraint>
+      <ns1:valueResolutionConstraint value="5"/>
+      <ns1:unit>dB</ns1:unit>
+      <ns1:multiplicationFactor>0.1</ns1:multiplicationFactor>
+    </ns1:type>
+    <ns1:default value="0" xsi:type="ns1:integerValue"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="pmBadCovMiFreqSel" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Number of times this frequency was selected by Machine Intelligence Enabled Mobility as a single frequency to start inter-frequency measurement.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="pmBadCovMiFreqSucc" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Number of times a measurement report indicating coverage is received when Machine Intelligence Enabled Mobility has selected a single frequency to start inter-frequency measurement on.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="pmBadCovMiFreqTo" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Number of times when no measurement report indicating coverage is received before MI timer expiry after Machine Intelligence Enabled Mobility has selected a single frequency to start inter-frequency measurement on.
+UE is configured to measure additional frequencies according to standard Mobility Control at Poor Coverage.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="zzzTemporary1" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Temporary attributes are intended as temporary solutions. Their usage can vary depending on the installed software. It is strongly recommended to only set the attributes that correspond to a desired functionality and leave all other temporary attributes set to default value. Information in the descriptions about what attributes are in use can be overridden by the information in CPI documents. Note that a later release can use another attribute to control functionality previously provided by a temporary attribute, or can remove functionality altogether. In these cases, the change is documented in the NIR.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns1:default value="-2000000000" xsi:type="ns1:integerValue"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="zzzTemporary2" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Temporary attributes are intended as temporary solutions. Their usage can vary depending on the installed software. It is strongly recommended to only set the attributes that correspond to a desired functionality and leave all other temporary attributes set to default value. Information in the descriptions about what attributes are in use can be overridden by the information in CPI documents. Note that a later release can use another attribute to control functionality previously provided by a temporary attribute, or can remove functionality altogether. In these cases, the change is documented in the NIR.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns1:default value="-2000000000" xsi:type="ns1:integerValue"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="zzzTemporary3" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Temporary attributes are intended as temporary solutions. Their usage can vary depending on the installed software. It is strongly recommended to only set the attributes that correspond to a desired functionality and leave all other temporary attributes set to default value. Information in the descriptions about what attributes are in use can be overridden by the information in CPI documents. Note that a later release can use another attribute to control functionality previously provided by a temporary attribute, or can remove functionality altogether. In these cases, the change is documented in the NIR.</ns1:desc>
+    <ns1:type xsi:type="ns1:stringType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="pmEndcPrioritizedUe" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Total number of EN-DC capable UEs prioritized to this frequency as highest priority.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="pmTm9PrioritizedUe" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Total number of TM9 capable UEs prioritized to this frequency as highest priority.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+</ns2:PrimaryTypeDefinition>

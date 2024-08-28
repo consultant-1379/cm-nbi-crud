@@ -1,0 +1,269 @@
+Snippet About CompactAuditLoggerCreator (ex CompactAuditLoggerUtilities)
+This is the part related to body in CompactAuditLoggerCreator.java:
+
+//THESE ARE THE additional import to add
+import com.ericsson.oss.services.cm.cmshared.dto.CmObject;
+import com.ericsson.oss.services.cmnbicrud.ejb.common.WriteResponse;
+import com.ericsson.oss.services.cmnbicrud.spi.output.JsonPatchObject;
+import com.ericsson.oss.services.cmnbicrud.spi.output.MoObjects;
+import com.ericsson.oss.services.cmnbicrud.spi.output.ResourceRepresentationType;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import java.util.*;
+
+import static com.ericsson.oss.services.cmnbicrud.ejb.common.CmRestNbiConstants.JSON_PATCH_ADD_OP_TYPE;
+import static com.ericsson.oss.services.cmnbicrud.ejb.common.CmRestNbiConstants.JSON_PATCH_REPLACE_OP_TYPE;
+import static com.ericsson.oss.services.cmnbicrud.ejb.impl.executor.CmNbiCheckInputParameters.ATTRIBUTES_IN_JSON_PATCH1;
+import static com.ericsson.oss.services.cmnbicrud.ejb.impl.executor.CmNbiCheckInputParameters.ATTRIBUTES_IN_JSON_PATCH2;
+import static com.ericsson.oss.services.cmnbicrud.ejb.impl.executor.CmNbiCheckInputParameters.ATTRIBUTES_IN_3GPP_JSON_PATCH1;
+import static com.ericsson.oss.services.cmnbicrud.ejb.impl.executor.CmNbiCheckInputParameters.ATTRIBUTES_IN_3GPP_JSON_PATCH2;
+import static com.ericsson.oss.services.cmnbicrud.ejb.impl.executor.CmNbiCheckInputParameters.SLASH;
+
+//THESE THE CODE TO ADD
+CompactAuditLoggerCreator {
+///////////////////////
+....
+
+    private Set<String> getSensitiveAttributeNamesInLowerCase(Set<String> sensitiveAttributeNames) {
+        Set<String> sensitiveAttributeNamesInLowerCase = new LinkedHashSet<>();
+        for (final String attributeName:sensitiveAttributeNames) {
+            sensitiveAttributeNamesInLowerCase.add(attributeName.toLowerCase(Locale.ENGLISH));
+        }
+        return sensitiveAttributeNamesInLowerCase;
+    }
+
+    private Object obscureSingleParameter(final String attributeName, final Object value, Set<String> sensitiveAttributesNames) {
+        Set<String> sensitiveAttributeNamesInLowerCase = getSensitiveAttributeNamesInLowerCase(sensitiveAttributesNames);
+        return sensitiveAttributeNamesInLowerCase.contains(attributeName.toLowerCase(Locale.ENGLISH)) ? SENSITIVE_STRING : value;
+    }
+
+    private Map<String, Object> obscureSensitiveAttributes(final Map<String, Object> attributes, Set<String> sensitiveAttributeNames) {
+        Map<String, Object> obscuredAttributes = new LinkedHashMap();
+        Set<String> sensitiveAttributeNamesInLowerCase = getSensitiveAttributeNamesInLowerCase(sensitiveAttributeNames);
+        for (Map.Entry<String,Object> entry : attributes.entrySet()) {
+            final String attributeName = entry.getKey();
+            final Object atttributeValue = entry.getValue();
+            if (sensitiveAttributeNamesInLowerCase.contains(attributeName.toLowerCase(Locale.ENGLISH))) {
+                obscuredAttributes.put(attributeName, SENSITIVE_STRING);
+            } else {
+                obscuredAttributes.put(attributeName, atttributeValue);
+            }
+        }
+        return obscuredAttributes;
+    }
+
+    /*
+    *  Obscure Body Section for sensitive attributes
+    * */
+
+    /*
+    *  Obscure POST/PUT(create)/PUT(modify) Body
+    * */
+    public String obscureBodyForCmPutCreateRequest(final String body, Set<String> sensitiveAttributeNames) {
+        String newBody = body;
+
+        ObjectMapper mapper = new ObjectMapper();
+        MoObjects moos = null;
+        try {
+            moos = mapper.readValue(body, MoObjects.class);
+
+            if (sensitiveAttributeNames != null && !sensitiveAttributeNames.isEmpty()) {
+                Map<String, List<ResourceRepresentationType>> mapRRType = moos.getMoObjects();
+                List<ResourceRepresentationType> listRRType = mapRRType.values().iterator().next();
+                ResourceRepresentationType rRType = listRRType.get(0);
+
+                //change attributes map
+                rRType.setAttributes(obscureSensitiveAttributes(rRType.getAttributes(), sensitiveAttributeNames));
+            }
+
+            final JsonNode jsonNode = mapper.valueToTree(moos);
+            newBody = jsonNode.toString();
+        } catch (Exception e) {
+            logger.info("obscureBodyForCmPutCreateRequest::  Exception message={}", e.getMessage());
+        }
+
+        return newBody;
+    }
+
+    /*
+     *  Obscure PATCH Body
+     * */
+    public String obscureBodyForCmPatchRequest(final NbiCrudPatchRequest nbiCrudPatchRequest, List<WriteResponse> responses) {
+        if (nbiCrudPatchRequest.getPatchContentType() == PatchContentType.JSON_PATCH) {
+            return obscureBodyForCmPatchRequestJsonPatch(nbiCrudPatchRequest, responses);
+        } else if (nbiCrudPatchRequest.getPatchContentType() == PatchContentType.THREE_GPP_JSON_PATCH) {
+            return obscureBodyForCmPatchRequest3gppJsonPatch(nbiCrudPatchRequest, responses);
+        }
+        return nbiCrudPatchRequest.getBody();
+    }
+
+
+    /*
+     *  Obscure 3GPP_JSON_PATCH Body
+     * */
+    private String obscureBodyForCmPatchRequest3gppJsonPatch(final NbiCrudPatchRequest nbiCrudPatchRequest, List<WriteResponse> responses)  {
+        String newBody = nbiCrudPatchRequest.getBody();
+
+        ObjectMapper mapper = new ObjectMapper();
+        JsonPatchObject[] jsonPatchObjects;
+        try {
+            jsonPatchObjects = mapper.readValue(nbiCrudPatchRequest.getBody(), JsonPatchObject[].class);
+
+            int i=0;
+            for (JsonPatchObject jsonPatchObject : jsonPatchObjects) {
+                String jpOpType = jsonPatchObject.getOp();
+                if (JSON_PATCH_ADD_OP_TYPE.equals(jpOpType)) {
+                    obscureBodyForCmCreateRequest3gppJsonPatch(jsonPatchObject, responses.get(i));
+                } else if (JSON_PATCH_REPLACE_OP_TYPE.equals(jpOpType)) {
+                    obscureBodyForCmPutRequest3gppJsonPatch(jsonPatchObject, responses.get(i));
+                }
+                i++;
+            }
+
+            final JsonNode jsonNode = mapper.valueToTree(jsonPatchObjects);
+            newBody = jsonNode.toString();
+        } catch (Exception e) {
+            logger.info("obscureBodyForCmPatchRequest3gppJsonPatch::  Exception message={}", e.getMessage());
+        }
+
+        return newBody;
+    }
+
+    private void obscureBodyForCmCreateRequest3gppJsonPatch(JsonPatchObject jsonPatchObject, WriteResponse response) {
+        HashMap<String, Object> value = ((HashMap)(jsonPatchObject.getValue()));
+
+        //extract attributes map
+        final Object attributesMapObject = value.get("attributes");
+        Map<String, Object> attributesMap = (HashMap)(attributesMapObject);
+
+        //change attributes map
+        CmObject cmObject = response.getCmObjects().iterator().next();
+        if (getSensitveFromCmObject(cmObject) != null && !getSensitveFromCmObject(cmObject).isEmpty()) {
+            value.put("attributes", obscureSensitiveAttributes(attributesMap, getSensitveFromCmObject(cmObject)));
+        }
+    }
+
+    private void obscureBodyForCmPutRequest3gppJsonPatch(JsonPatchObject jsonPatchObject, WriteResponse response) {
+        String attributeName = extractAttribute3gppJsonPatch(jsonPatchObject.getPath());
+        if (isComplexAttributeName(attributeName)) {
+            final String[] tokens = attributeName.split(SLASH);
+            attributeName = tokens[0];
+        }
+
+        //change attribute value
+        CmObject cmObject = response.getCmObjects().iterator().next();
+        if (getSensitveFromCmObject(cmObject) != null && !getSensitveFromCmObject(cmObject).isEmpty()) {
+            jsonPatchObject.setValue(obscureSingleParameter(attributeName, jsonPatchObject.getValue(), getSensitveFromCmObject(cmObject)));
+        }
+    }
+
+
+
+    private boolean isComplexAttributeName(final String attributeName) {
+        return attributeName.contains(SLASH);
+    }
+
+    //for 3gpp Json Patch we accept both #/attributes/attr and #attributes/attr
+    private String extractAttribute3gppJsonPatch(final String path) {
+        if (path == null || path.equals("")) {
+            return null;
+        }
+
+        if (path.contains(ATTRIBUTES_IN_3GPP_JSON_PATCH1)) {
+            String[] tokens = path.split(ATTRIBUTES_IN_3GPP_JSON_PATCH1);
+            return tokens.length>1 ? tokens[1] : null;
+        }
+        if (path.contains(ATTRIBUTES_IN_3GPP_JSON_PATCH2)) {
+            String[] tokens = path.split(ATTRIBUTES_IN_3GPP_JSON_PATCH2);
+            return tokens.length>1 ? tokens[1] : null;
+        }
+        return null;
+    }
+
+    /*
+     *  Obscure JSON_PATCH Body
+     * */
+    private String obscureBodyForCmPatchRequestJsonPatch(final NbiCrudPatchRequest nbiCrudPatchRequest, List<WriteResponse> responses) {
+        String newBody = nbiCrudPatchRequest.getBody();
+
+        ObjectMapper mapper = new ObjectMapper();
+        JsonPatchObject[] jsonPatchObjects;
+        try {
+            jsonPatchObjects = mapper.readValue(nbiCrudPatchRequest.getBody(), JsonPatchObject[].class);
+
+            int i=0;
+            for (JsonPatchObject jsonPatchObject : jsonPatchObjects) {
+                String jpOpType = jsonPatchObject.getOp();
+                if (JSON_PATCH_ADD_OP_TYPE.equals(jpOpType)) {
+                    obscureBodyForCmCreateRequestJsonPatch(jsonPatchObject, responses.get(i));
+                } else if (JSON_PATCH_REPLACE_OP_TYPE.equals(jpOpType)) {
+                    obscureBodyForCmPutRequestJsonPatch(jsonPatchObject, responses.get(i));
+                }
+                i++;
+            }
+
+            final JsonNode jsonNode = mapper.valueToTree(jsonPatchObjects);
+            newBody = jsonNode.toString();
+        } catch (Exception e) {
+            logger.info("obscureBodyForCmPatchRequestJsonPatch::  Exception message={}", e.getMessage());
+        }
+
+        return  newBody;
+    }
+
+    @SuppressWarnings({"squid:S4144"})
+    private void obscureBodyForCmCreateRequestJsonPatch(JsonPatchObject jsonPatchObject, WriteResponse response) {
+        HashMap<String, Object> value = ((HashMap)(jsonPatchObject.getValue()));
+
+        //extract attributes map
+        final Object attributesMapObject = value.get("attributes");
+        Map<String, Object> attributesMap = (HashMap)(attributesMapObject);
+
+        //change attributes map
+        CmObject cmObject = response.getCmObjects().iterator().next();
+        if (getSensitveFromCmObject(cmObject) != null && !getSensitveFromCmObject(cmObject).isEmpty()) {
+            value.put("attributes", obscureSensitiveAttributes(attributesMap, getSensitveFromCmObject(cmObject)));
+        }
+    }
+
+
+    private void obscureBodyForCmPutRequestJsonPatch(JsonPatchObject jsonPatchObject, WriteResponse response) {
+        String attributeName = extractAttributeJsonPatch(jsonPatchObject.getPath());
+        if (isComplexAttributeName(attributeName)) {
+            final String[] tokens = attributeName.split(SLASH);
+            attributeName = tokens[0];
+        }
+
+        //change attribute value
+        CmObject cmObject = response.getCmObjects().iterator().next();
+        if (getSensitveFromCmObject(cmObject) != null && !getSensitveFromCmObject(cmObject).isEmpty()) {
+            jsonPatchObject.setValue(obscureSingleParameter(attributeName, jsonPatchObject.getValue(), getSensitveFromCmObject(cmObject)));
+        }
+    }
+
+    //for Json Patch we accept both /attributes/attr and attributes/attr
+    private String extractAttributeJsonPatch(final String path) {
+        if (path == null || path.equals("")) {
+            return null;
+        }
+
+        if (path.startsWith(ATTRIBUTES_IN_JSON_PATCH1)) {
+            String[] tokens = path.split(ATTRIBUTES_IN_JSON_PATCH1);
+            return tokens.length>1 ? tokens[1] : null;
+        }
+        if (path.startsWith(ATTRIBUTES_IN_JSON_PATCH2)) {
+            String[] tokens = path.split(ATTRIBUTES_IN_JSON_PATCH2);
+            return tokens.length>1 ? tokens[1] : null;
+        }
+        return null;
+    }
+
+    //EMARDEP DA RIMUOVERE
+     @SuppressWarnings({"squid:S1168"})
+      private Set<String> getSensitveFromCmObject(final CmObject cmObject) {
+        logger.debug("getSensitveFromCmObject cmobject={}", cmObject);
+          return null;
+      }
+//////////////////////////
+}

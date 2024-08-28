@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+
+*******************************************************************************
+* COPYRIGHT Ericsson LMI. All rights reserved.
+*
+* No part of this document may be reproduced in any form without the
+* written permission of the copyright owner.The contents of this document
+* are subject to revision without notice due to continued progress in
+* methodology, design and manufacturing. Ericsson shall have no liability
+* for any error or damage of any kind resulting from the use of this document.
+*
+*******************************************************************************
+
+
+--><ns2:PrimaryTypeDefinition xmlns:ns1="urn:com:ericsson:schema:xml:oss:oss_common" xmlns:ns2="urn:com:ericsson:schema:xml:oss:dps_primarytype" xmlns:ns3="urn:com:ericsson:schema:xml:oss:dps_common" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" hierarchyType="HIERARCHICAL" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="ManagedElement" ns1:ns="ERBS_NODE_MODEL" ns1:version="10.3.100">
+  <ns1:modelCreationInfo>
+    <ns1:derivedModel derivedFrom="/net_momdtd/ERBS_NODE_MODEL_J/ERBS_NODE_MODEL_J_3_100"/>
+  </ns1:modelCreationInfo>
+  <ns1:inheritsFrom urn="//OSS_TOP/ManagedElement/3.0.0"/>
+  <ns1:desc>Managed Element
+
+This MO is the top MO in the MOM. A management application will communicate with the ManagedElement MO for the purpose of monitoring and controlling it.
+
+This MO is created automatically and cannot be deleted.
+
+The RDN of this MO is ManagedElement=1.</ns1:desc>
+  <!--ns2:systemCreated/-->
+  <ns2:primaryTypeAttribute immutable="true" key="true" mandatory="true" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="ManagedElementId" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>The value component of the RDN.
+
+It is set automatically when the MO instance is created.
+</ns1:desc>
+    <ns1:type xsi:type="ns1:stringType">
+      <ns1:notNullConstraint/>
+      <ns1:stringContentsConstraint type="REGEX" value="[]0-9A-Za-z\[.!$%&amp;':?@^_`{|}~ /()-]*"/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="userLabel" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Label for free use.
+</ns1:desc>
+    <ns1:type xsi:type="ns1:stringType">
+      <ns1:notNullConstraint/>
+      <ns1:stringLengthConstraint>
+        <ns1:minMaxLength max="128" min="0"/>
+      </ns1:stringLengthConstraint>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="site" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>This attribute gives information about geographical location, for example place name.
+</ns1:desc>
+    <ns1:type xsi:type="ns1:stringType">
+      <ns1:notNullConstraint/>
+      <ns1:stringLengthConstraint>
+        <ns1:minMaxLength max="255" min="0"/>
+      </ns1:stringLengthConstraint>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="logicalName" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Specifies the logical name of a node.
+
+Note: When used by LTE, the usage and the valid set of characters are restricted.</ns1:desc>
+    <ns1:type xsi:type="ns1:stringType">
+      <ns1:notNullConstraint/>
+      <ns1:stringLengthConstraint>
+        <ns1:minMaxLength max="255" min="0"/>
+      </ns1:stringLengthConstraint>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="true" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="productType" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>This attribute describes the product type and is always set to the value "Node".
+</ns1:desc>
+    <ns1:type xsi:type="ns1:stringType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns1:default value="Node" xsi:type="ns1:stringValue"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="productName" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>This attribute describes the implemented functionality.
+</ns1:desc>
+    <ns1:type xsi:type="ns1:stringType">
+      <ns1:notNullConstraint/>
+      <ns1:stringLengthConstraint>
+        <ns1:minMaxLength max="12" min="0"/>
+      </ns1:stringLengthConstraint>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="productNumber" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>This attribute uniquely identifies the product, for example ROF123.
+</ns1:desc>
+    <ns1:type xsi:type="ns1:stringType">
+      <ns1:notNullConstraint/>
+      <ns1:stringLengthConstraint>
+        <ns1:minMaxLength max="24" min="0"/>
+      </ns1:stringLengthConstraint>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="productRevision" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>This attribute identifies the version of the product, for example R2A.
+</ns1:desc>
+    <ns1:type xsi:type="ns1:stringType">
+      <ns1:notNullConstraint/>
+      <ns1:stringLengthConstraint>
+        <ns1:minMaxLength max="7" min="0"/>
+      </ns1:stringLengthConstraint>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="DEPRECATED" ns1:lifeCycleDesc="Replaced by mimInfo" ns1:name="mimName" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>The name and version of the MIM on the node.
+</ns1:desc>
+    <ns1:type xsi:type="ns1:stringType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="faultTolerantCoreStates" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Retrieves information of PIUs (maximum 2 PIUs) that are running Fault Tolerant Core (FTC). This attribute contains an array of strings, for example:
+
+ManagedElement=1,Equipment=1,Subrack=1,Slot=1,PlugInUnit=1;ftcState=Active
+ManagedElement=1,Equipment=1,Subrack=1,Slot=2,PlugInUnit=1;ftcState=PassiveReady
+
+The possible FTC states are Init, NotConfigured, Active, Unavailable, PassiveNotReady, PassiveReady.
+</ns1:desc>
+    <ns1:type xsi:type="ns1:listType">
+      <ns1:notNullConstraint/>
+      <ns1:collectionSizeConstraint>
+        <ns1:minSize value="0"/>
+      </ns1:collectionSizeConstraint>
+      <ns1:collectionUniquenessConstraint/>
+      <ns1:collectionValuesType xsi:type="ns1:stringType"/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="applicationConfiguration" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Specifies configuration data critical for an application.</ns1:desc>
+    <ns1:type xsi:type="ns1:listType">
+      <ns1:notNullConstraint/>
+      <ns1:collectionSizeConstraint>
+        <ns1:minSize value="0"/>
+      </ns1:collectionSizeConstraint>
+      <ns1:collectionUniquenessConstraint/>
+      <ns1:collectionValuesType modelUrn="//ERBS_NODE_MODEL/MeApplicationConfigurationData/10.3.100" xsi:type="ns1:complexRefType"/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="mimInfo" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>The name, version and release of the MIM.
+</ns1:desc>
+    <ns1:type modelUrn="//ERBS_NODE_MODEL/MimInfo/10.3.100" xsi:type="ns1:complexRefType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="healthCheckSchedule" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>The scheduled time and weekday, when the health check starts.
+</ns1:desc>
+    <ns1:type xsi:type="ns1:listType">
+      <ns1:notNullConstraint/>
+      <ns1:collectionSizeConstraint>
+        <ns1:minMaxSize max="14" min="0"/>
+      </ns1:collectionSizeConstraint>
+      <ns1:collectionUniquenessConstraint/>
+      <ns1:collectionValuesType modelUrn="//ERBS_NODE_MODEL/ScheduleEntry/10.3.100" xsi:type="ns1:complexRefType"/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <!--ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="healthCheckResult" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>The result of the latest health check.
+</ns1:desc>
+    <ns1:type modelUrn="//ERBS_NODE_MODEL/HealthCheckResult/10.3.100" xsi:type="ns1:complexRefType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute-->
+  <ns2:primaryTypeAction ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="startHealthCheck">
+    <ns1:desc>Initiates a health check. 
+
+The health check investigates consistency of the file systems, configuration versions and upgrade packages. 
+Alarms will be generated if a fault is found, see the alarms: 
+- File System Diagnostic Error 
+- Configuration Version Corrupt 
+- Upgrade Package Corrupt 
+
+Only one health check action at a time can be active. Further attempts to start the health check are rejected. If the attribute operationalState of a PlugInUnit MO instance is set to DISABLED, the corresponding plug-in unit is not checked.
+
+During an ongoing health check, configuration versions cannot be created or deleted.
+
+NOTE: It is recommended to schedule the healthCheck using the attribute healthCheckSchedule to secure its execution at least once a week. </ns1:desc>
+    <ns2:returnType modelUrn="//ERBS_NODE_MODEL/HealthCheckActionResult/10.3.100" xsi:type="ns1:enumRefType"/>
+  </ns2:primaryTypeAction>
+  <ns2:primaryTypeAction ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="manualRestart">
+    <ns1:desc>Manual restart of the node.
+</ns1:desc>
+    <ns2:parameter mandatory="true" ns1:lifeCycle="CURRENT" ns1:name="restartRank" sensitive="false">
+      <ns1:desc>The restart rank.</ns1:desc>
+      <ns1:type modelUrn="//ERBS_NODE_MODEL/RestartRank/10.3.100" xsi:type="ns1:enumRefType">
+        <ns1:notNullConstraint/>
+      </ns1:type>
+    </ns2:parameter>
+    <ns2:parameter mandatory="true" ns1:lifeCycle="CURRENT" ns1:name="restartReason" sensitive="false">
+      <ns1:desc>The reason for the restart.</ns1:desc>
+      <ns1:type modelUrn="//ERBS_NODE_MODEL/RestartReason/10.3.100" xsi:type="ns1:enumRefType">
+        <ns1:notNullConstraint/>
+      </ns1:type>
+    </ns2:parameter>
+    <ns2:parameter mandatory="true" ns1:lifeCycle="CURRENT" ns1:name="restartInfo" sensitive="false">
+      <ns1:desc>A free text field where extra information can be added.</ns1:desc>
+      <ns1:type xsi:type="ns1:stringType">
+        <ns1:notNullConstraint/>
+        <ns1:stringLengthConstraint>
+          <ns1:minMaxLength max="80" min="0"/>
+        </ns1:stringLengthConstraint>
+      </ns1:type>
+    </ns2:parameter>
+    <ns2:disturbances>manualRestart causes loss of traffic!</ns2:disturbances>
+  </ns2:primaryTypeAction>
+</ns2:PrimaryTypeDefinition>

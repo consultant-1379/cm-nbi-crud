@@ -1,0 +1,1443 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+
+*******************************************************************************
+* COPYRIGHT Ericsson LMI. All rights reserved.
+*
+* No part of this document may be reproduced in any form without the
+* written permission of the copyright owner.The contents of this document
+* are subject to revision without notice due to continued progress in
+* methodology, design and manufacturing. Ericsson shall have no liability
+* for any error or damage of any kind resulting from the use of this document.
+*
+*******************************************************************************
+
+
+--><ns2:PrimaryTypeDefinition xmlns:ns1="urn:com:ericsson:schema:xml:oss:oss_common" xmlns:ns2="urn:com:ericsson:schema:xml:oss:dps_primarytype" xmlns:ns3="urn:com:ericsson:schema:xml:oss:dps_common" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" hierarchyType="HIERARCHICAL" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="ENodeBFunction" ns1:ns="ERBS_NODE_MODEL" ns1:version="10.3.100">
+  <ns1:modelCreationInfo>
+    <ns1:derivedModel derivedFrom="/net_momdtd/ERBS_NODE_MODEL_J/ERBS_NODE_MODEL_J_3_100"/>
+  </ns1:modelCreationInfo>
+  <ns1:desc>ENodeBFunction</ns1:desc>
+  <!--ns2:systemCreated/-->
+
+  <!-- To test sensitive action parameter we introduce manually a fake testSensitiveAction with testSensitiveParameter
+  See the last lines of this file
+  -->
+
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="timeAndPhaseSynchCritical" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>If set to true, the cell will be disabled if the time and phase synchronization accuracy of the eNodeB is not fulfilled.</ns1:desc>
+    <ns1:type xsi:type="ns1:booleanType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns1:default value="false" xsi:type="ns1:booleanValue"/>
+    <ns3:takesEffect>Immediately</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="true" key="true" mandatory="true" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="ENodeBFunctionId" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>The value component of the RDN.
+</ns1:desc>
+    <ns1:type xsi:type="ns1:stringType">
+      <ns1:notNullConstraint/>
+      <ns1:stringContentsConstraint type="REGEX" value="[]0-9A-Za-z\[.!$%&amp;':?@^_`{|}~ /()-]*"/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="userLabel" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Label for free use.
+</ns1:desc>
+    <ns1:type xsi:type="ns1:stringType">
+      <ns1:notNullConstraint/>
+      <ns1:stringLengthConstraint>
+        <ns1:minMaxLength max="128" min="0"/>
+      </ns1:stringLengthConstraint>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="sctpRef" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Refers to the SCTP instance that is used to configure the SCTP host for S1 and X2 connections.</ns1:desc>
+    <ns1:type modelUrn="//ERBS_NODE_MODEL/Sctp/10.3.100" xsi:type="ns1:moRefType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns3:takesEffect>At node restart</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="dnsLookupOnTai" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Controls if the Tracking Area Identity (TAI) is used to get IP addresses of MME nodes from the Domain Name System (DNS).
+
+The RBS uses TAI to automatically obtain all MME IP addresses from the DNS when dnsLookupOnTai is switched on, or at RBS start or restart.
+
+The MME IP address list is refreshed periodically and MME connections released and setup according to the new list. The MME IP address list can also be refreshed from OSS-RC.</ns1:desc>
+    <ns1:type modelUrn="//ERBS_NODE_MODEL/DnsLookup/10.3.100" xsi:type="ns1:enumRefType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns1:default value="ON" xsi:type="ns1:stringValue"/>
+    <ns3:takesEffect>Immediately</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="dnsLookupTimer" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>The interval to perform DNS Lookup to get potential new IP addresses of MME nodes. DNS lookup is performed for the TAI domain name. If the value is set to zero, then no periodic DNS Lookup is done.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="1000" min="0"/>
+      </ns1:valueRangeConstraint>
+      <ns1:unit>Hour</ns1:unit>
+    </ns1:type>
+    <ns1:default value="0" xsi:type="ns1:integerValue"/>
+    <ns3:takesEffect>Immediately</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="dscpLabel" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Static mapping of DiffServ label for control messages, Performance Management (PM), and Non-Access Stratum (NAS).</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="63" min="0"/>
+      </ns1:valueRangeConstraint>
+    </ns1:type>
+    <ns1:default value="24" xsi:type="ns1:integerValue"/>
+    <ns3:dependencies>Will only be used then dscpUsage is active.</ns3:dependencies>
+    <ns3:takesEffect>Node restart</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="eNBId" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>The ENodeB ID that forms part of the Cell Global Identity, and is also used to identify the node over the S1 interface.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="1048575" min="-1"/>
+      </ns1:valueRangeConstraint>
+    </ns1:type>
+    <ns1:default value="-1" xsi:type="ns1:integerValue"/>
+    <ns3:takesEffect>At node restart</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="true" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="eNodeBPlmnId" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>The ENodeB Public Land Mobile Network (PLMN) ID that forms part of the ENodeB Global ID used to identify the node over the S1 interface.
+Note: The value (MCC=001, MNC=01) indicates that the PLMN is not initiated. The value can not be used as a valid PLMN Identity.
+</ns1:desc>
+    <ns1:type modelUrn="//ERBS_NODE_MODEL/PlmnIdentity/10.3.100" xsi:type="ns1:complexRefType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns3:takesEffect>At node restart</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="x2BlackList" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>A list of blacklisted RBS IDs. X2 may not be set up to any neighbor RBS in the blacklist.</ns1:desc>
+    <ns1:type xsi:type="ns1:listType">
+      <ns1:notNullConstraint/>
+      <ns1:collectionSizeConstraint>
+        <ns1:minMaxSize max="64" min="0"/>
+      </ns1:collectionSizeConstraint>
+      <ns1:collectionValuesType modelUrn="//ERBS_NODE_MODEL/GlobalEnbId/10.3.100" xsi:type="ns1:complexRefType"/>
+    </ns1:type>
+    <ns2:disturbances>If an eNB is added to the list, any termPointToEnb for this external eNB is removed.</ns2:disturbances>
+    <ns3:takesEffect>Immediately</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="x2retryTimerMaxAuto" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>See attribute x2RetryTimerStart.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="60000" min="0"/>
+      </ns1:valueRangeConstraint>
+      <ns1:unit>minute</ns1:unit>
+    </ns1:type>
+    <ns1:default value="1440" xsi:type="ns1:integerValue"/>
+    <ns3:takesEffect>Immediately</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="x2retryTimerStart" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>After failed X2 setup and after X2 link break the x2RetryTimer is used to control the time till next retry. x2RetryTimer is used for DNS, SCTP, X2AP retries and x2IpAddrViaS1.
+
+After first failed setup or missing IP address from DNS, x2RetryTimer = max(x2RetryTimerStart,W), where W is the timeToWait received in x2SetupFail. If W is not received, W=0.
+
+After link break, x2RetryTimer = random(0,x2RetryTimerStart). If the first setup after link break fails, the timer values according to the above and below paragraphs shall apply as for failed inital setup.
+
+After 2nd and following fails, if the X2 connection is not being setup by ANR in the S-RBS, x2RetryTimer = max(x2RetryTimerStart,W).
+
+After 2nd and following fails, if the X2 connection is being setup by ANR in the S-RBS, x2RetryTimer = max(min[2^(n-2)*x2RetryTimerStart, x2retryTimerMaxAuto], W), where n is failure number.
+
+Each W is only used in the first retry after it is received.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="1000" min="0"/>
+      </ns1:valueRangeConstraint>
+      <ns1:unit>s</ns1:unit>
+    </ns1:type>
+    <ns1:default value="30" xsi:type="ns1:integerValue"/>
+    <ns3:takesEffect>Immediately</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="x2WhiteList" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>The list of whitelisted RBS IDs. Automated Neighbor Relations (ANR) is not allowed to disconnect X2 for any neighbor RBS in the whitelist.</ns1:desc>
+    <ns1:type xsi:type="ns1:listType">
+      <ns1:notNullConstraint/>
+      <ns1:collectionSizeConstraint>
+        <ns1:minMaxSize max="64" min="0"/>
+      </ns1:collectionSizeConstraint>
+      <ns1:collectionValuesType modelUrn="//ERBS_NODE_MODEL/GlobalEnbId/10.3.100" xsi:type="ns1:complexRefType"/>
+    </ns1:type>
+    <ns3:takesEffect>Immediately</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="s1RetryTimer" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Defines the frequency to perform re-establishment of SCTP and S1-AP connection,
+when the connection to a MME is lost.
+</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="300" min="1"/>
+      </ns1:valueRangeConstraint>
+      <ns1:unit>s</ns1:unit>
+    </ns1:type>
+    <ns1:default value="30" xsi:type="ns1:integerValue"/>
+    <ns3:takesEffect>Immediately</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="ulSchedulerDynamicBWAllocationEnabled" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Specifies if the advanced UL scheduler is enabled
+
+</ns1:desc>
+    <ns1:type xsi:type="ns1:booleanType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns1:default value="true" xsi:type="ns1:booleanValue"/>
+    <ns3:takesEffect>Immediately</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="DEPRECATED" ns1:lifeCycleDesc="Since L14A. Replaced by upIpAddressRef" ns1:name="upIpAccessHostRef" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="DELEGATE">
+    <ns1:desc>Refers to the IpAccessHostEt instance to use for configuring the IP access host for S1 and X2 user plane connections. This attribute must contain a valid MO reference if the IPsec function is used.</ns1:desc>
+    <ns1:type modelUrn="//ERBS_NODE_MODEL/IpAccessHostEt/10.3.100" xsi:type="ns1:moRefType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns3:takesEffect>Immediately</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="x2IpAddrViaS1Active" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Indicates if the function X2 IP addresses over S1 is active in the RBS.</ns1:desc>
+    <ns1:type xsi:type="ns1:booleanType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns1:default value="true" xsi:type="ns1:booleanValue"/>
+    <ns3:takesEffect>Immediately</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="nnsfMode" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>The mode used by the RBS for the non-access stratum node selection.
+
+Regardless of the mode used, the function attempts to:
+
+- Reconnect every UE to its registered MME in any of the tracking areas of the cell.
+
+- Distribute the UEs that are not reconnected among MMEs that serve the Public Land Mobile Network selected by each UE.</ns1:desc>
+    <ns1:type modelUrn="//ERBS_NODE_MODEL/NnsfModeVals/10.3.100" xsi:type="ns1:enumRefType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns1:default value="RPLMN_IF_SAME_AS_SPLMN" xsi:type="ns1:stringValue"/>
+    <ns3:takesEffect>New connection</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="rrcConnReestActive" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Indicates if the feature RRC Connection Reestablishment is ACTIVATED or DEACTIVATED.</ns1:desc>
+    <ns1:type xsi:type="ns1:booleanType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns1:default value="false" xsi:type="ns1:booleanValue"/>
+    <ns3:takesEffect>Immediately</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="zzzTemporary1" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Temporary attributes are intended for temporary solutions, and their usage may vary depending on the installed software. It is strongly recommended to only set the attributes that correspond to a desired functionality and leave all other temporary attributes set to default value. Information in the descriptions about what attributes are in use may be overridden by the information in CPI Info documents. Note that a later release may use another attribute to control the functionality previously provided by a temporary attribute, or may remove the functionality altogether. In these cases, the change is documented in the NIR.</ns1:desc>
+    <ns1:type xsi:type="ns1:stringType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns3:takesEffect>Immediately</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="zzzTemporary2" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Temporary attributes are intended for temporary solutions, and their usage may vary depending on the installed software. It is strongly recommended to only set the attributes that correspond to a desired functionality and leave all other temporary attributes set to default value. Information in the descriptions about what attributes are in use may be overridden by the information in CPI Info documents. Note that a later release may use another attribute to control the functionality previously provided by a temporary attribute, or may remove the functionality altogether. In these cases, the change is documented in the NIR.</ns1:desc>
+    <ns1:type xsi:type="ns1:stringType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns3:takesEffect>Immediately</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="zzzTemporary3" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Temporary attributes are intended for temporary solutions, and their usage may vary depending on the installed software. It is strongly recommended to only set the attributes that correspond to a desired functionality and leave all other temporary attributes set to default value. Information in the descriptions about what attributes are in use may be overridden by the information in CPI Info documents. Note that a later release may use another attribute to control the functionality previously provided by a temporary attribute, or may remove the functionality altogether. In these cases, the change is documented in the NIR.</ns1:desc>
+    <ns1:type xsi:type="ns1:stringType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns3:takesEffect>Immediately</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="zzzTemporary4" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Temporary attributes are intended for temporary solutions, and their usage may vary depending on the installed software. It is strongly recommended to only set the attributes that correspond to a desired functionality and leave all other temporary attributes set to default value. Information in the descriptions about what attributes are in use may be overridden by the information in CPI Info documents. Note that a later release may use another attribute to control the functionality previously provided by a temporary attribute, or may remove the functionality altogether. In these cases, the change is documented in the NIR.</ns1:desc>
+    <ns1:type xsi:type="ns1:stringType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns3:takesEffect>Immediately</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="zzzTemporary5" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Temporary attributes are intended for temporary solutions, and their usage may vary depending on the installed software. It is strongly recommended to only set the attributes that correspond to a desired functionality and leave all other temporary attributes set to default value. Information in the descriptions about what attributes are in use may be overridden by the information in CPI Info documents. Note that a later release may use another attribute to control the functionality previously provided by a temporary attribute, or may remove the functionality altogether. In these cases, the change is documented in the NIR.</ns1:desc>
+    <ns1:type xsi:type="ns1:stringType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns3:takesEffect>Immediately</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="zzzTemporary6" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Temporary attributes are intended for temporary solutions, and their usage may vary depending on the installed software. It is strongly recommended to only set the attributes that correspond to a desired functionality and leave all other temporary attributes set to default value. Information in the descriptions about what attributes are in use may be overridden by the information in CPI Info documents. Note that a later release may use another attribute to control the functionality previously provided by a temporary attribute, or may remove the functionality altogether. In these cases, the change is documented in the NIR.</ns1:desc>
+    <ns1:type xsi:type="ns1:stringType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns3:takesEffect>Immediately</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="zzzTemporary7" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Temporary attributes are intended for temporary solutions, and their usage may vary depending on the installed software. It is strongly recommended to only set the attributes that correspond to a desired functionality and leave all other temporary attributes set to default value. Information in the descriptions about what attributes are in use may be overridden by the information in CPI Info documents. Note that a later release may use another attribute to control the functionality previously provided by a temporary attribute, or may remove the functionality altogether. In these cases, the change is documented in the NIR.</ns1:desc>
+    <ns1:type xsi:type="ns1:stringType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns3:takesEffect>Immediately</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="zzzTemporary8" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Temporary attributes are intended for temporary solutions, and their usage may vary depending on the installed software. It is strongly recommended to only set the attributes that correspond to a desired functionality and leave all other temporary attributes set to default value. Information in the descriptions about what attributes are in use may be overridden by the information in CPI Info documents. Note that a later release may use another attribute to control the functionality previously provided by a temporary attribute, or may remove the functionality altogether. In these cases, the change is documented in the NIR.</ns1:desc>
+    <ns1:type xsi:type="ns1:stringType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns3:takesEffect>Immediately</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="zzzTemporary9" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Temporary attributes are intended for temporary solutions, and their usage may vary depending on the installed software. It is strongly recommended to only set the attributes that correspond to a desired functionality and leave all other temporary attributes set to default value. Information in the descriptions about what attributes are in use may be overridden by the information in CPI Info documents. Note that a later release may use another attribute to control the functionality previously provided by a temporary attribute, or may remove the functionality altogether. In these cases, the change is documented in the NIR.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns1:default value="-2000000000" xsi:type="ns1:integerValue"/>
+    <ns3:takesEffect>Immediately</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="zzzTemporary10" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Temporary attributes are intended for temporary solutions, and their usage may vary depending on the installed software. It is strongly recommended to only set the attributes that correspond to a desired functionality and leave all other temporary attributes set to default value. Information in the descriptions about what attributes are in use may be overridden by the information in CPI Info documents. Note that a later release may use another attribute to control the functionality previously provided by a temporary attribute, or may remove the functionality altogether. In these cases, the change is documented in the NIR.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns1:default value="-2000000000" xsi:type="ns1:integerValue"/>
+    <ns3:takesEffect>Immediately</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="zzzTemporary11" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Temporary attributes are intended for temporary solutions, and their usage may vary depending on the installed software. It is strongly recommended to only set the attributes that correspond to a desired functionality and leave all other temporary attributes set to default value. Information in the descriptions about what attributes are in use may be overridden by the information in CPI Info documents. Note that a later release may use another attribute to control the functionality previously provided by a temporary attribute, or may remove the functionality altogether. In these cases, the change is documented in the NIR.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns1:default value="-2000000000" xsi:type="ns1:integerValue"/>
+    <ns3:takesEffect>Immediately</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="zzzTemporary12" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Temporary attributes are intended for temporary solutions, and their usage may vary depending on the installed software. It is strongly recommended to only set the attributes that correspond to a desired functionality and leave all other temporary attributes set to default value. Information in the descriptions about what attributes are in use may be overridden by the information in CPI Info documents. Note that a later release may use another attribute to control the functionality previously provided by a temporary attribute, or may remove the functionality altogether. In these cases, the change is documented in the NIR.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns1:default value="-2000000000" xsi:type="ns1:integerValue"/>
+    <ns3:takesEffect>Immediately</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="pmZtemporary34" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Normally this counter is not used, it can however sometimes be temporarily used for very late additions in a release. If so, for description see Network Impact Report in the CPI.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="pmZtemporary35" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Normally this counter is not used, it can however sometimes be temporarily used for very late additions in a release. If so, for description see Network Impact Report in the CPI.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="x2SetupTwoWayRelations" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>This parameter indicates if two way relations shall be setup during X2 setup and eNB configuration. The RBS creates a two-way relation for each entry in the received neighbour information that contains a relation to a source cell. Neighbour information is sent in X2 setup and eNB configuration. Neighbour information is eUtranCellRelations per source cell from the sending node.</ns1:desc>
+    <ns1:type xsi:type="ns1:booleanType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns1:default value="true" xsi:type="ns1:booleanValue"/>
+    <ns3:takesEffect>New connection</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="timePhaseMaxDeviation" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Defines the maximum allowed time/phase deviation for time/phase synchronization of the eNodeB.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="100" min="9"/>
+      </ns1:valueRangeConstraint>
+      <ns1:unit>microseconds</ns1:unit>
+      <ns1:multiplicationFactor>0.1</ns1:multiplicationFactor>
+    </ns1:type>
+    <ns1:default value="100" xsi:type="ns1:integerValue"/>
+    <ns3:dependencies>This parameter is relevant when the parameter timeAndPhaseSynchCritical has the value true.</ns3:dependencies>
+    <ns3:takesEffect>Immediately</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="licCapDistrMethod" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Used to set how the licensed capacity will be distributed between the baseband processing resources</ns1:desc>
+    <ns1:type modelUrn="//ERBS_NODE_MODEL/LicCapDistrMethod/10.3.100" xsi:type="ns1:enumRefType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns1:default value="SYSTEM" xsi:type="ns1:stringValue"/>
+    <ns3:takesEffect>Immediately</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="pmPagS1Received" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>This counter counts the number of received S1AP Paging messages in the RBS. Both non prioritized and prioritized S1AP Paging messages are included.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="pmPagS1Discarded" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>The number of S1AP Paging messages that are discarded (and not routed to any cell) due to that the maximum number of incoming S1AP Paging messages during a certain time interval is reached. This counter is a subset of pmPagS1Received. Both non prioritized and prioritized S1AP Paging messages are included.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="s1HODirDataPathAvail" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>S1 Handover data forwarding can be of two types, direct and indirect. Direct forwarding requires direct connectivity between source and target eNodeB. This parameter is used to indicate if such direct connectivity exist.</ns1:desc>
+    <ns1:type xsi:type="ns1:booleanType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns1:default value="false" xsi:type="ns1:booleanValue"/>
+    <ns3:dependencies>Optional Feature Data Forwarding at S1 Handover</ns3:dependencies>
+    <ns3:takesEffect>Immediately</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="minRandc" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Rand range datatype is the eight most significant bits (MSB) of the Rand used for authentication.
+This attribute controls the minimum random number value that can be generated. Typically a range of random numbers is allocated to each system using this attribute.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="254" min="1"/>
+      </ns1:valueRangeConstraint>
+    </ns1:type>
+    <ns1:default value="1" xsi:type="ns1:integerValue"/>
+    <ns3:dependencies>minRandc &lt; maxRandc</ns3:dependencies>
+    <ns3:takesEffect>Immediately</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="maxRandc" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Rand range datatype is the eight most significant bits (MSB) of the Rand used for authentication.
+This attribute controls the maximum random number value that can be generated. Typically a range of random numbers is allocated to each system using this attribute.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="255" min="2"/>
+      </ns1:valueRangeConstraint>
+    </ns1:type>
+    <ns1:default value="255" xsi:type="ns1:integerValue"/>
+    <ns3:dependencies>maxRandc &gt; minRandc</ns3:dependencies>
+    <ns3:takesEffect>Immediately</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="randUpdateInterval" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Random number update interval
+This attribute specifies the time interval in minutes between random number generation. When this interval expires, the eNodeB generates a new random number between MinRandc and MaxRandc.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="1440" min="15"/>
+      </ns1:valueRangeConstraint>
+      <ns1:unit>minutes</ns1:unit>
+    </ns1:type>
+    <ns1:default value="200" xsi:type="ns1:integerValue"/>
+    <ns3:takesEffect>Immediately</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="zzzTemporary13" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Temporary attributes are intended for temporary solutions, and their usage may vary depending on the installed software. It is strongly recommended to only set the attributes that correspond to a desired functionality and leave all other temporary attributes set to default value. Information in the descriptions about what attributes are in use may be overridden by the information in CPI Info documents. Note that a later release may use another attribute to control the functionality previously provided by a temporary attribute, or may remove the functionality altogether. In these cases, the change is documented in the NIR.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns1:default value="-2000000000" xsi:type="ns1:integerValue"/>
+    <ns3:takesEffect>Immediately</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="DEPRECATED" ns1:lifeCycleDesc="Since L16A. Replaced by UeMeasControl::bothA5RsrpRsrqCheck. Planned to be removed." ns1:name="zzzTemporary14" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="DELEGATE">
+    <ns1:desc>Temporary attributes are intended for temporary solutions, and their usage may vary depending on the installed software. It is strongly recommended to only set the attributes that correspond to a desired functionality and leave all other temporary attributes set to default value. Information in the descriptions about what attributes are in use may be overridden by the information in CPI Info documents. Note that a later release may use another attribute to control the functionality previously provided by a temporary attribute, or may remove the functionality altogether. In these cases, the change is documented in the NIR.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns1:default value="-2000000000" xsi:type="ns1:integerValue"/>
+    <ns3:takesEffect>Immediately</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="zzzTemporary15" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Temporary attributes are intended for temporary solutions, and their usage may vary depending on the installed software. It is strongly recommended to only set the attributes that correspond to a desired functionality and leave all other temporary attributes set to default value. Information in the descriptions about what attributes are in use may be overridden by the information in CPI Info documents. Note that a later release may use another attribute to control the functionality previously provided by a temporary attribute, or may remove the functionality altogether. In these cases, the change is documented in the NIR.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns1:default value="-2000000000" xsi:type="ns1:integerValue"/>
+    <ns3:takesEffect>Immediately</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="zzzTemporary16" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Temporary attributes are intended for temporary solutions, and their usage may vary depending on the installed software. It is strongly recommended to only set the attributes that correspond to a desired functionality and leave all other temporary attributes set to default value. Information in the descriptions about what attributes are in use may be overridden by the information in CPI Info documents. Note that a later release may use another attribute to control the functionality previously provided by a temporary attribute, or may remove the functionality altogether. In these cases, the change is documented in the NIR.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns1:default value="-2000000000" xsi:type="ns1:integerValue"/>
+    <ns3:takesEffect>Immediately</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="zzzTemporary17" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Temporary attributes are intended for temporary solutions, and their usage may vary depending on the installed software. It is strongly recommended to only set the attributes that correspond to a desired functionality and leave all other temporary attributes set to default value. Information in the descriptions about what attributes are in use may be overridden by the information in CPI Info documents. Note that a later release may use another attribute to control the functionality previously provided by a temporary attribute, or may remove the functionality altogether. In these cases, the change is documented in the NIR.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns1:default value="-2000000000" xsi:type="ns1:integerValue"/>
+    <ns3:takesEffect>Immediately</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="mfbiSupport" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Specifies whether the feature Multiple Frequency Band Indicators is supported in the eNB.</ns1:desc>
+    <ns1:type xsi:type="ns1:booleanType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns3:takesEffect>Immediately</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="pmMoFootprintMax" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>This counter specifies the current footprint in the eNB from the configured MO instances for all different Cell Relations and External Cells in relation to the MO system limit. The higher the value, the more internal memory is consumed in the eNB for MO instances for the different types of Cell Relations and External Cells. The value is the highest sampled value during a ROP period. When the value reaches 100, further creation attempts for MO instances are rejected.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="upIpAddressRef" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Refers to the IpAccessHostEt or AddressIPv4/AddressIPv6 instance to use for configuring the IP address for S1 and X2 user plane connections.</ns1:desc>
+    <ns1:type modelUrn="//ERBS_NODE_MODEL/IpAccessHostEt/10.3.100" xsi:type="ns1:moRefType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns2:disturbances>Changing this attribute can affect traffic. A node restart is required.</ns2:disturbances>
+    <ns3:takesEffect>At node restart</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="pwsPersistentStorage" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Decides whether or not PWS data must be persistently stored.</ns1:desc>
+    <ns1:type modelUrn="//ERBS_NODE_MODEL/PersistentStorage/10.3.100" xsi:type="ns1:enumRefType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns1:default value="OFF" xsi:type="ns1:stringValue"/>
+    <ns3:takesEffect>Immediately</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="csfbMeasFromIdleMode" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>When CS Fallback is requested for a UE in idle mode this parameter controls if measurements for release with redirect and handover must be performed. If the parameter is set to false a blind release with redirect is done.</ns1:desc>
+    <ns1:type xsi:type="ns1:booleanType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns1:default value="true" xsi:type="ns1:booleanValue"/>
+    <ns3:dependencies>This parameter is only relevant for features 'Measurement-Based CSFB Target Selection' and 'PSHO-based CS Fallback to WCDMA' .</ns3:dependencies>
+    <ns3:takesEffect>Immediately</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="pmPagS1RecDistr" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>This distribution counter counts the number of received S1AP Paging messages in the RBS per priority level. The counter is only valid if the feature Priority Paging is activated.
+
+Ranges:
+[0]: No Priority level
+[1]: Priority level 1
+[2]: Priority level 2
+[3]: Priority level 3
+[4]: Priority level 4
+[5]: Priority level 5
+[6]: Priority level 6
+[7]: Priority level 7
+[8]: Priority level 8
+</ns1:desc>
+    <ns1:type xsi:type="ns1:listType">
+      <ns1:notNullConstraint/>
+      <ns1:collectionSizeConstraint>
+        <ns1:minMaxSize max="9" min="0"/>
+      </ns1:collectionSizeConstraint>
+      <ns1:collectionValuesType xsi:type="ns1:integerType"/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="pmPagS1DiscDistr" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>The number of S1AP Paging messages that are discarded (and not routed to any cell) due to that the maximum number of incoming S1AP Paging messages during a certain time interval is reached. This distribution counter is a subset of pmPagS1RecDistr and is per priority level. The counter is only valid if the feature Priority Paging is activated.
+
+Ranges:
+[0]: No Priority level
+[1]: Priority level 1
+[2]: Priority level 2
+[3]: Priority level 3
+[4]: Priority level 4
+[5]: Priority level 5
+[6]: Priority level 6
+[7]: Priority level 7
+[8]: Priority level 8
+</ns1:desc>
+    <ns1:type xsi:type="ns1:listType">
+      <ns1:notNullConstraint/>
+      <ns1:collectionSizeConstraint>
+        <ns1:minMaxSize max="9" min="0"/>
+      </ns1:collectionSizeConstraint>
+      <ns1:collectionValuesType xsi:type="ns1:integerType"/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="DEPRECATED" ns1:lifeCycleDesc="Since L16B. Replaced by attribute tRelocOverall. Planned to be removed." ns1:name="tRelocOverallValue" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="DELEGATE">
+    <ns1:desc>Supervision timer of the outgoing S1/X2/intra-eNodeB handover execution procedure according to 3GPP TS 36.413 and TS 36.423.
+If the feature Multi-Target RRC Connection Re-establishment is active this timer also supervises the Context Fetch procedure.
+</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="32000" min="1"/>
+      </ns1:valueRangeConstraint>
+      <ns1:unit>s</ns1:unit>
+    </ns1:type>
+    <ns1:default value="5" xsi:type="ns1:integerValue"/>
+    <ns3:takesEffect>New connection</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="forcedSiTunnelingActive" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Specifies whether or not the functionality to send NACC information, regardless of UE capability, is activated, provided that the feature Redirect with System Information is active.</ns1:desc>
+    <ns1:type xsi:type="ns1:booleanType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns1:default value="false" xsi:type="ns1:booleanValue"/>
+    <ns3:takesEffect>Immediately</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="initPreschedulingEnable" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Indicates that prescheduling is enabled during connection setup phase.</ns1:desc>
+    <ns1:type xsi:type="ns1:booleanType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns1:default value="true" xsi:type="ns1:booleanValue"/>
+    <ns3:takesEffect>Object unlocked</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="zzzTemporary18" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Temporary attributes are intended for temporary solutions, and their usage may vary depending on the installed software. It is strongly recommended to only set the attributes that correspond to a desired functionality and leave all other temporary attributes set to default value. Information in the descriptions about what attributes are in use may be overridden by the information in CPI Info documents. Note that a later release may use another attribute to control the functionality previously provided by a temporary attribute, or may remove the functionality altogether. In these cases, the change is documented in the NIR.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns1:default value="-2000000000" xsi:type="ns1:integerValue"/>
+    <ns3:takesEffect>Immediately</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="DEPRECATED" ns1:lifeCycleDesc="Since L16A. Replaced by the attribute mfbiSupportPolicy. Planned to be removed." ns1:name="zzzTemporary19" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="DELEGATE">
+    <ns1:desc>Temporary attributes are intended for temporary solutions, and their usage may vary depending on the installed software. It is strongly recommended to only set the attributes that correspond to a desired functionality and leave all other temporary attributes set to default value. Information in the descriptions about what attributes are in use may be overridden by the information in CPI Info documents. Note that a later release may use another attribute to control the functionality previously provided by a temporary attribute, or may remove the functionality altogether. In these cases, the change is documented in the NIR.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns1:default value="-2000000000" xsi:type="ns1:integerValue"/>
+    <ns3:takesEffect>Immediately</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="DEPRECATED" ns1:lifeCycleDesc="Since L16A.  Replaced by attribute tddVoipDrxProfileId.  Planned to be removed." ns1:name="zzzTemporary20" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="DELEGATE">
+    <ns1:desc>Temporary attributes are intended for temporary solutions, and their usage may vary depending on the installed software. It is strongly recommended to only set the attributes that correspond to a desired functionality and leave all other temporary attributes set to default value. Information in the descriptions about what attributes are in use may be overridden by the information in CPI Info documents. Note that a later release may use another attribute to control the functionality previously provided by a temporary attribute, or may remove the functionality altogether. In these cases, the change is documented in the NIR.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns1:default value="-2000000000" xsi:type="ns1:integerValue"/>
+    <ns3:takesEffect>Immediately</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="zzzTemporary21" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Temporary attributes are intended for temporary solutions, and their usage may vary depending on the installed software. It is strongly recommended to only set the attributes that correspond to a desired functionality and leave all other temporary attributes set to default value. Information in the descriptions about what attributes are in use may be overridden by the information in CPI Info documents. Note that a later release may use another attribute to control the functionality previously provided by a temporary attribute, or may remove the functionality altogether. In these cases, the change is documented in the NIR.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns1:default value="-2000000000" xsi:type="ns1:integerValue"/>
+    <ns3:takesEffect>Immediately</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="zzzTemporary22" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Temporary attributes are intended for temporary solutions, and their usage may vary depending on the installed software. It is strongly recommended to only set the attributes that correspond to a desired functionality and leave all other temporary attributes set to default value. Information in the descriptions about what attributes are in use may be overridden by the information in CPI Info documents. Note that a later release may use another attribute to control the functionality previously provided by a temporary attribute, or may remove the functionality altogether. In these cases, the change is documented in the NIR.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns1:default value="-2000000000" xsi:type="ns1:integerValue"/>
+    <ns3:takesEffect>Immediately</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="zzzTemporary23" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Temporary attributes are intended for temporary solutions, and their usage may vary depending on the installed software. It is strongly recommended to only set the attributes that correspond to a desired functionality and leave all other temporary attributes set to default value. Information in the descriptions about what attributes are in use may be overridden by the information in CPI Info documents. Note that a later release may use another attribute to control the functionality previously provided by a temporary attribute, or may remove the functionality altogether. In these cases, the change is documented in the NIR.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns1:default value="-2000000000" xsi:type="ns1:integerValue"/>
+    <ns3:takesEffect>Immediately</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="zzzTemporary24" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Temporary attributes are intended for temporary solutions, and their usage may vary depending on the installed software. It is strongly recommended to only set the attributes that correspond to a desired functionality and leave all other temporary attributes set to default value. Information in the descriptions about what attributes are in use may be overridden by the information in CPI Info documents. Note that a later release may use another attribute to control the functionality previously provided by a temporary attribute, or may remove the functionality altogether. In these cases, the change is documented in the NIR.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns1:default value="-2000000000" xsi:type="ns1:integerValue"/>
+    <ns3:takesEffect>Immediately</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="zzzTemporary25" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Temporary attributes are intended for temporary solutions, and their usage may vary depending on the installed software. It is strongly recommended to only set the attributes that correspond to a desired functionality and leave all other temporary attributes set to default value. Information in the descriptions about what attributes are in use may be overridden by the information in CPI Info documents. Note that a later release may use another attribute to control the functionality previously provided by a temporary attribute, or may remove the functionality altogether. In these cases, the change is documented in the NIR.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns1:default value="-2000000000" xsi:type="ns1:integerValue"/>
+    <ns3:takesEffect>Immediately</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="zzzTemporary26" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Temporary attributes are intended for temporary solutions, and their usage may vary depending on the installed software. It is strongly recommended to only set the attributes that correspond to a desired functionality and leave all other temporary attributes set to default value. Information in the descriptions about what attributes are in use may be overridden by the information in CPI Info documents. Note that a later release may use another attribute to control the functionality previously provided by a temporary attribute, or may remove the functionality altogether. In these cases, the change is documented in the NIR.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns1:default value="-2000000000" xsi:type="ns1:integerValue"/>
+    <ns3:takesEffect>Immediately</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="DEPRECATED" ns1:lifeCycleDesc="Since L16A. Replaced by attribute EUtranCellFDD/EUtranCellTDD::servOrPrioIFHoSetupBearer. Planned to be removed." ns1:name="zzzTemporary27" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="DELEGATE">
+    <ns1:desc>Temporary attributes are intended for temporary solutions, and their usage may vary depending on the installed software. It is strongly recommended to only set the attributes that correspond to a desired functionality and leave all other temporary attributes set to default value. Information in the descriptions about what attributes are in use may be overridden by the information in CPI Info documents. Note that a later release may use another attribute to control the functionality previously provided by a temporary attribute, or may remove the functionality altogether. In these cases, the change is documented in the NIR.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns1:default value="-2000000000" xsi:type="ns1:integerValue"/>
+    <ns3:takesEffect>Immediately</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="tOutgoingHoExecCdma1xRtt" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Supervision timer of the outgoing LTE to CDMA 1xRtt handover execution procedure.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="32000" min="1"/>
+      </ns1:valueRangeConstraint>
+      <ns1:unit>s</ns1:unit>
+    </ns1:type>
+    <ns1:default value="5" xsi:type="ns1:integerValue"/>
+    <ns3:takesEffect>Cell lock/unlock</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="pmLic5MHzSectorCarrierActual" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Current number of licensed 5+5 MHz Sector Carrier capacity units that are allocated to cells.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="biasThpWifiMobility" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>In order to send a UE to WiFi, a throughput comparison is made between WiFi and LTE.
+For comparisons made in eNodeB, a UE is admitted to WiFi if, WiFi throughput &gt; biasThpWifiMobility * LTE throughput.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="100" min="1"/>
+      </ns1:valueRangeConstraint>
+      <ns1:multiplicationFactor>0.1</ns1:multiplicationFactor>
+    </ns1:type>
+    <ns1:default value="10" xsi:type="ns1:integerValue"/>
+    <ns2:disturbances>Changing this attribute can affect traffic</ns2:disturbances>
+    <ns3:takesEffect>Immediately</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="pmRimReportErr" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Number of RIM reports received that contain an error message.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="pmRimAssocMax" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Peak number of active RIM associations, that is, the rimAssociationStatus parameter value is RIM_ACTIVE.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="tS1HoCancelTimer" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>The timeout time for receiving HANDOVER CANCEL ACKNOWLEDGE after RBS sent HO CANCEL message to MME.
+Value specifies supervision time of outgoing S1 HO Cancellation according to procedure described in 3GPP TS 36.413 section 8.4.5.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="30" min="1"/>
+      </ns1:valueRangeConstraint>
+      <ns1:unit>s</ns1:unit>
+    </ns1:type>
+    <ns1:default value="3" xsi:type="ns1:integerValue"/>
+    <ns3:takesEffect>Ongoing connection</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="dnsSelectionS1X2Ref" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Controls DNS selection for S1 and X2 lookups. If not set, DNS server on OAM network is used.
+
+For DU Radio Node it can be set to reference a DnsResolver, and DNS queries are resolved using referenced DnsResolver (typically using DNS server on transport network).
+
+For Baseband Radio Node it can be set to reference a DnsClient, and DNS queries are resolved using referenced DnsClient (typically using DNS server on transport network).</ns1:desc>
+    <ns1:type modelUrn="//ERBS_NODE_MODEL/ManagedObject/10.3.100" xsi:type="ns1:moRefType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns3:preCondition>To enable this attribute DNS servers must support EDNS0.</ns3:preCondition>
+    <ns3:takesEffect>Immediately</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="DEPRECATED" ns1:lifeCycleDesc="Since L16A. Has no functional behavior. Planned to be removed." ns1:name="releaseInactiveUesEnable" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="DELEGATE">
+    <ns1:desc>Controls if the release of inactive UEs at handover shall be enabled.</ns1:desc>
+    <ns1:type xsi:type="ns1:booleanType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns1:default value="false" xsi:type="ns1:booleanValue"/>
+    <ns3:takesEffect>Immediately</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="releaseInactiveUesInactTime" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Inactivity time value to be used to decide release of inactive UEs at handover.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="32767" min="0"/>
+      </ns1:valueRangeConstraint>
+      <ns1:unit>s</ns1:unit>
+    </ns1:type>
+    <ns1:default value="1" xsi:type="ns1:integerValue"/>
+    <ns3:takesEffect>Immediately</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="releaseInactiveUesMpLoadLevel" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Minimum MP load level at which inactive UEs are released at handover.</ns1:desc>
+    <ns1:type modelUrn="//ERBS_NODE_MODEL/HoNotAllowedMpLoadLevel/10.3.100" xsi:type="ns1:enumRefType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns1:default value="VERY_HIGH_LOAD" xsi:type="ns1:stringValue"/>
+    <ns3:takesEffect>Immediately</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="combCellSectorSelectThreshTx" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Used for PDSCH and PHICH sector selection in combined Cell. For each Ue, all sectors received power are compared against the primary sector. Sectors that are below the threshold will be selected.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="1800" min="0"/>
+      </ns1:valueRangeConstraint>
+      <ns1:unit>dB</ns1:unit>
+      <ns1:multiplicationFactor>0.1</ns1:multiplicationFactor>
+    </ns1:type>
+    <ns1:default value="300" xsi:type="ns1:integerValue"/>
+    <ns2:disturbances>Changes may affect Sector Selection.</ns2:disturbances>
+    <ns3:takesEffect>Immediately</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="combCellSectorSelectThreshRx" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Used for PUSCH sector selection in combined Cell. For each Ue, all sectors received power are compared against the primary sector. Only the primary and the best sector that is below the threshold will be selected.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="1800" min="0"/>
+      </ns1:valueRangeConstraint>
+      <ns1:unit>dB</ns1:unit>
+      <ns1:multiplicationFactor>0.1</ns1:multiplicationFactor>
+    </ns1:type>
+    <ns1:default value="300" xsi:type="ns1:integerValue"/>
+    <ns2:disturbances>Changes may affect Sector Selection.</ns2:disturbances>
+    <ns3:takesEffect>Immediately</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="timePhaseMaxDeviationSib16" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>The maximum allowed time and phase deviation for time and phase synchronization of the eNodeB. It is the deviation that is allowed for SIB16 Time Information Broadcast feature to function. When the limit is exceeded, the feature is deactivated.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="100" min="9"/>
+      </ns1:valueRangeConstraint>
+      <ns1:unit>microseconds</ns1:unit>
+      <ns1:multiplicationFactor>0.1</ns1:multiplicationFactor>
+    </ns1:type>
+    <ns1:default value="100" xsi:type="ns1:integerValue"/>
+    <ns2:disturbances>Traffic can be affected if this attribute is changed. It can cause malfunction of the SIB16 Time Information Broadcast due to the time and phase deviation for time and phase synchronization of the eNodeB.</ns2:disturbances>
+    <ns3:takesEffect>Immediately</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="timePhaseMaxDeviationMbms" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>The maximum allowed time and phase deviation for time and phase synchronization of the eNodeB. It is the deviation that is allowed for Multimedia Broadcast Multicast Service (MBMS) to function. When the limit is exceeded, the service is deactivated.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="100" min="9"/>
+      </ns1:valueRangeConstraint>
+      <ns1:unit>microseconds</ns1:unit>
+      <ns1:multiplicationFactor>0.1</ns1:multiplicationFactor>
+    </ns1:type>
+    <ns1:default value="50" xsi:type="ns1:integerValue"/>
+    <ns2:disturbances>Traffic can be affected if this attribute is changed. It can cause malfunction of the Multimedia Broadcast Multicast Service (MBMS) due to the time and phase deviation for time and phase synchronization of the eNodeB.</ns2:disturbances>
+    <ns3:takesEffect>Immediately</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="timePhaseMaxDeviationOtdoa" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>The maximum allowed time and phase deviation for time and phase synchronization of the eNodeB. It is the deviation that is allowed for Observed Time Difference of Arrival (OTDOA) Support to function. When the limit is exceeded, the service is deactivated.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="100" min="9"/>
+      </ns1:valueRangeConstraint>
+      <ns1:unit>microseconds</ns1:unit>
+      <ns1:multiplicationFactor>0.1</ns1:multiplicationFactor>
+    </ns1:type>
+    <ns1:default value="9" xsi:type="ns1:integerValue"/>
+    <ns2:disturbances>Traffic can be affected if this attribute is changed. It can cause malfunction of the Observed Time Difference of Arrival (OTDOA) Support feature due to the time and phase deviation for time and phase synchronization of the eNodeB.</ns2:disturbances>
+    <ns3:takesEffect>Immediately</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="timePhaseMaxDeviationCdma2000" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>The maximum allowed time and phase deviation for time and phase synchronization of the eNodeB. It is the deviation that is allowed for features related to CDMA2000 fallback and handover to function. When the limit is exceeded, some of the functionality is deactivated.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="100" min="9"/>
+      </ns1:valueRangeConstraint>
+      <ns1:unit>microseconds</ns1:unit>
+      <ns1:multiplicationFactor>0.1</ns1:multiplicationFactor>
+    </ns1:type>
+    <ns1:default value="100" xsi:type="ns1:integerValue"/>
+    <ns2:disturbances>Traffic can be affected if this attribute is changed. It can cause malfunction of the features related to CDMA2000 due to the time and phase deviation for time and phase synchronization of the eNodeB.</ns2:disturbances>
+    <ns3:takesEffect>Immediately</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="timePhaseMaxDeviationTdd" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>The maximum allowed time and phase deviation for time and phase synchronization of the eNodeB for TDD cells. When the limit is exceeded, the TDD cells get disabled.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="100" min="9"/>
+      </ns1:valueRangeConstraint>
+      <ns1:unit>microseconds</ns1:unit>
+      <ns1:multiplicationFactor>0.1</ns1:multiplicationFactor>
+    </ns1:type>
+    <ns1:default value="15" xsi:type="ns1:integerValue"/>
+    <ns2:disturbances>Changing this attribute can affect traffic.</ns2:disturbances>
+    <ns3:takesEffect>Immediately</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="timePhaseSynchStateSib16" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Set to false when the SIB16 Time Information Broadcast feature is degraded due to time and phase synchronization accuracy requirements not fulfilled, otherwise it is set to true.</ns1:desc>
+    <ns1:type xsi:type="ns1:booleanType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="timePhaseSynchStateMbms" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Set to false when the Multimedia Broadcast Multicast Service (MBMS) feature is degraded due to time and phase synchronization accuracy requirements not fulfilled, otherwise it is set to true.</ns1:desc>
+    <ns1:type xsi:type="ns1:booleanType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="timePhaseSynchStateOtdoa" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Set to false when the Observed Time Difference of Arrival (OTDOA) feature is degraded due to time and phase synchronization accuracy requirements not fulfilled, otherwise it is set to true.</ns1:desc>
+    <ns1:type xsi:type="ns1:booleanType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="timePhaseSynchStateCdma2000" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Set to false when the features related to CDMA2000 are degraded due to time and phase synchronization accuracy requirements not fulfilled, otherwise it is set to true.</ns1:desc>
+    <ns1:type xsi:type="ns1:booleanType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="timeAndPhaseSynchAlignment" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>If set to true, any time and phase synchronization accuracy-dependent feature is deactivated or degraded if its time and phase synchronization accuracy is not fulfilled.</ns1:desc>
+    <ns1:type xsi:type="ns1:booleanType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns1:default value="false" xsi:type="ns1:booleanValue"/>
+    <ns2:disturbances>Changing this attribute can affect traffic.</ns2:disturbances>
+    <ns3:takesEffect>Immediately</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="pmLic5Plus5MHzScFddActual" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Current number of licensed 5+5 MHz Sector Carrier capacity units that are allocated to FDD cells. If the node has no FDD cells unlocked then counter reports 0 value.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="pmLic5Plus5MHzScTddActual" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Current number of licensed 5+5 MHz Sector Carrier capacity units that are allocated to TDD cells. If the node has no TDD cells unlocked then counter reports 0 value.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="licConnectedUsersPercentileConf" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>The percentile to use for the counter pmLicConnectedUsersActual.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="100" min="1"/>
+      </ns1:valueRangeConstraint>
+      <ns1:unit>%</ns1:unit>
+    </ns1:type>
+    <ns1:default value="90" xsi:type="ns1:integerValue"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="licDlBbPercentileConf" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>The percentile to use for the counter BbProcessingResource::pmLicDlCapActual.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="100" min="1"/>
+      </ns1:valueRangeConstraint>
+      <ns1:unit>%</ns1:unit>
+    </ns1:type>
+    <ns1:default value="90" xsi:type="ns1:integerValue"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="licUlBbPercentileConf" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>The percentile to use for the counter BbProcessingResource::pmLicUlCapActual.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="100" min="1"/>
+      </ns1:valueRangeConstraint>
+      <ns1:unit>%</ns1:unit>
+    </ns1:type>
+    <ns1:default value="90" xsi:type="ns1:integerValue"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="licDlPrbPercentileConf" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>The percentile to use for the counter BbProcessingResource::pmLicDlPrbCapActual.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="100" min="1"/>
+      </ns1:valueRangeConstraint>
+      <ns1:unit>%</ns1:unit>
+    </ns1:type>
+    <ns1:default value="90" xsi:type="ns1:integerValue"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="licUlPrbPercentileConf" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>The percentile to use for the counter BbProcessingResource::pmLicUlPrbCapActual.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="100" min="1"/>
+      </ns1:valueRangeConstraint>
+      <ns1:unit>%</ns1:unit>
+    </ns1:type>
+    <ns1:default value="90" xsi:type="ns1:integerValue"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="pmLicConnectedUsersActual" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>The X percentile of the utilization for connected users during a measurement period. The value for X is set in the attribute licConnectedUsersPercentileConf.
+
+Source Data: licConnectedUsersPercentileConf and pmLicConnectedUsersDistr</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+      <ns1:unit>%</ns1:unit>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="pmLicConnectedUsersDistr" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Shows the utilization of connected users relative to the installed license for Connected Users. Expressed as percentage of the license limit.
+
+PDF ranges:
+[0]: [0..5]%
+[1]: ]5..10]%
+[2]: ]10..15]%
+[3]: ]15..20]%
+[4]: ]20..25]%
+[5]: ]25..30]%
+[6]: ]30..35]%
+[7]: ]35..40]%
+[8]: ]40..45]%
+[9]: ]45..50]%
+[10]: ]50..55]%
+[11]: ]55..60]%
+[12]: ]60..65]%
+[13]: ]65..70]%
+[14]: ]70..75]%
+[15]: ]75..80]%
+[16]: ]80..85]%
+[17]: ]85..90]%
+[18]: ]90..95]%
+[19]: ]95..100]%
+[20]: ]100..125]%
+[21]: ]125..150]%
+[22]: ]150..200]%
+[23]: ]200..65535]%</ns1:desc>
+    <ns1:type xsi:type="ns1:listType">
+      <ns1:notNullConstraint/>
+      <ns1:collectionSizeConstraint>
+        <ns1:minMaxSize max="24" min="0"/>
+      </ns1:collectionSizeConstraint>
+      <ns1:collectionValuesType xsi:type="ns1:integerType">
+        <ns1:unit>%</ns1:unit>
+      </ns1:collectionValuesType>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="pmLicConnectedUsersLevSamp" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Number of times pmLicConnectedUsersLevSum has been incremented. Associated ACC pmCounter pmLicConnectedUsersLevSum.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="pmLicConnectedUsersLevSum" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Sum of all sample values recorded for "Connected Users".</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="pmLicConnectedUsersLicense" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>The licensed value for connected users. The value reflects the capacity value in the license key file, that is the value of the attribute licensedCapacity in the CapacityConnectedUsers instance of the MO class CapacityFeatureLicense.
+If the value is -100, it means the Connected Users feature uses the Not Contractually Limited model.
+
+Source attribute: CapacityFeatureLicense::licensedCapacity in CapacityConnectedUsers instance of CapacityFeatureLicense.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="pmLicConnectedUsersMax" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Peak number of Connected Users.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="pmLicConnectedUsersTimeCong" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Accumulated time during the ROP when the number of connected users is equal to or greater than the licensed value.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+      <ns1:unit>seconds</ns1:unit>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="pmLicDlCapLicense" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>The licensed capacity limit for downlink baseband capacity. The value reflects the capacity value in the license key file, that is the value of the attribute licensedCapacity in the DlBasebandCapacity instance of the MO class CapacityFeatureLicense.
+
+Source attribute: CapacityFeatureLicense::licensedCapacity in DlBasebandCapacity instance of CapacityFeatureLicense.
+</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+      <ns1:unit>Mbps (1 000 000 bits/s)</ns1:unit>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="pmLicUlCapLicense" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>The licensed capacity limit for uplink baseband capacity. The value reflects the capacity value in the license key file, that is the value of the attribute licensedCapacity in the UlBasebandCapacity instance of the MO class CapacityFeatureLicense.
+
+Source attribute: CapacityFeatureLicense::licensedCapacity in UlBasebandCapacity instance of CapacityFeatureLicense.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+      <ns1:unit>Mbps (1 000 000 bits/s)</ns1:unit>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="pmLicDlPrbCapLicense" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>The licensed capacity limit for DL PRB capacity. The value reflects the capacity value in the license key file, that is the value of the attribute licensedCapacity in the DlPrbCapacity instance of the MO class CapacityFeatureLicense..
+If the value is -100, it means DL PRB capacity uses the Not Contractually Limited model.
+
+Source attribute: CapacityFeatureLicense::licensedCapacity in DlPrbCapacity instance of CapacityFeatureLicense.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+      <ns1:unit>Number of PRBs</ns1:unit>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="pmLicUlPrbCapLicense" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>The licensed capacity limit for UL PRB capacity. The value reflects the capacity value in the license key file, that is the value of the attribute licensedCapacity in the UlPrbCapacity instance of the MO class CapacityFeatureLicense..
+If the value is -100, it means UL PRB capacity uses the Not Contractually Limited model.
+
+Source attribute: CapacityFeatureLicense::licensedCapacity in UlPrbCapacity instance of CapacityFeatureLicense.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+      <ns1:unit>Number of PRBs</ns1:unit>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="mtRreWithoutNeighborActive" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Enables or disables the RRC Connection Reestablishment in source cell when there is no target neighbor cell information.</ns1:desc>
+    <ns1:type xsi:type="ns1:booleanType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns1:default value="true" xsi:type="ns1:booleanValue"/>
+    <ns3:dependencies>This attribute is only effective when feature Multi-Target RRC Connection Reestablishment is activated.</ns3:dependencies>
+    <ns3:takesEffect>New connection</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="checkEmergencySoftLock" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Used to turn on and off the function for checking existence of emergency calls.</ns1:desc>
+    <ns1:type xsi:type="ns1:booleanType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns1:default value="false" xsi:type="ns1:booleanValue"/>
+    <ns3:takesEffect>Immediately</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="softLockRwRWaitTimerInternal" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Length of waiting time before soft-lock of cell starts to release all ongoing calls with Release with Redirect (RwR), when eNodeB internally triggers soft-lock of cell.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="80" min="20"/>
+      </ns1:valueRangeConstraint>
+      <ns1:unit>s</ns1:unit>
+    </ns1:type>
+    <ns1:default value="60" xsi:type="ns1:integerValue"/>
+    <ns3:takesEffect>Immediately</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="softLockRwRWaitTimerOperator" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Length of waiting time before soft-lock of cell starts to release all ongoing calls with Release with Redirect (RwR), when operator triggers soft-lock of cell.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="80" min="20"/>
+      </ns1:valueRangeConstraint>
+      <ns1:unit>s</ns1:unit>
+    </ns1:type>
+    <ns1:default value="60" xsi:type="ns1:integerValue"/>
+    <ns3:takesEffect>Immediately</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="mfbiSupportPolicy" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>A policy parameter that sets the start value of the attribute mfbiSupport when an ExternalENodeBFunction is automatically created by the eNodeB.</ns1:desc>
+    <ns1:type xsi:type="ns1:booleanType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns1:default value="false" xsi:type="ns1:booleanValue"/>
+    <ns3:takesEffect>Immediately</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="zzzTemporary28" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Temporary attributes are intended as temporary solutions. Their usage can vary depending on the installed software. It is strongly recommended to only set the attributes that correspond to a desired functionality and leave all other temporary attributes set to default value. Information in the descriptions about what attributes are in use can be overridden by the information in CPI documents. Note that a later release can use another attribute to control functionality previously provided by a temporary attribute, or can remove functionality altogether. In these cases, the change is documented in the NIR.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns1:default value="-2000000000" xsi:type="ns1:integerValue"/>
+    <ns3:takesEffect>Immediately</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="zzzTemporary29" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Temporary attributes are intended as temporary solutions. Their usage can vary depending on the installed software. It is strongly recommended to only set the attributes that correspond to a desired functionality and leave all other temporary attributes set to default value. Information in the descriptions about what attributes are in use can be overridden by the information in CPI documents. Note that a later release can use another attribute to control functionality previously provided by a temporary attribute, or can remove functionality altogether. In these cases, the change is documented in the NIR.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns1:default value="-2000000000" xsi:type="ns1:integerValue"/>
+    <ns3:takesEffect>Immediately</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="zzzTemporary30" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Temporary attributes are intended as temporary solutions. Their usage can vary depending on the installed software. It is strongly recommended to only set the attributes that correspond to a desired functionality and leave all other temporary attributes set to default value. Information in the descriptions about what attributes are in use can be overridden by the information in CPI documents. Note that a later release can use another attribute to control functionality previously provided by a temporary attribute, or can remove functionality altogether. In these cases, the change is documented in the NIR.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns1:default value="-2000000000" xsi:type="ns1:integerValue"/>
+    <ns3:takesEffect>Immediately</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="zzzTemporary31" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Temporary attributes are intended as temporary solutions. Their usage can vary depending on the installed software. It is strongly recommended to only set the attributes that correspond to a desired functionality and leave all other temporary attributes set to default value. Information in the descriptions about what attributes are in use can be overridden by the information in CPI documents. Note that a later release can use another attribute to control functionality previously provided by a temporary attribute, or can remove functionality altogether. In these cases, the change is documented in the NIR.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns1:default value="-2000000000" xsi:type="ns1:integerValue"/>
+    <ns3:takesEffect>Immediately</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="zzzTemporary32" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Temporary attributes are intended as temporary solutions. Their usage can vary depending on the installed software. It is strongly recommended to only set the attributes that correspond to a desired functionality and leave all other temporary attributes set to default value. Information in the descriptions about what attributes are in use can be overridden by the information in CPI documents. Note that a later release can use another attribute to control functionality previously provided by a temporary attribute, or can remove functionality altogether. In these cases, the change is documented in the NIR.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns1:default value="-2000000000" xsi:type="ns1:integerValue"/>
+    <ns3:takesEffect>Immediately</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="zzzTemporary33" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Temporary attributes are intended as temporary solutions. Their usage can vary depending on the installed software. It is strongly recommended to only set the attributes that correspond to a desired functionality and leave all other temporary attributes set to default value. Information in the descriptions about what attributes are in use can be overridden by the information in CPI documents. Note that a later release can use another attribute to control functionality previously provided by a temporary attribute, or can remove functionality altogether. In these cases, the change is documented in the NIR.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns1:default value="-2000000000" xsi:type="ns1:integerValue"/>
+    <ns3:takesEffect>Immediately</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="zzzTemporary34" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Temporary attributes are intended as temporary solutions. Their usage can vary depending on the installed software. It is strongly recommended to only set the attributes that correspond to a desired functionality and leave all other temporary attributes set to default value. Information in the descriptions about what attributes are in use can be overridden by the information in CPI documents. Note that a later release can use another attribute to control functionality previously provided by a temporary attribute, or can remove functionality altogether. In these cases, the change is documented in the NIR.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns1:default value="-2000000000" xsi:type="ns1:integerValue"/>
+    <ns3:takesEffect>Immediately</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="tddVoipDrxProfileId" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>DrxProfile ID used for TDD VOIP bearers on a mixed FDD/TDD eNodeB. The default value results in TDD using the same DrxProfile as FDD for VOIP bearers.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="17" min="-1"/>
+      </ns1:valueRangeConstraint>
+    </ns1:type>
+    <ns1:default value="-1" xsi:type="ns1:integerValue"/>
+    <ns3:takesEffect>New connection</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="measuringEcgiWithAgActive" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Configures use of autonomous gap as method of CGI measurement. If enabled, capable UEs are configured to use autonomous gap for CGI measurement to target LTE or UTRAN cell.</ns1:desc>
+    <ns1:type xsi:type="ns1:booleanType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns1:default value="false" xsi:type="ns1:booleanValue"/>
+    <ns3:dependencies>This attribute is effective only when ANR for LTE or UTRAN feature is activated.</ns3:dependencies>
+    <ns3:takesEffect>New connection</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="enabledUlTrigMeas" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Enables or disables the UL SINR max measurements and event triggers for the UL quality. Only has effect if license for Uplink-Triggered Inter-Frequency Mobility is not installed.</ns1:desc>
+    <ns1:type xsi:type="ns1:booleanType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns1:default value="false" xsi:type="ns1:booleanValue"/>
+    <ns3:takesEffect>Immediately</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="DEPRECATED" ns1:lifeCycleDesc="Since L16B. Has no functional behavior. Planned to be removed." ns1:name="adaptiveRlcRetxDl" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="DELEGATE">
+    <ns1:desc>Shows if Adaptive RLC Retransmission in DL is active or not.</ns1:desc>
+    <ns1:type xsi:type="ns1:booleanType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns1:default value="false" xsi:type="ns1:booleanValue"/>
+    <ns3:takesEffect>Immediately</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="ulMaxWaitingTimeGlobal" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>The targeted maximum allowed time between scheduling occasions of an UL bearer. A bearer that is not scheduled within the specified time is given higher priority. Value 0 means that the higher priority is never applied. It is recommended to set the value =&lt; than the PDB. A value that is set too low can affect other services with higher priority.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="500" min="0"/>
+      </ns1:valueRangeConstraint>
+      <ns1:unit>ms</ns1:unit>
+    </ns1:type>
+    <ns1:default value="0" xsi:type="ns1:integerValue"/>
+    <ns2:disturbances>Changing this attribute can affect performance of all data bearers. A value that is set too low can affect other services with higher priority. A value that is set too high can cause Dynamic UE Admission Control to fail in keeping the cell stable at overload.</ns2:disturbances>
+    <ns3:dependencies>Only used for Resource Fair Scheduling algorithm. Only relevant if the license for Dynamic UE Admission Control is present and the feature is active.</ns3:dependencies>
+    <ns3:takesEffect>Immediately</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="dlMaxWaitingTimeGlobal" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>The targeted maximum allowed time between scheduling occasions of a DL bearer. A bearer that is not scheduled within the specified time is given higher priority. Value 0 means that the higher priority is never applied. It is recommended to set the value =&lt; than the PDB. A value that is set too low can affect other services with higher priority.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="500" min="0"/>
+      </ns1:valueRangeConstraint>
+      <ns1:unit>ms</ns1:unit>
+    </ns1:type>
+    <ns1:default value="0" xsi:type="ns1:integerValue"/>
+    <ns2:disturbances>Changing this attribute can affect performance of all data bearers. A value that is set too low can affect other services with higher priority. A value that is set too high can cause Dynamic UE Admission Control to fail in keeping the cell stable at overload.</ns2:disturbances>
+    <ns3:dependencies>Only used for Resource Fair Scheduling algorithm. Only relevant if the license for Dynamic UE Admission Control is present and the feature is active.</ns3:dependencies>
+    <ns3:takesEffect>Immediately</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="tRelocOverall" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Supervision timer of the outgoing S1/X2/intra-eNodeB handover execution procedure according to 3GPP TS 36.413 and TS 36.423.
+If the feature Multi-Target RRC Connection Re-establishment is active this timer also supervises the Context Fetch procedure.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="20" min="1"/>
+      </ns1:valueRangeConstraint>
+      <ns1:unit>s</ns1:unit>
+    </ns1:type>
+    <ns1:default value="5" xsi:type="ns1:integerValue"/>
+    <ns3:takesEffect>New connection</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="alignTtiBundWUlTrigSinr" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Configures UL quality measure type utilized for decisions on when to configure and de-configure TTI Bundling. If setting is 'ULTRIG' uplink SINR value from 'Uplink-Triggered Inter-Frequency Mobility' is used for TTI Bundling.</ns1:desc>
+    <ns1:type modelUrn="//ERBS_NODE_MODEL/TtiBundTriggerAlignment/10.3.100" xsi:type="ns1:enumRefType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns1:default value="OFF" xsi:type="ns1:stringValue"/>
+    <ns3:takesEffect>New connection</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="bbVlanPortRef" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Refers to the VlanPort instance to use for configuring the EthernetPort VLAN for a set of BB links.</ns1:desc>
+    <ns1:type modelUrn="//ERBS_NODE_MODEL/ManagedObject/10.3.100" xsi:type="ns1:moRefType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns2:disturbances>Changing this attribute can affect traffic. A node restart is required.</ns2:disturbances>
+    <ns3:takesEffect>At node restart</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="zzzTemporary35" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Temporary attributes are intended as temporary solutions. Their usage can vary depending on the installed software. It is strongly recommended to only set the attributes that correspond to a desired functionality and leave all other temporary attributes set to default value. Information in the descriptions about what attributes are in use can be overridden by the information in CPI documents. Note that a later release can use another attribute to control functionality previously provided by a temporary attribute, or can remove functionality altogether. In these cases, the change is documented in the NIR.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns1:default value="-2000000000" xsi:type="ns1:integerValue"/>
+    <ns3:takesEffect>Immediately</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="zzzTemporary36" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Temporary attributes are intended as temporary solutions. Their usage can vary depending on the installed software. It is strongly recommended to only set the attributes that correspond to a desired functionality and leave all other temporary attributes set to default value. Information in the descriptions about what attributes are in use can be overridden by the information in CPI documents. Note that a later release can use another attribute to control functionality previously provided by a temporary attribute, or can remove functionality altogether. In these cases, the change is documented in the NIR.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns1:default value="-2000000000" xsi:type="ns1:integerValue"/>
+    <ns3:takesEffect>Immediately</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="zzzTemporary37" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Temporary attributes are intended as temporary solutions. Their usage can vary depending on the installed software. It is strongly recommended to only set the attributes that correspond to a desired functionality and leave all other temporary attributes set to default value. Information in the descriptions about what attributes are in use can be overridden by the information in CPI documents. Note that a later release can use another attribute to control functionality previously provided by a temporary attribute, or can remove functionality altogether. In these cases, the change is documented in the NIR.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns1:default value="-2000000000" xsi:type="ns1:integerValue"/>
+    <ns3:takesEffect>Immediately</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="zzzTemporary38" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Temporary attributes are intended as temporary solutions. Their usage can vary depending on the installed software. It is strongly recommended to only set the attributes that correspond to a desired functionality and leave all other temporary attributes set to default value. Information in the descriptions about what attributes are in use can be overridden by the information in CPI documents. Note that a later release can use another attribute to control functionality previously provided by a temporary attribute, or can remove functionality altogether. In these cases, the change is documented in the NIR.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns1:default value="-2000000000" xsi:type="ns1:integerValue"/>
+    <ns3:takesEffect>Immediately</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="zzzTemporary39" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Temporary attributes are intended as temporary solutions. Their usage can vary depending on the installed software. It is strongly recommended to only set the attributes that correspond to a desired functionality and leave all other temporary attributes set to default value. Information in the descriptions about what attributes are in use can be overridden by the information in CPI documents. Note that a later release can use another attribute to control functionality previously provided by a temporary attribute, or can remove functionality altogether. In these cases, the change is documented in the NIR.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns1:default value="-2000000000" xsi:type="ns1:integerValue"/>
+    <ns3:takesEffect>Immediately</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="zzzTemporary40" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Temporary attributes are intended as temporary solutions. Their usage can vary depending on the installed software. It is strongly recommended to only set the attributes that correspond to a desired functionality and leave all other temporary attributes set to default value. Information in the descriptions about what attributes are in use can be overridden by the information in CPI documents. Note that a later release can use another attribute to control functionality previously provided by a temporary attribute, or can remove functionality altogether. In these cases, the change is documented in the NIR.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns1:default value="-2000000000" xsi:type="ns1:integerValue"/>
+    <ns3:takesEffect>Immediately</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="caAwareMfbiIntraCellHo" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Activation/deactivation of feature Intra-Cell Handover to Additional Band.</ns1:desc>
+    <ns1:type xsi:type="ns1:booleanType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns1:default value="false" xsi:type="ns1:booleanValue"/>
+    <ns3:preCondition>Requires support for the feature Multiple Frequency Band Indicators in the eNB.</ns3:preCondition>
+    <ns3:takesEffect>Immediately</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="prioritizeAdditionalBands" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>When enabled, additional frequency bands have higher priority than primary frequency band in secondary cell evaluation.</ns1:desc>
+    <ns1:type xsi:type="ns1:booleanType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns1:default value="false" xsi:type="ns1:booleanValue"/>
+    <ns3:preCondition>useBandPrioritiesInSCellEval must be enabled.</ns3:preCondition>
+    <ns3:takesEffect>Immediately</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="useBandPrioritiesInSCellEval" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>When enabled, secondary cell evaluation is done according to priorities in prioritizeAdditionalBands and EUtranCellFDD/EUtranCellTDD::prioAdditionalFreqBandList.</ns1:desc>
+    <ns1:type xsi:type="ns1:booleanType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns1:default value="false" xsi:type="ns1:booleanValue"/>
+    <ns3:preCondition>caAwareMfbiIntraCellHo must be enabled.</ns3:preCondition>
+    <ns3:takesEffect>Immediately</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="s1GtpuEchoEnable" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>If the node monitors and measures delay for all S1-U termination points or not.</ns1:desc>
+    <ns1:type modelUrn="//ERBS_NODE_MODEL/GtpuEchoEnable/10.3.100" xsi:type="ns1:enumRefType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns1:default value="DISABLED" xsi:type="ns1:stringValue"/>
+    <ns3:takesEffect>Immediately</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="x2GtpuEchoEnable" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>If the node monitors and measures delay for all X2-U termination points or not.</ns1:desc>
+    <ns1:type modelUrn="//ERBS_NODE_MODEL/GtpuEchoEnable/10.3.100" xsi:type="ns1:enumRefType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns1:default value="DISABLED" xsi:type="ns1:stringValue"/>
+    <ns3:takesEffect>Immediately</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="s1GtpuEchoDscp" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>DSCP value used for outgoing GTP-U echo request packets on S1-U.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="63" min="0"/>
+      </ns1:valueRangeConstraint>
+    </ns1:type>
+    <ns1:default value="14" xsi:type="ns1:integerValue"/>
+    <ns3:takesEffect>Immediately</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="x2GtpuEchoDscp" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>DSCP value used for outgoing GTP-U echo request packets on X2-U.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="63" min="0"/>
+      </ns1:valueRangeConstraint>
+    </ns1:type>
+    <ns1:default value="14" xsi:type="ns1:integerValue"/>
+    <ns3:takesEffect>Immediately</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="gtpuErrorIndicationDscp" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>DSCP value used for outgoing GTP-U error indication messages.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:notNullConstraint/>
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="63" min="0"/>
+      </ns1:valueRangeConstraint>
+    </ns1:type>
+    <ns1:default value="40" xsi:type="ns1:integerValue"/>
+    <ns3:takesEffect>Immediately</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="s1GtpuEchoFailureAction" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>S1-U failure action.</ns1:desc>
+    <ns1:type modelUrn="//ERBS_NODE_MODEL/GtpuEchoFailureAction/10.3.100" xsi:type="ns1:enumRefType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns1:default value="NONE" xsi:type="ns1:stringValue"/>
+    <ns3:takesEffect>Immediately</ns3:takesEffect>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAction ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="updateMMEConnection">
+    <ns1:desc>This action shall make it possible to order the RBS to make a new DNS lookup to get possible new MME Pool addresses. The orderCode has two different options:
+
+- Retain: This option will retain all connections that were included in DNS response and the connections that were not included in the response will be removed. For the IP addresses that were unknown for the RBS, the RBS will establish connections to those MMEs.
+
+
+- Renew All existing: The RBS performs a DNS lookup. Release all S1 connections to the MMEs and connect to the MMEs that are included in the DNS response.
+
+This action should be used only when dnsLookupOnTai has the value ON. The action is rejected if dnsLookupState has the value OFF.</ns1:desc>
+    <ns2:parameter mandatory="true" ns1:lifeCycle="CURRENT" ns1:name="orderCode" sensitive="false">
+      <ns1:desc>PrimaryTypeActionParameter: orderCode Description</ns1:desc>
+      <ns1:type modelUrn="//ERBS_NODE_MODEL/OrderCode/10.3.100" xsi:type="ns1:enumRefType">
+        <ns1:notNullConstraint/>
+      </ns1:type>
+    </ns2:parameter>
+  </ns2:primaryTypeAction>
+  <ns2:primaryTypeAction ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="collectDynamicCellStatus">
+    <ns1:desc>Returns a snapshot of the traffic status of the node divided per cell, in the form; number of attached UEs and set up radio bearers.</ns1:desc>
+    <ns2:parameter mandatory="true" ns1:lifeCycle="CURRENT" ns1:name="dynamicCellStatusOutput" sensitive="false">
+      <ns1:desc>Specifies the format of the returned information. It can be either of:
+- Unformatted text, suitable for on-screen reading.
+- Formatted text, suitable for automated interpretation, currently JSON (JavaScript Object Notation).</ns1:desc>
+      <ns1:type modelUrn="//ERBS_NODE_MODEL/DynamicCellStatusOutput/10.3.100" xsi:type="ns1:enumRefType">
+        <ns1:notNullConstraint/>
+      </ns1:type>
+    </ns2:parameter>
+    <ns2:returnType xsi:type="ns1:stringType"/>
+  </ns2:primaryTypeAction>
+
+  <!-- To test sensitive action parameter we introduce manually a fake testSensitiveAction with testSensitiveParameter
+  -->
+  <ns2:primaryTypeAction ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="testSensitiveAction">
+    <ns1:desc>Test action</ns1:desc>
+    <ns2:parameter mandatory="true" ns1:lifeCycle="CURRENT" ns1:name="testSensitiveParameter" sensitive="true">
+      <ns1:desc>Test action</ns1:desc>
+      <ns1:type modelUrn="//ERBS_NODE_MODEL/DynamicCellStatusOutput/10.3.100" xsi:type="ns1:enumRefType">
+        <ns1:notNullConstraint/>
+      </ns1:type>
+    </ns2:parameter>
+    <ns2:returnType xsi:type="ns1:stringType"/>
+  </ns2:primaryTypeAction>
+
+</ns2:PrimaryTypeDefinition>

@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+
+*******************************************************************************
+* COPYRIGHT Ericsson LMI 2018. All rights reserved.
+*
+* No part of this document may be reproduced in any form without the
+* written permission of the copyright owner.The contents of this document
+* are subject to revision without notice due to continued progress in
+* methodology, design and manufacturing. Ericsson shall have no liability
+* for any error or damage of any kind resulting from the use of this document.
+*
+*******************************************************************************
+
+
+--><ns2:PrimaryTypeDefinition xmlns:ns1="urn:com:ericsson:schema:xml:oss:oss_common" xmlns:ns2="urn:com:ericsson:schema:xml:oss:dps_primarytype" xmlns:ns3="urn:com:ericsson:schema:xml:oss:dps_common" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" hierarchyType="HIERARCHICAL" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="G12SubscrPrioLevel" ns1:ns="BscM" ns1:version="5.13.6">
+  <ns1:modelCreationInfo author="mom-xml-transformer-tool" creationDate="2018-10-03 07:07:25.374">
+    <ns1:derivedModel derivedFrom="/net_momdtd/BscM/BscM_5_13_6"/>
+  </ns1:modelCreationInfo>
+  <ns1:desc>G12 Subscriber priority level.
+
+Represents subscriber priority level for Abis paths thresholds data for TG MO in BTS logical model G12.</ns1:desc>
+  <ns2:primaryTypeAttribute immutable="true" key="true" mandatory="true" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="g12SubscrPrioLevelId" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Holds the subscriber priority level for codec allocation and is also used when identifying the MO.
+
+Defines the priority level for which dynamic HR allocation and AMR FR reduced codec allocation thresholds for 16 kbps pool of Abis paths and SCs are set.
+
+The priority level 1 is the highest and the priority level 14 is the lowest.
+
+The availability of this attribute depends on commercial agreements.</ns1:desc>
+    <ns1:type xsi:type="ns1:stringType">
+      <ns1:notNullConstraint/>
+      <ns1:stringContentsConstraint type="REGEX" value="^(1[0-4]|[1-9])$"/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="dAmrRedAbisThr" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>AMR FR with reduced codec allocation threshold for 16 kbps pool of Abis paths.
+
+Defines a threshold value for starting and stopping the allocation of AMR FR channels with reduced codec set using Abis devices from the 16 kbps pool for specific subscriber priority level. The threshold value is expressed as percentage of idle 16 kbps devices, out of nominal number of devices in the pool. The allocation of these channels due to shortage of Abis resources starts when the number of idle 16 kbps devices falls below the threshold value and ends when the number of idle 16 kbps Abis devices exceeds the value determined by this parameter.
+Default value for TG in the transmission mode TDM is 20.
+
+The availability of this attribute depends on commercial agreements.
+
+Attribute can be set to no value only by the system.
+
+Depends on 
+RXATC: DAMRREDABISTHR</ns1:desc>
+    <ns1:type xsi:type="ns1:shortType">
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="100" min="1"/>
+      </ns1:valueRangeConstraint>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="dHraAbisThr" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Dynamic HR allocation threshold for 16 kbps pool of Abis paths.
+
+Changes a threshold value for starting and stopping the allocation of AMR HR and HR channels using Abis devices from the 16 kbps pool for specific subscriber priority level. The threshold value is expressed as percentage of idle 16 kbps Abis devices, out of nominal number of devices in the pool. The allocation of HR channels due to shortage of Abis resources starts when the number of idle 16 kbps Abis devices falls below the threshold value and ends when the number of idle 16 kbps Abis devices exceeds the value determined by this parameter. The allocation is stopped when the threshold value is set to 0.
+Default value for TG in the transmission mode TDM is 0.
+
+
+The availability of this attribute depends on commercial agreements.
+
+Attribute can be set to no value only by the system.
+
+Depends on 
+RXATC: DHRAABISTHR</ns1:desc>
+    <ns1:type xsi:type="ns1:shortType">
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="100" min="0"/>
+      </ns1:valueRangeConstraint>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="dHraAbisThrWb" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Dynamic HR allocation threshold for 16 kbps pool of Abis paths for AMR WB capable MSs.
+
+Describes a threshold value for starting and stopping the allocation of AMR HR and HR channels using Abis devices from the 16 kbps pool for specific subscriber priority level. This threshold is used in AMR-WB capable cells for MSs that support AMR-WB. The threshold value is expressed as percentage of idle 16 kbps Abis devices, out of nominal number of devices in the pool. The allocation of HR channels due to shortage of Abis resources starts when the number of idle 16 kbps Abis devices falls below the threshold value and ends when the number of idle 16 kbps Abis devices exceeds the value determined by this parameter. The allocation is stopped when the threshold value is set to 0. 
+Default value for TG in the transmission mode TDM is 0.
+
+The availability of this attribute depends on commercial agreements.
+
+Attribute can be set to no value only by the system.
+
+Depends on 
+RXATC: DHRAABISTHRWB</ns1:desc>
+    <ns1:type xsi:type="ns1:shortType">
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="100" min="0"/>
+      </ns1:valueRangeConstraint>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="sdAmrRedAbisThr" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>AMR FR with reduced codec allocation threshold for packet Abis.
+
+Describes a threshold value for starting and stopping the allocation of AMR FR channels with reduced codec set, in case of high transmission load on a packet Abis. The threshold value is expressed as percentage counted as the number of HDLC packets transmitted through the packed Abis divided by the maximum number of HDLC packets that can be transmitted within the timeframe. The allocation of these channels due to shortage of packet Abis resources starts when the number of transmitted HDLC packets exceeds the threshold value and ends when the number of transmitted HDLC packets falls below the value determined by this attribute. The allocation is stopped when the threshold value is set to 100.
+Default value for TG in the transmission mode SCM is 100.
+
+The availability of this attribute depends on commercial agreements.
+
+Attribute can be set to no value only by the system.
+
+Depends on 
+RXATC: SDAMRREDABISTHR</ns1:desc>
+    <ns1:type xsi:type="ns1:shortType">
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="100" min="1"/>
+      </ns1:valueRangeConstraint>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="sdHraAbisThr" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Dynamic HR allocation threshold for packet Abis.
+
+Describes a threshold value for starting and stopping the allocation of AMR HR and HR channels, in case of high transmission load on packet Abis. This threshold is used in AMR-WB capable cells for MSs that support AMR-WB. The threshold value is expressed as percentage counted as the number of HDLC packets transmitted through the packet Abis divided by the maximum number of HDLC packets that can be transmitted within the timeframe. The allocation of HR channels due to shortage of packet Abis resources starts when the number of transmitted HDLC packets exceeds the threshold value and ends when the number of transmitted HDLC packets falls below the value determined by this attribute. The allocation is stopped when the threshold value is set to 100.
+Default value for TG in the transmission mode SCM is 100.
+
+The availability of this attribute depends on commercial agreements.
+
+Attribute can be set to no value only by the system.
+
+Depends on 
+RXATC: SDHRAABISTHR</ns1:desc>
+    <ns1:type xsi:type="ns1:shortType">
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="100" min="1"/>
+      </ns1:valueRangeConstraint>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" mandatory="false" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="sdHraAbisThrWb" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Dynamic HR allocation threshold for packet Abis for AMR WB capable MSs.
+
+Describes a threshold value for starting and stopping the allocation of AMR HR and HR channels, in case of high transmission load on packet Abis. This threshold is used in AMR-WB capable cells for MSs that support AMR-WB. The threshold value is expressed as percentage counted as the number of HDLC packets transmitted through the packet Abis divided by the maximum number of HDLC packets that can be transmitted within the timeframe. The allocation of HR channels due to shortage of packet Abis resources starts when the number of transmitted HDLC packets exceeds the threshold value and ends when the number of transmitted HDLC packets falls below the value determined by this attribute. The allocation is stopped when the threshold value is set to 100.
+Default value for TG in the transmission mode SCM is 100.
+
+The availability of this attribute depends on commercial agreements.
+
+Attribute can be set to no value only by the system.
+
+Depends on 
+RXATC: SDHRAABISTHRWB</ns1:desc>
+    <ns1:type xsi:type="ns1:shortType">
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="100" min="1"/>
+      </ns1:valueRangeConstraint>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+</ns2:PrimaryTypeDefinition>

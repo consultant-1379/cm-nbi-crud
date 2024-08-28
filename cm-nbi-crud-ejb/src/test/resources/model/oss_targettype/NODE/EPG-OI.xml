@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+*******************************************************************************
+* COPYRIGHT Ericsson LMI 2018. All rights reserved.
+*
+* No part of this document may be reproduced in any form without the
+* written permission of the copyright owner.The contents of this document
+* are subject to revision without notice due to continued progress in
+* methodology, design and manufacturing. Ericsson shall have no liability
+* for any error or damage of any kind resulting from the use of this document.
+*
+*******************************************************************************
+-->
+<TargetTypeInformation oc:ns="NODE" oc:name="EPG-OI" xmlns:oc="urn:com:ericsson:schema:xml:oss:oss_common"
+                       xmlns="urn:com:ericsson:schema:xml:oss:oss_targettype">
+
+    <oc:modelCreationInfo author="yangsters" creationDate="01 May 2018">
+        <oc:designedModel componentId="EPG-OI Node Common Model"/>
+    </oc:modelCreationInfo>
+
+    <oc:desc>This is the target type information model for Network Element type "EPG-OI".</oc:desc>
+
+    <hasTargetVersionSpecificExtensions>true</hasTargetVersionSpecificExtensions>
+    <platform>IPOS-OI</platform>
+    <technologyDomain>EPS</technologyDomain>
+    <managedFunctionName>EPG</managedFunctionName>
+    <rootMoType namespace="EpgOiTop" name="ManagedElement"/>
+    <ciMoType namespace="IPOSOI_MED" name="IposOiConnectivityInformation"/>
+
+</TargetTypeInformation>

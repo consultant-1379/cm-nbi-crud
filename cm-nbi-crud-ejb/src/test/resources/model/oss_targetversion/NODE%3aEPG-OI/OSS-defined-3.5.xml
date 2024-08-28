@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+
+*******************************************************************************
+* COPYRIGHT Ericsson LMI. All rights reserved.
+*
+* No part of this document may be reproduced in any form without the
+* written permission of the copyright owner.The contents of this document
+* are subject to revision without notice due to continued progress in
+* methodology, design and manufacturing. Ericsson shall have no liability
+* for any error or damage of any kind resulting from the use of this document.
+*
+*******************************************************************************
+
+
+--><ns2:TargetVersionInformation xmlns:ns1="urn:com:ericsson:schema:xml:oss:oss_common" xmlns:ns2="urn:com:ericsson:schema:xml:oss:oss_targetversion" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ns1:name="OSS-defined-3.5" ns1:ns="NODE:EPG-OI" targetModelIdentity="3.5">
+  <ns1:modelCreationInfo>
+    <ns1:designedModel componentId="EPG-OI 3.5 model"/>
+  </ns1:modelCreationInfo>
+  <ns1:desc>Target Version information model for EPG-OI 3.5</ns1:desc>
+  <ns2:supportedModels>
+    <ns2:urn>/pfm_measurement/EPG-OI/NE-defined/856160142491.930266889596.738813471497</ns2:urn>
+    <ns2:urn>/cfm_miminfo/EPG-OI/NE-defined/769683211803.403611404735.692993977366</ns2:urn>
+  </ns2:supportedModels>
+  <ns2:release>3.5</ns2:release>
+</ns2:TargetVersionInformation>

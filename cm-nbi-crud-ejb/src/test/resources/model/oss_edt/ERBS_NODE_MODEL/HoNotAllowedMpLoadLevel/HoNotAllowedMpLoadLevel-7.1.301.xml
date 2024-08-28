@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+
+*******************************************************************************
+* COPYRIGHT Ericsson LMI. All rights reserved.
+*
+* No part of this document may be reproduced in any form without the
+* written permission of the copyright owner.The contents of this document
+* are subject to revision without notice due to continued progress in
+* methodology, design and manufacturing. Ericsson shall have no liability
+* for any error or damage of any kind resulting from the use of this document.
+*
+*******************************************************************************
+
+
+--><ns2:EnumDataTypeDefinition xmlns:ns1="urn:com:ericsson:schema:xml:oss:oss_common" xmlns:ns2="urn:com:ericsson:schema:xml:oss:oss_edt" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ns1:lifeCycle="CURRENT" ns1:name="HoNotAllowedMpLoadLevel" ns1:ns="ERBS_NODE_MODEL" ns1:version="7.1.301">
+  <ns1:modelCreationInfo>
+    <ns1:derivedModel derivedFrom="/net_momdtd/ERBS_NODE_MODEL_G/ERBS_NODE_MODEL_G_1_301"/>
+  </ns1:modelCreationInfo>
+  <ns1:desc>HoNotAllowedMpLoadLevel</ns1:desc>
+  <ns2:member name="NOT_HIGH_LOAD" ns1:lifeCycle="CURRENT" value="0">
+    <ns2:desc>Release inactive UEs at handover when MP load level is at least NOT_HIGH.</ns2:desc>
+  </ns2:member>
+  <ns2:member name="HIGH_LOAD" ns1:lifeCycle="CURRENT" value="1">
+    <ns2:desc>Release inactive UEs at handover when MP load level is at least HIGH.</ns2:desc>
+  </ns2:member>
+  <ns2:member name="VERY_HIGH_LOAD" ns1:lifeCycle="CURRENT" value="2">
+    <ns2:desc>Release inactive UEs at handover when MP load level is at least VERY_HIGH.</ns2:desc>
+  </ns2:member>
+  <ns2:member name="OBSOLETE_ONLY_IN_7_1_301" ns1:lifeCycle="OBSOLETE" value="3">
+    <ns2:desc>Release inactive UEs at handover when MP load level is at least VERY_HIGH.</ns2:desc>
+  </ns2:member>
+  <ns2:member name="OBSOLETE_IN_VERSION" ns1:lifeCycle="OBSOLETE" value="4">
+    <ns2:desc>Release inactive UEs at handover when MP load level is at least VERY_HIGH.</ns2:desc>
+  </ns2:member>
+</ns2:EnumDataTypeDefinition>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+
+*******************************************************************************
+* COPYRIGHT Ericsson LMI. All rights reserved.
+*
+* No part of this document may be reproduced in any form without the
+* written permission of the copyright owner.The contents of this document
+* are subject to revision without notice due to continued progress in
+* methodology, design and manufacturing. Ericsson shall have no liability
+* for any error or damage of any kind resulting from the use of this document.
+*
+*******************************************************************************
+
+
+--><ns2:EnumDataTypeDefinition xmlns:ns1="urn:com:ericsson:schema:xml:oss:oss_common" xmlns:ns2="urn:com:ericsson:schema:xml:oss:oss_edt" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ns1:lifeCycle="CURRENT" ns1:name="DynamicCellStatusOutput" ns1:ns="ERBS_NODE_MODEL" ns1:version="7.1.220">
+  <ns1:modelCreationInfo>
+    <ns1:derivedModel derivedFrom="/net_momdtd/ERBS_NODE_MODEL_J/ERBS_NODE_MODEL_J_3_100"/>
+  </ns1:modelCreationInfo>
+  <ns1:desc>DynamicCellStatusOutput</ns1:desc>
+  <ns2:member name="UNFORMATTED_TEXT" ns1:lifeCycle="CURRENT" value="0">
+    <ns2:desc>Output will be unformatted text, suitable for on-screen reading.</ns2:desc>
+  </ns2:member>
+  <ns2:member name="FORMATTED_TEXT" ns1:lifeCycle="CURRENT" value="1">
+    <ns2:desc>Output will be formatted text, suitable for automated interpretation.</ns2:desc>
+  </ns2:member>
+</ns2:EnumDataTypeDefinition>

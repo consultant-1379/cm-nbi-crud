@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+
+*******************************************************************************
+* COPYRIGHT Ericsson LMI. All rights reserved.
+*
+* No part of this document may be reproduced in any form without the
+* written permission of the copyright owner.The contents of this document
+* are subject to revision without notice due to continued progress in
+* methodology, design and manufacturing. Ericsson shall have no liability
+* for any error or damage of any kind resulting from the use of this document.
+*
+*******************************************************************************
+
+
+--><ns2:TargetVersionInformation xmlns:ns1="urn:com:ericsson:schema:xml:oss:oss_common" xmlns:ns2="urn:com:ericsson:schema:xml:oss:oss_targetversion" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ns1:name="OSS-defined-19.Q3-J.3.100" ns1:ns="NODE:ERBS" targetModelIdentity="19.Q3-J.3.100">
+  <ns1:modelCreationInfo>
+    <ns1:designedModel componentId="ERBS 19.Q3 model"/>
+  </ns1:modelCreationInfo>
+  <ns1:desc>Target Version information model for ERBS 19.Q3</ns1:desc>
+  <ns2:supportedModels>
+    <ns2:urn>/cfm_miminfo/ERBS/NE-defined/393635517630.485333767079.540072354918</ns2:urn>
+  </ns2:supportedModels>
+  <ns2:release>19.Q3</ns2:release>
+</ns2:TargetVersionInformation>

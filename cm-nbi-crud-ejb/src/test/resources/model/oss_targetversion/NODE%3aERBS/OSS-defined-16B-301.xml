@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+
+*******************************************************************************
+* COPYRIGHT Ericsson LMI. All rights reserved.
+*
+* No part of this document may be reproduced in any form without the
+* written permission of the copyright owner.The contents of this document
+* are subject to revision without notice due to continued progress in
+* methodology, design and manufacturing. Ericsson shall have no liability
+* for any error or damage of any kind resulting from the use of this document.
+*
+*******************************************************************************
+
+
+--><ns2:TargetVersionInformation xmlns:ns1="urn:com:ericsson:schema:xml:oss:oss_common" xmlns:ns2="urn:com:ericsson:schema:xml:oss:oss_targetversion" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ns1:name="OSS-defined-16B-301" ns1:ns="NODE:ERBS" targetModelIdentity="16B-G.1.301">
+  <ns1:modelCreationInfo>
+    <ns1:designedModel componentId="ERBS 16B model"/>
+  </ns1:modelCreationInfo>
+  <ns1:desc>Target Version information model for ERBS 16B</ns1:desc>
+  <ns2:supportedModels>
+    <ns2:urn>/cfm_miminfo/ERBS/NE-defined/761209628644.1016539032899.186142954399</ns2:urn>
+    <ns2:urn>/pfm_measurement/ERBS/NE-defined/98159366418.316597023067.407410347569</ns2:urn>
+    <ns2:urn>/net_momdtd/ERBS_NODE_MODEL_G/ERBS_NODE_MODEL_G_1_301</ns2:urn>
+    <ns2:urn>/pfm_event/ERBS/NE-defined/816743979549.964830180143.122648077853</ns2:urn>
+    <ns2:urn>/net_pmevents/ERBS/25_T_R10A</ns2:urn>
+    <ns2:urn>/pfm_measurement/ERBS/NE-defined-EBS/310818173003.260235620345.753504744390</ns2:urn>
+    <ns2:urn>/net_etcm/ERBS/NE-defined-25_R10A</ns2:urn>
+    <ns2:urn>/fbp_rule/ERBS/NE-defined-EBS-25_T_R10A/289147539812.412693182069.447711114755</ns2:urn>
+    <ns2:urn>/oss_capabilitysupport/NODE%3aERBS/NSCS/14.0.0</ns2:urn>
+  </ns2:supportedModels>
+  <ns2:release>16B</ns2:release>
+</ns2:TargetVersionInformation>

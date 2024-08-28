@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+*******************************************************************************
+* COPYRIGHT Ericsson LMI 2015. All rights reserved.
+*
+* No part of this document may be reproduced in any form without the
+* written permission of the copyright owner.The contents of this document
+* are subject to revision without notice due to continued progress in
+* methodology, design and manufacturing. Ericsson shall have no liability
+* for any error or damage of any kind resulting from the use of this document.
+*
+*******************************************************************************
+-->
+<TargetTypeInformation
+
+    oc:ns="NODE"
+    oc:name="ERBS"
+    xmlns:oc="urn:com:ericsson:schema:xml:oss:oss_common"
+    xmlns="urn:com:ericsson:schema:xml:oss:oss_targettype"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+    <oc:modelCreationInfo author="eotilid"    creationDate="24th September 2015">
+        <oc:designedModel componentId="ERBS NODE MODEL"/>
+    </oc:modelCreationInfo>
+    
+    <oc:desc>This is the target type information model for Network Element type "ERBS".</oc:desc>
+
+    <platform>CPP</platform>
+    <technologyDomain>EPS</technologyDomain>
+    <rootMoType namespace="ERBS_NODE_MODEL" name="ManagedElement" />
+    <functionMoType namespace="ERBS_NODE_MODEL" name="ENodeBFunction" technologyDomain="EPS"/>
+    <ciMoType namespace="CPP_MED" name="CppConnectivityInformation" />    
+
+</TargetTypeInformation>

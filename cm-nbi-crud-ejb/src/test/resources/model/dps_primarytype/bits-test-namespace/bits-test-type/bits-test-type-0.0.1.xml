@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+
+*******************************************************************************
+* COPYRIGHT Ericsson LMI. All rights reserved.
+*
+* No part of this document may be reproduced in any form without the
+* written permission of the copyright owner.The contents of this document
+* are subject to revision without notice due to continued progress in
+* methodology, design and manufacturing. Ericsson shall have no liability
+* for any error or damage of any kind resulting from the use of this document.
+*
+*******************************************************************************
+
+--><ns2:PrimaryTypeDefinition xmlns:ns1="urn:com:ericsson:schema:xml:oss:oss_common" xmlns:ns2="urn:com:ericsson:schema:xml:oss:dps_primarytype" xmlns:ns3="urn:com:ericsson:schema:xml:oss:dps_common" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" hierarchyType="HIERARCHICAL" ns1:definedBy="NE" ns1:name="bits-test-type" ns1:ns="bits-test-namespace" ns1:version="0.0.1" readBehavior="FROM_PERSISTENCE" writeBehavior="PERSIST_AND_DELEGATE">
+  <ns1:modelCreationInfo>
+    <ns1:derivedModel derivedFrom="/net_yang/urn%3aietf%3aparams%3axml%3ans%3ayang%3aietf-netconf-acm/ietf-netconf-acm-2018.2.14"/>
+  </ns1:modelCreationInfo>
+  <ns1:desc>key1=name</ns1:desc>
+  <ns2:primaryTypeAttribute mandatory="false" ns1:name="bits-test-attribute" readBehavior="FROM_PERSISTENCE" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Bits test attribute. This leaf matches if the data type corresponding to the requested operation is set.</ns1:desc>
+
+    <ns1:type xsi:type="ns1:bitsType">
+      <ns1:member ns1:name="member1">
+        <ns1:desc>1st member of the fictitious Bits data type.</ns1:desc>
+      </ns1:member>
+      <ns1:member ns1:name="member2">
+        <ns1:desc>2nd member of the fictitious Bits data type.</ns1:desc>
+      </ns1:member>
+      <ns1:member ns1:name="member3">
+        <ns1:desc>3rd member of the fictitious Bits data type.</ns1:desc>
+      </ns1:member>
+      <ns1:member ns1:name="member4">
+        <ns1:desc>4th member of the fictitious Bits data type.</ns1:desc>
+      </ns1:member>
+      <ns1:member ns1:name="member5">
+        <ns1:desc>5th member of the fictitious Bits data type.</ns1:desc>
+      </ns1:member>
+    </ns1:type>
+    <ns1:default value="member1" xsi:type="ns1:stringValue"/>
+  </ns2:primaryTypeAttribute>
+</ns2:PrimaryTypeDefinition>

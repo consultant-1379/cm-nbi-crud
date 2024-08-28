@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+
+*******************************************************************************
+* COPYRIGHT Ericsson LMI 2016. All rights reserved.
+*
+* No part of this document may be reproduced in any form without the
+* written permission of the copyright owner.The contents of this document
+* are subject to revision without notice due to continued progress in
+* methodology, design and manufacturing. Ericsson shall have no liability
+* for any error or damage of any kind resulting from the use of this document.
+*
+*******************************************************************************
+
+
+--><ns2:PrimaryTypeDefinition xmlns:ns1="urn:com:ericsson:schema:xml:oss:oss_common" xmlns:ns2="urn:com:ericsson:schema:xml:oss:dps_primarytype" xmlns:ns3="urn:com:ericsson:schema:xml:oss:dps_common" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" hierarchyType="HIERARCHICAL" ns1:definedBy="NE" ns1:lifeCycle="OBSOLETE" ns1:name="ObsoleteMoEUtranCellFDD" ns1:ns="ERBS_NODE_MODEL" ns1:version="10.3.100">
+  <ns1:modelCreationInfo author="mom-xml-transformer-tool" creationDate="2016-11-01 23:29:00.077">
+    <ns1:derivedModel derivedFrom="/net_momdtd/ERBS_NODE_MODEL_F/ERBS_NODE_MODEL_J_3_100"/>
+  </ns1:modelCreationInfo>
+  <ns1:desc>This MO is identical to EUtranCellFDD-10.3.100 and used for Mo Obsolete tests. This Mo is OBSOLETE</ns1:desc>
+
+    <!-- To test obsolete attributes (TORF-483155) we introduce manually obsolete ones
+      testObsoletePersistent is invented
+    -->
+    <ns2:primaryTypeAttribute immutable="false" mandatory="true" ns1:definedBy="NE" ns1:lifeCycle="OBSOLETE" ns1:name="testObsoletePersistent" readBehavior="FROM_PERSISTENCE" sensitive="true" writeBehavior="PERSIST_AND_DELEGATE">
+        <ns1:desc> Obsolete attribute for test purpose.</ns1:desc>
+        <ns1:type xsi:type="ns1:stringType">
+            <ns1:notNullConstraint/>
+        </ns1:type>
+    </ns2:primaryTypeAttribute>
+
+</ns2:PrimaryTypeDefinition>

@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+
+*******************************************************************************
+* COPYRIGHT Ericsson LMI. All rights reserved.
+*
+* No part of this document may be reproduced in any form without the
+* written permission of the copyright owner.The contents of this document
+* are subject to revision without notice due to continued progress in
+* methodology, design and manufacturing. Ericsson shall have no liability
+* for any error or damage of any kind resulting from the use of this document.
+*
+*******************************************************************************
+
+
+--><ns2:PrimaryTypeDefinition xmlns:ns1="urn:com:ericsson:schema:xml:oss:oss_common" xmlns:ns2="urn:com:ericsson:schema:xml:oss:dps_primarytype" xmlns:ns3="urn:com:ericsson:schema:xml:oss:dps_common" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" hierarchyType="HIERARCHICAL" ns1:definedBy="NE" ns1:name="rule" ns1:ns="urn:ietf:params:xml:ns:yang:ietf-netconf-acm" ns1:version="2018.2.14" readBehavior="FROM_PERSISTENCE" writeBehavior="PERSIST_AND_DELEGATE">
+  <ns1:modelCreationInfo>
+    <ns1:derivedModel derivedFrom="/net_yang/urn%3aietf%3aparams%3axml%3ans%3ayang%3aietf-netconf-acm/ietf-netconf-acm-2018.2.14"/>
+  </ns1:modelCreationInfo>
+  <ns1:desc>key1=name</ns1:desc>
+  <ns2:primaryTypeAttribute immutable="true" key="true" mandatory="true" ns1:name="name" readBehavior="FROM_PERSISTENCE" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Arbitrary name assigned to the rule.</ns1:desc>
+    <ns1:type xsi:type="ns1:stringType">
+      <ns1:notNullConstraint/>
+      <ns1:stringLengthConstraint>
+        <ns1:minMaxLength max="4294967295" min="1"/>
+      </ns1:stringLengthConstraint>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute mandatory="false" ns1:name="module-name" readBehavior="FROM_PERSISTENCE" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Name of the module associated with this rule. This leaf matches if it has the value '*' or if the object being accessed is defined in the module with the specified module name.</ns1:desc>
+    <ns1:type xsi:type="ns1:unionType">
+      <ns1:member xsi:type="ns1:stringType">
+        <ns1:stringContentsConstraint type="REGEX" value="\*"/>
+      </ns1:member>
+      <ns1:member xsi:type="ns1:stringType"/>
+    </ns1:type>
+    <ns1:default value="*" xsi:type="ns1:stringValue"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute mandatory="false" ns1:name="rpc-name" readBehavior="FROM_PERSISTENCE" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>This leaf matches if it has the value '*' or if its value equals the requested protocol operation name.</ns1:desc>
+    <ns1:type xsi:type="ns1:unionType">
+      <ns1:member xsi:type="ns1:stringType">
+        <ns1:stringContentsConstraint type="REGEX" value="\*"/>
+      </ns1:member>
+      <ns1:member xsi:type="ns1:stringType"/>
+    </ns1:type>
+    <ns2:requires>
+      <ns3:activeChoiceCase case="protocol-operation" choice="rule-type" primaryTypeUrn="//urn%3aietf%3aparams%3axml%3ans%3ayang%3aietf-netconf-acm/rule/2018.2.14"/>
+    </ns2:requires>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute mandatory="false" ns1:name="notification-name" readBehavior="FROM_PERSISTENCE" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>This leaf matches if it has the value '*' or if its value equals the requested notification name.</ns1:desc>
+    <ns1:type xsi:type="ns1:unionType">
+      <ns1:member xsi:type="ns1:stringType">
+        <ns1:stringContentsConstraint type="REGEX" value="\*"/>
+      </ns1:member>
+      <ns1:member xsi:type="ns1:stringType"/>
+    </ns1:type>
+    <ns2:requires>
+      <ns3:activeChoiceCase case="notification" choice="rule-type" primaryTypeUrn="//urn%3aietf%3aparams%3axml%3ans%3ayang%3aietf-netconf-acm/rule/2018.2.14"/>
+    </ns2:requires>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute mandatory="false" ns1:name="path" readBehavior="FROM_PERSISTENCE" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Data node instance-identifier associated with the data node, action, or notification controlled by this rule. Configuration data or state data instance-identifiers start with a top-level data node. A complete instance-identifier is required for this type of path value. The special value '/' refers to all possible datastore contents.</ns1:desc>
+    <ns1:type xsi:type="ns1:stringType"/>
+    <ns2:requires>
+      <ns3:activeChoiceCase case="data-node" choice="rule-type" primaryTypeUrn="//urn%3aietf%3aparams%3axml%3ans%3ayang%3aietf-netconf-acm/rule/2018.2.14"/>
+    </ns2:requires>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute mandatory="false" ns1:name="access-operations" readBehavior="FROM_PERSISTENCE" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Access operations associated with this rule. This leaf matches if it has the value '*' or if the bit corresponding to the requested operation is set.</ns1:desc>
+    <ns1:type xsi:type="ns1:unionType">
+      <ns1:member xsi:type="ns1:stringType">
+        <ns1:stringContentsConstraint type="REGEX" value="\*"/>
+      </ns1:member>
+      <ns1:member xsi:type="ns1:bitsType">
+        <ns1:member ns1:name="create">
+          <ns1:desc>Any protocol operation that creates a new data node.</ns1:desc>
+        </ns1:member>
+        <ns1:member ns1:name="read">
+          <ns1:desc>Any protocol operation or notification that returns the value of a data node.</ns1:desc>
+        </ns1:member>
+        <ns1:member ns1:name="update">
+          <ns1:desc>Any protocol operation that alters an existing data node.</ns1:desc>
+        </ns1:member>
+        <ns1:member ns1:name="delete">
+          <ns1:desc>Any protocol operation that removes a data node.</ns1:desc>
+        </ns1:member>
+        <ns1:member ns1:name="exec">
+          <ns1:desc>Execution access to the specified protocol operation.</ns1:desc>
+        </ns1:member>
+      </ns1:member>
+    </ns1:type>
+    <ns1:default value="*" xsi:type="ns1:stringValue"/>
+  </ns2:primaryTypeAttribute>
+
+  <ns2:primaryTypeAttribute mandatory="false" ns1:name="bits-test-attribute" readBehavior="FROM_PERSISTENCE" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Attibute to test bits data type.</ns1:desc>
+    <ns1:type xsi:type="ns1:bitsType">
+        <ns1:member ns1:name="create">
+          <ns1:desc>Any protocol operation that creates a new data node.</ns1:desc>
+        </ns1:member>
+        <ns1:member ns1:name="read">
+          <ns1:desc>Any protocol operation or notification that returns the value of a data node.</ns1:desc>
+        </ns1:member>
+        <ns1:member ns1:name="update">
+          <ns1:desc>Any protocol operation that alters an existing data node.</ns1:desc>
+        </ns1:member>
+        <ns1:member ns1:name="delete">
+          <ns1:desc>Any protocol operation that removes a data node.</ns1:desc>
+        </ns1:member>
+        <ns1:member ns1:name="exec">
+          <ns1:desc>Execution access to the specified protocol operation.</ns1:desc>
+        </ns1:member>
+    </ns1:type>
+    <ns1:default value="*" xsi:type="ns1:stringValue"/>
+  </ns2:primaryTypeAttribute>
+
+  <ns2:primaryTypeAttribute mandatory="true" ns1:name="action" readBehavior="FROM_PERSISTENCE" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>The access control action associated with the rule. If a rule has been determined to match a particular request, then this object is used to determine whether to permit or deny the request.</ns1:desc>
+    <ns1:type modelUrn="//urn%3aietf%3aparams%3axml%3ans%3ayang%3aietf-netconf-acm/action-type/2018.2.14" xsi:type="ns1:enumRefType"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute mandatory="false" ns1:name="comment" readBehavior="FROM_PERSISTENCE" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>A textual description of the access rule.</ns1:desc>
+    <ns1:type xsi:type="ns1:stringType"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:choice mandatory="false" name="rule-type">
+    <ns2:case name="protocol-operation">
+      <ns2:attribute name="rpc-name"/>
+    </ns2:case>
+    <ns2:case name="notification">
+      <ns2:attribute name="notification-name"/>
+    </ns2:case>
+    <ns2:case name="data-node">
+      <ns2:attribute name="path"/>
+    </ns2:case>
+  </ns2:choice>
+</ns2:PrimaryTypeDefinition>
